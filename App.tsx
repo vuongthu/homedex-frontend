@@ -1,20 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Login from "./src/screens/Login";
+import HouseholdList from "./src/screens/HouseholdList";
+import CreateHousehold from "./src/screens/CreateHousehold";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+const Stack = createNativeStackNavigator();
+
+const App = () => {
+
+    return (
+        <NavigationContainer>
+            <Stack.Navigator>
+                {/*<Stack.Screen*/}
+                {/*    name="Login"*/}
+                {/*    component={Login}*/}
+                {/*/>*/}
+                {/*<Stack.Screen*/}
+                {/*    name="HouseholdList"*/}
+                {/*    component={HouseholdList}*/}
+                {/*/>*/}
+                <Stack.Screen
+                    name="HouseholdList"
+                    component={CreateHousehold}
+                />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
 });
+
+export default App;
