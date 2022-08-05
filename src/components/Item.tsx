@@ -1,14 +1,21 @@
 import React from 'react';
-import {Pressable, Text, StyleSheet, View, Image } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import Scale from "./Scale";
 import Quantity from "./Quantity";
 import EditButton from "./EditButton";
 
-const Item = ({ name, brand, expiration, measurement }) => {
-    return(
+type ItemProps = {
+    name: string;
+    brand: string;
+    expiration: string;
+    measurement: string;
+};
+
+const Item = ({name, brand, expiration, measurement}: ItemProps) => {
+    return (
         <View style={styles.container}>
             <View>
-                <Image style={styles.itemImg} source={require('../images/imgitem.png')} />
+                <Image style={styles.itemImg} source={require('../images/imgitem.png')}/>
             </View>
             <View style={styles.textContainer}>
                 <Text>{name}</Text>
@@ -20,7 +27,8 @@ const Item = ({ name, brand, expiration, measurement }) => {
                     <EditButton></EditButton>
                 </View>
                 <Scale></Scale>
-                <Quantity amount="5" onIncrease={() => console.log("Increase!")} onDecrease={() => console.log("Decrease!")}></Quantity>
+                <Quantity amount="5" onIncrease={() => console.log("Increase!")}
+                          onDecrease={() => console.log("Decrease!")}></Quantity>
             </View>
         </View>
     )

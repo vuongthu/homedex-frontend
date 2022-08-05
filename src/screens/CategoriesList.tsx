@@ -1,8 +1,8 @@
-import { Text, ScrollView, View, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import AddButton from "../components/AddButton";
 import Category from "../components/Category";
 
-const CategoriesList = () => {
+const CategoriesList = ({navigation}) => {
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>

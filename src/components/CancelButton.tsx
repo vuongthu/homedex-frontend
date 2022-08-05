@@ -1,8 +1,9 @@
-import { StyleSheet, Text, Pressable } from "react-native";
+import { Pressable, StyleSheet, Text } from "react-native";
 
-const PrimaryButton = ( {title, onPressHandler} ) => {
+const CancelButton = ({title, onPressHandler}) => {
     return (
-        <Pressable style={({pressed}) => pressed ? [styles.button, styles.pressed] : styles.button} onPress={() => onPressHandler ? onPressHandler : console.log("Pressed!")}>
+        <Pressable style={({pressed}) => pressed ? [styles.button, styles.pressed] : styles.button}
+                   onPress={() => onPressHandler ? onPressHandler : console.log("Pressed!")}>
             <Text style={styles.buttonText}>{title}</Text>
         </Pressable>
     )
@@ -28,4 +29,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default PrimaryButton;
+export default CancelButton;

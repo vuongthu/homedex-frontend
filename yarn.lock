@@ -5507,6 +5507,11 @@ react-native-dotenv@^3.3.1:
   dependencies:
     dotenv "^10.0.0"
 
+react-native-duo-toggle-switch@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-duo-toggle-switch/-/react-native-duo-toggle-switch-1.1.0.tgz#ff41a4b4b8aafe9db401d2f404566214597c385a"
+  integrity sha512-1K4O8W8Y3GrZ3M2wSDOoLpKdBUPIUWkBcAjE1xfh3H1TfeOjssyZKCNnD+Pdso7GCFxgcK0daBf1cdLHJak67w==
+
 react-native-gradle-plugin@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/react-native-gradle-plugin/-/react-native-gradle-plugin-0.0.6.tgz#b61a9234ad2f61430937911003cddd7e15c72b45"

@@ -1,10 +1,10 @@
-import { Alert, Button, Image, StyleSheet, Text, TextInput, View } from "react-native";
+import { Alert, Image, StyleSheet, Text, TextInput, View } from "react-native";
 import createHousehold, { Household } from "../../requests";
 import React, { useState } from "react";
 import AcceptButton from "../components/AcceptButton";
 import CancelButton from "../components/CancelButton";
 
-const CreateHousehold = () => {
+const CreateHousehold = ({navigation}) => {
 
     const [householdName, setHouseholdName] = useState("");
 

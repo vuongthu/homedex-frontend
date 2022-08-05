@@ -1,11 +1,9 @@
 import React from 'react';
-import { Image, Text, ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import Household from "../components/Household";
 import AddButton from "../components/AddButton";
 
-const HouseholdList = () => {
-
-    
+const HouseholdList = ({navigation}) => {
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
@@ -25,7 +23,7 @@ const styles = StyleSheet.create({
         padding: 10
     },
     headerLabel: {
-        color: '#667080',
+        color: '#212121',
         fontSize: 24,
         fontWeight: '700',
         marginLeft: 23,

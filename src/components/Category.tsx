@@ -1,9 +1,14 @@
 import React from 'react';
-import { Image, Pressable, Text, StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
-const Category = ({ categoriesName }) => {
-    return(
-        <Pressable style={({pressed}) => pressed ? [styles.text, styles.pressed] : styles.text} onPress={() => console.log("Pressed!")}>
+type CategoryProps = {
+    categoriesName: string;
+};
+
+const Category = ({categoriesName}: CategoryProps) => {
+    return (
+        <Pressable style={({pressed}) => pressed ? [styles.text, styles.pressed] : styles.text}
+                   onPress={() => console.log("Pressed!")}>
             <View style={styles.textContainer}>
                 <Text style={styles.text}>{categoriesName}</Text>
             </View>

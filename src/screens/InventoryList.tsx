@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import AddButton from "../components/AddButton";
 import Item from "../components/Item";
 
-const InventoryList = () => {
+const InventoryList = ({navigation}) => {
 
 
     return (

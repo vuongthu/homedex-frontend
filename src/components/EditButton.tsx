@@ -3,7 +3,7 @@ import React from "react";
 
 const EditButton = () => {
     return (<Pressable style={({pressed}) => pressed ? styles.pressed : []} onPress={() => console.log("Editing!")}>
-        <Image source={require('../images/more.png')} />
+        <Image source={require('../images/more.png')}/>
     </Pressable>)
 }
 

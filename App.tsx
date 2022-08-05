@@ -7,6 +7,7 @@ import HouseholdList from "./src/screens/HouseholdList";
 import CreateHousehold from "./src/screens/CreateHousehold";
 import CategoriesList from "./src/screens/CategoriesList";
 import InventoryList from "./src/screens/InventoryList";
+import AddItem from "./src/screens/AddItem";
 
 const Stack = createNativeStackNavigator();
 
@@ -14,15 +15,15 @@ const App = () => {
 
     return (
         <NavigationContainer>
-            <Stack.Navigator>
-                {/*<Stack.Screen*/}
-                {/*    name="Login"*/}
-                {/*    component={Login}*/}
-                {/*/>*/}
-                {/*<Stack.Screen*/}
-                {/*    name="Household"*/}
-                {/*    component={HouseholdList}*/}
-                {/*/>*/}
+            <Stack.Navigator screenOptions={{contentStyle: {backgroundColor: '#8EA7BA'}}}>
+                <Stack.Screen
+                    name="Login"
+                    component={Login}
+                />
+                <Stack.Screen
+                    name="Household"
+                    component={HouseholdList}
+                />
                 {/*<Stack.Screen*/}
                 {/*    name="Household"*/}
                 {/*    component={CreateHousehold}*/}
@@ -31,10 +32,14 @@ const App = () => {
                 {/*    name="Categories"*/}
                 {/*    component={CategoriesList}*/}
                 {/*/>*/}
-                <Stack.Screen
-                    name="Items"
-                    component={InventoryList}
-                />
+                {/*<Stack.Screen*/}
+                {/*    name="Items"*/}
+                {/*    component={InventoryList}*/}
+                {/*/>*/}
+                {/*<Stack.Screen*/}
+                {/*    name="Add New Item"*/}
+                {/*    component={AddItem}*/}
+                {/*/>*/}
             </Stack.Navigator>
         </NavigationContainer>
     );
