@@ -32,10 +32,6 @@ const CreateHousehold = () => {
                         <AcceptButton title="Save" onPressHandler={onCreateHousehold}></AcceptButton>
                     </View>
                 </View>
-                {/*<Button onPress={async () => {*/}
-                {/*    const household: Household = await createHousehold(householdName, "e50aac94-b0b7-49a3-ad99-146c1eaf6583");*/}
-                {/*    Alert.alert('Household Created', `${household.name}`)*/}
-                {/*}} title="Done"/>*/}
             </View>
         </View>
     )
@@ -53,14 +49,14 @@ const styles = StyleSheet.create({
     },
     header: {
         fontWeight: '700',
-        fontSize: 16,
+        fontSize: 30,
         color: '#667080',
         marginBottom: 33,
         marginTop: 100,
     },
     label: {
         color: '#667080',
-        fontSize: 14,
+        fontSize: 16,
         fontWeight: '400',
     },
     formContainer: {

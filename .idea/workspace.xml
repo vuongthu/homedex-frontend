@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="32ca9d7f-208a-41f9-8ee0-446b2c32f7ae" name="Changes" comment="">
+    <list default="true" id="5a1bba96-49c1-4945-aa65-ebe240b86056" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Households.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Household.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/CreateHousehold.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/CreateHousehold.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/HouseholdList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/HouseholdList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Login.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -11,20 +18,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="TypeScript File" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2CahXEHdobCv6xLvUUEqOXETBUi" />
+  <component name="ProjectId" id="2CubYL7Gr90EnDKpzoEk6Z9FSYO" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
@@ -37,40 +37,40 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/thuvuong/ada/capstone/homedex-front/src/components",
+    "last_opened_file_path": "/Users/thuvuong/ada/capstone/homedex-front",
     "nodejs_package_manager_path": "yarn",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.sourceCode.TypeScript",
     "ts.external.directory.path": "/Users/thuvuong/ada/capstone/homedex-front/node_modules/typescript/lib"
   }
 }]]></component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/components" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/images" />
-      <recent name="$PROJECT_DIR$/src/screens" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="32ca9d7f-208a-41f9-8ee0-446b2c32f7ae" name="Changes" comment="" />
-      <created>1659046641110</created>
+      <changelist id="5a1bba96-49c1-4945-aa65-ebe240b86056" name="Changes" comment="" />
+      <created>1659655462862</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1659046641110</updated>
-      <workItem from="1659046642360" duration="2931000" />
-      <workItem from="1659055474423" duration="82000" />
-      <workItem from="1659055587921" duration="805000" />
-      <workItem from="1659056407173" duration="30912000" />
+      <updated>1659655462862</updated>
+      <workItem from="1659655463980" duration="7785000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

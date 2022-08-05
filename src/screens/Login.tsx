@@ -8,14 +8,14 @@ const Login = () => {
     return (
         <View style={styles.loginContainer}>
             <Text style={styles.title}>HomeDex</Text>
-            <Text style={styles.label}>Email</Text>
-            <TextInput style={styles.input} placeholder="email"/>
+            <Text style={styles.label}>Username or Email</Text>
+            <TextInput style={styles.input} placeholder="Email"/>
             <Text style={styles.label}>Password</Text>
-            <TextInput style={styles.input} placeholder="password"/>
+            <TextInput style={styles.input} placeholder="Password"/>
             <View style={styles.button}>
                 <AcceptButton title="Sign In"></AcceptButton>
             </View>
-            <Text style={styles.password} onPress={() => Linking.openURL('https://google.com')}>Forgot Password</Text>
+            <Text style={styles.password} onPress={() => Linking.openURL('https://google.com')}>Forgot Password?</Text>
         </View>
     )
 }

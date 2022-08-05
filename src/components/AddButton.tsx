@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Pressable, Image } from "react-native";
+import { StyleSheet, Pressable, Image } from "react-native";
 import React from "react";
 
 const AddButton = () => {

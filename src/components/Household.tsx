@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, View, Text, StyleSheet } from "react-native";
 
-const Households = ({ householdName }) => {
+const Household = ({ householdName }) => {
     return(
         <View style={styles.container}>
             <Image style={styles.image} source={require('../images/imgplaceholder.png')} />
@@ -27,4 +27,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Households;
+export default Household;
