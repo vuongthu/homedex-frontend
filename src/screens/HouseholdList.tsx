@@ -20,7 +20,7 @@ const HouseholdList = ({ route, navigation }) => {
             return <Household
                 key={household.id}
                 householdName={household.name}
-                onPressHandler={() => navigation.navigate('Categories', { householdId: household.id })}
+                onPressHandler={() => navigation.navigate('Categories', { householdId: household.id, householdName: household.name })}
             ></Household>
         })
 

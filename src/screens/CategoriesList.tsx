@@ -6,7 +6,7 @@ import { Categories, getCategories } from "../../requests";
 
 const CategoriesList = ({ route, navigation }) => {
 
-    const { householdId } = route.params;
+    const { householdId, householdName } = route.params;
 
     const [categoriesData, setCategoriesData] = useState([]);
 
@@ -26,8 +26,13 @@ const CategoriesList = ({ route, navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
-                <Text style={styles.headerLabel}>Home Categories</Text>
-                <AddButton></AddButton>
+                <View style={styles.headerLabelContainer}>
+                    <Text style={styles.householdLabel}>{householdName}</Text>
+                    <Text style={styles.headerLabel}>Home Categories</Text>
+                </View>
+                <View style={styles.button}>
+                    <AddButton></AddButton>
+                </View>
             </View>
             <ScrollView>
                 <View style={styles.categoryContainer}>
@@ -61,7 +66,20 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: '700',
         marginLeft: 16,
-    }
+    },
+    householdLabel: {
+        color: '#FFFFFF',
+        fontSize: 35,
+        fontWeight: '700',
+        marginLeft: 16,
+        textTransform: 'uppercase',
+    },
+    headerLabelContainer: {
+        flexDirection: 'column'
+    },
+    button: {
+        marginTop: 25,
+    },
 })
 
 export default CategoriesList;
