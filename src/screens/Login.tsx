@@ -14,8 +14,7 @@ const Login = ({ navigation }) => {
 
         if (!user) {
             Alert.alert('Login Failed', 'Please enter a valid username/email and/or password')
-        }
-        else {
+        } else {
             navigation.navigate('Households', {
                 userId: user.id,
             });

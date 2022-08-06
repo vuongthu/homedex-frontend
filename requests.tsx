@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import {BACKEND_URL} from "react-native-dotenv";
+import { BACKEND_URL } from "react-native-dotenv";
 
 const baseUrl = BACKEND_URL;
 
@@ -18,15 +18,14 @@ export class User {
 }
 
 export const userLogin = (username: string, password: string) => {
-    return axios.post(`${baseUrl}/users/login`, {username: username, password: password})
+    return axios.post(`${baseUrl}/users/login`, { username: username, password: password })
         .then((response: AxiosResponse<User>) => response.data)
         .catch((err) => console.log(`Error logging in: ${err}`))
 }
 
+// Household List Screen
 
-// Create Household Screen
-
-export class Household {
+export class Households {
     id: string;
     name: string;
 
@@ -36,11 +35,22 @@ export class Household {
     }
 }
 
+export const getHouseholds = (userId: string) => {
+    return axios.get(`${baseUrl}/households/mappings`, { params: { 'user-id': userId } })
+        .then((response: AxiosResponse<[Households]>) => response.data)
+        .catch((err) => {
+            console.log(`Error fetching households: ${err}`);
+            return [];
+        });
+};
+
+// Create Household Screen
+
 
 const createHousehold = (name: string, userId: string) => {
-    return axios.post(`${baseUrl}/households`, {name: name}, {params: {'user-id': userId}})
-        .then((response: AxiosResponse<Household>) => response.data)
-        .catch((err) => console.log(`Error creating household: ${err}`))
+    return axios.post(`${baseUrl}/households`, { name: name }, { params: { 'user-id': userId } })
+        .then((response: AxiosResponse<Households>) => response.data)
+        .catch((err) => console.log(`Error creating household: ${err}`));
 }
 
 export default createHousehold;

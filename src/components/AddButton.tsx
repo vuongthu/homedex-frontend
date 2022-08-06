@@ -5,11 +5,11 @@ type AddButtonProps = {
     onPressHandler: () => void;
 };
 
-const AddButton = ({onPressHandler}: AddButtonProps) => {
+const AddButton = ({ onPressHandler }: AddButtonProps) => {
 
 
     return (
-        <Pressable style={({pressed}) => pressed ? [styles.container, styles.pressed] : styles.container}
+        <Pressable style={({ pressed }) => pressed ? [styles.container, styles.pressed] : styles.container}
                    onPress={() => onPressHandler ? onPressHandler() : console.log("Added!")}>
             <Image source={require('../images/plus.png')}/>
         </Pressable>

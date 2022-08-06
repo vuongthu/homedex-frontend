@@ -5,15 +5,14 @@ type AcceptButtonProps = {
     onPressHandler: () => void;
 };
 
-const AcceptButton = ({title, onPressHandler}: AcceptButtonProps) => {
+const AcceptButton = ({ title, onPressHandler }: AcceptButtonProps) => {
     return (
-        <Pressable style={({pressed}) => pressed ? [styles.button, styles.pressed] : styles.button}
+        <Pressable style={({ pressed }) => pressed ? [styles.button, styles.pressed] : styles.button}
                    onPress={() => onPressHandler ? onPressHandler() : console.log("Pressed!")}>
             <Text style={styles.buttonText}>{title}</Text>
         </Pressable>
     )
 }
-
 
 const styles = StyleSheet.create({
     button: {

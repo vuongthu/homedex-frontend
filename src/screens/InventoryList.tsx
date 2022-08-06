@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import AddButton from "../components/AddButton";
 import Item from "../components/Item";
 
-const InventoryList = ({navigation}) => {
+const InventoryList = ({ navigation }) => {
 
 
     return (

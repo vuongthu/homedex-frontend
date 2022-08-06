@@ -5,9 +5,9 @@ type CategoryProps = {
     categoriesName: string;
 };
 
-const Category = ({categoriesName}: CategoryProps) => {
+const Category = ({ categoriesName }: CategoryProps) => {
     return (
-        <Pressable style={({pressed}) => pressed ? [styles.text, styles.pressed] : styles.text}
+        <Pressable style={({ pressed }) => pressed ? [styles.text, styles.pressed] : styles.text}
                    onPress={() => console.log("Pressed!")}>
             <View style={styles.textContainer}>
                 <Text style={styles.text}>{categoriesName}</Text>

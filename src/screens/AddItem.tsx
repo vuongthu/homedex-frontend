@@ -4,7 +4,7 @@ import AcceptButton from "../components/AcceptButton";
 import MeasurementToggle from "../components/MeasurementToggle";
 
 
-const AddItem = ({navigation}) => {
+const AddItem = ({ navigation }) => {
     return (
         <View>
             <Text style={styles.header}>Add New Item</Text>

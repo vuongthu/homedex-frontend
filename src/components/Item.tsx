@@ -11,7 +11,7 @@ type ItemProps = {
     measurement: string;
 };
 
-const Item = ({name, brand, expiration, measurement}: ItemProps) => {
+const Item = ({ name, brand, expiration, measurement }: ItemProps) => {
     return (
         <View style={styles.container}>
             <View>

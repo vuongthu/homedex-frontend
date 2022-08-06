@@ -1,12 +1,13 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text } from "react-native";
 
-const Household = ({householdName}) => {
+const Household = ({ householdName, onPressHandler }) => {
     return (
-        <View style={styles.container}>
+        <Pressable style={({ pressed }) => pressed ? [styles.container, styles.pressed] : styles.container}
+                   onPress={onPressHandler}>
             <Image style={styles.image} source={require('../images/imgplaceholder.png')}/>
             <Text style={styles.text}>{householdName}</Text>
-        </View>
+        </Pressable>
     )
 }
 
@@ -32,6 +33,9 @@ const styles = StyleSheet.create({
         marginLeft: 23,
         marginRight: 23,
     },
+    pressed: {
+        opacity: 0.75,
+    }
 })
 
 export default Household;

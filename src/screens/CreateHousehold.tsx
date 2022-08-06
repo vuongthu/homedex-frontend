@@ -1,13 +1,13 @@
 import { Alert, Image, StyleSheet, Text, TextInput, View } from "react-native";
-import createHousehold, { Household } from "../../requests";
+import createHousehold from "../../requests";
 import React, { useState } from "react";
 import AcceptButton from "../components/AcceptButton";
 import CancelButton from "../components/CancelButton";
 
-const CreateHousehold = ({navigation}) => {
+const CreateHousehold = ({ navigation }) => {
 
     const [householdName, setHouseholdName] = useState("");
-    const [isInputValid, setInputValid] = useState({nameInput: false})
+    const [isInputValid, setInputValid] = useState({ nameInput: false })
 
     const onCreateHousehold = async () => {
         const household = await createHousehold(householdName, "e50aac94-b0b7-49a3-ad99-146c1eaf6583");

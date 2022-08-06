@@ -1,10 +1,28 @@
-import React from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from 'react';
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import Household from "../components/Household";
 import AddButton from "../components/AddButton";
+import { getHouseholds, Households } from "../../requests";
 
 const HouseholdList = ({ route, navigation }) => {
     const { userId } = route.params;
+
+    const [householdData, setHouseholdData] = useState([])
+
+    useEffect(() => {
+        getHouseholds(userId).then((households: [Households]) => {
+            setHouseholdData(households)
+        })
+    }, [])
+
+    const householdList =
+        householdData.map((household: Households) => {
+            return <Household
+                key={household.id}
+                householdName={household.name}
+                onPressHandler={() => navigation.navigate('Categories', { householdId: household.id })}
+            ></Household>
+        })
 
     return (
         <View style={styles.container}>
@@ -13,10 +31,9 @@ const HouseholdList = ({ route, navigation }) => {
                 <AddButton onPressHandler={() => navigation.navigate('Create Household')}></AddButton>
             </View>
             <ScrollView>
-                <Pressable style={({pressed}) => pressed ? styles.pressed : []} onPress={() => navigation.navigate('Categories')}>
-                    <Household householdName="Household 1"></Household>
-                    <Household householdName="Household 2"></Household>
-                </Pressable>
+                <View>
+                    {householdList}
+                </View>
             </ScrollView>
         </View>
     )
@@ -38,9 +55,6 @@ const styles = StyleSheet.create({
         marginBottom: 67,
         marginTop: 60,
     },
-    pressed: {
-        opacity: 0.75,
-    }
 })
 
 export default HouseholdList;
