@@ -54,3 +54,24 @@ const createHousehold = (name: string, userId: string) => {
 }
 
 export default createHousehold;
+
+// Categories List Screen
+
+export class Categories {
+    id: string;
+    name: string;
+
+    constructor(id: string, name: string) {
+        this.id = id;
+        this.name = name;
+    }
+}
+
+export const getCategories = (householdId: string) => {
+    return axios.get(`${baseUrl}/categories`, { params: { 'household-id' : householdId } })
+        .then((response: AxiosResponse<Categories>) => response.data)
+        .catch((err) => {
+            console.log(`Error fetching categories: ${err}`);
+            return [];
+        })
+}

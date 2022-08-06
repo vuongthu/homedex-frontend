@@ -3,12 +3,13 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 
 type CategoryProps = {
     categoriesName: string;
+    onPressHandler: () => void;
 };
 
-const Category = ({ categoriesName }: CategoryProps) => {
+const Category = ({ categoriesName, onPressHandler }: CategoryProps) => {
     return (
         <Pressable style={({ pressed }) => pressed ? [styles.text, styles.pressed] : styles.text}
-                   onPress={() => console.log("Pressed!")}>
+                   onPress={onPressHandler}>
             <View style={styles.textContainer}>
                 <Text style={styles.text}>{categoriesName}</Text>
             </View>

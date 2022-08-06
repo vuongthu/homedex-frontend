@@ -1,8 +1,28 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import AddButton from "../components/AddButton";
 import Category from "../components/Category";
+import { useEffect, useState } from "react";
+import { Categories, getCategories } from "../../requests";
 
-const CategoriesList = ({ navigation }) => {
+const CategoriesList = ({ route, navigation }) => {
+
+    const { householdId } = route.params;
+
+    const [categoriesData, setCategoriesData] = useState([]);
+
+    useEffect(() => {
+        getCategories(householdId).then((categories: [Categories]) => setCategoriesData(categories))
+    }, [])
+
+    const categoriesList =
+        categoriesData.map((category: Categories) => {
+            return <Category
+                key={category.id}
+                categoriesName={category.name}
+                onPressHandler={() => navigation.navigate('Items', { categoryId: category.id })}
+            ></Category>
+        })
+
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
@@ -11,16 +31,7 @@ const CategoriesList = ({ navigation }) => {
             </View>
             <ScrollView>
                 <View style={styles.categoryContainer}>
-                    <Category categoriesName="Kitchen"></Category>
-                    <Category categoriesName="Fridge"></Category>
-                    <Category categoriesName="Master Bathroom"></Category>
-                    <Category categoriesName="Garage"></Category>
-                    <Category categoriesName="Bathroom 2"></Category>
-                    <Category categoriesName="Bathroom 3"></Category>
-                    <Category categoriesName="Bottom Pantry"></Category>
-                    <Category categoriesName="Freezer"></Category>
-                    <Category categoriesName="Kitchen Sink"></Category>
-                    <Category categoriesName="Top Pantry"></Category>
+                    {categoriesList}
                 </View>
             </ScrollView>
         </View>

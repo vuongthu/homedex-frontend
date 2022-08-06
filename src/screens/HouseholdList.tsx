@@ -7,7 +7,7 @@ import { getHouseholds, Households } from "../../requests";
 const HouseholdList = ({ route, navigation }) => {
     const { userId } = route.params;
 
-    const [householdData, setHouseholdData] = useState([])
+    const [householdData, setHouseholdData] = useState([]);
 
     useEffect(() => {
         getHouseholds(userId).then((households: [Households]) => {
@@ -28,7 +28,7 @@ const HouseholdList = ({ route, navigation }) => {
         <View style={styles.container}>
             <View style={styles.headerContainer}>
                 <Text style={styles.headerLabel}>Households</Text>
-                <AddButton onPressHandler={() => navigation.navigate('Create Household')}></AddButton>
+                <AddButton onPressHandler={() => navigation.navigate('Create Household', {userId: userId })}></AddButton>
             </View>
             <ScrollView>
                 <View>

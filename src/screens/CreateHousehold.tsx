@@ -4,15 +4,16 @@ import React, { useState } from "react";
 import AcceptButton from "../components/AcceptButton";
 import CancelButton from "../components/CancelButton";
 
-const CreateHousehold = ({ navigation }) => {
+const CreateHousehold = ({ route, navigation }) => {
 
+    const { userId } = route.params;
     const [householdName, setHouseholdName] = useState("");
-    const [isInputValid, setInputValid] = useState({ nameInput: false })
+    const [isInputValid, setInputValid] = useState({ nameInput: false });
 
     const onCreateHousehold = async () => {
-        const household = await createHousehold(householdName, "e50aac94-b0b7-49a3-ad99-146c1eaf6583");
-        Alert.alert('Household Created', `${household.name}`)
-    }
+        const household = await createHousehold(householdName, userId);
+        Alert.alert('Household Created', `${household.name}`);
+    };
 
     return (
         <View>

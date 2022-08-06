@@ -6,6 +6,7 @@ import Login from "./src/screens/Login";
 import HouseholdList from "./src/screens/HouseholdList";
 import CreateHousehold from "./src/screens/CreateHousehold";
 import CategoriesList from "./src/screens/CategoriesList";
+import InventoryList from "./src/screens/InventoryList";
 
 const Stack = createNativeStackNavigator();
 
@@ -32,10 +33,10 @@ const App = () => {
                     name="Categories"
                     component={CategoriesList}
                 />
-                {/*<Stack.Screen*/}
-                {/*    name="Items"*/}
-                {/*    component={InventoryList}*/}
-                {/*/>*/}
+                <Stack.Screen
+                    name="Items"
+                    component={InventoryList}
+                />
                 {/*<Stack.Screen*/}
                 {/*    name="Add New Item"*/}
                 {/*    component={AddItem}*/}
