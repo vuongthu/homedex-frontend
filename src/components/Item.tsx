@@ -9,9 +9,10 @@ type ItemProps = {
     brand: string;
     expiration: string;
     measurement: string;
+    unit: number;
 };
 
-const Item = ({ name, brand, expiration, measurement }: ItemProps) => {
+const Item = ({ name, brand, expiration, measurement, unit }: ItemProps) => {
     return (
         <View style={styles.container}>
             <View>
@@ -26,9 +27,10 @@ const Item = ({ name, brand, expiration, measurement }: ItemProps) => {
                 <View style={styles.moreImg}>
                     <EditButton></EditButton>
                 </View>
-                <Scale></Scale>
-                <Quantity amount="5" onIncrease={() => console.log("Increase!")}
-                          onDecrease={() => console.log("Decrease!")}></Quantity>
+                {measurement === "SCALE" ? <Scale></Scale> :
+                    <Quantity amount={unit} onIncrease={() => console.log("Increase!")}
+                              onDecrease={() => console.log("Decrease!")}></Quantity>
+                }
             </View>
         </View>
     )

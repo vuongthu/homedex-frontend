@@ -7,6 +7,7 @@ import HouseholdList from "./src/screens/HouseholdList";
 import CreateHousehold from "./src/screens/CreateHousehold";
 import CategoriesList from "./src/screens/CategoriesList";
 import InventoryList from "./src/screens/InventoryList";
+import AddItem from "./src/screens/AddItem";
 
 const Stack = createNativeStackNavigator();
 
@@ -37,10 +38,10 @@ const App = () => {
                     name="Items"
                     component={InventoryList}
                 />
-                {/*<Stack.Screen*/}
-                {/*    name="Add New Item"*/}
-                {/*    component={AddItem}*/}
-                {/*/>*/}
+                <Stack.Screen
+                    name="Add New Item"
+                    component={AddItem}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     );

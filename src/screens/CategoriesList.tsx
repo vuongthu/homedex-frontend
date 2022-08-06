@@ -19,7 +19,7 @@ const CategoriesList = ({ route, navigation }) => {
             return <Category
                 key={category.id}
                 categoriesName={category.name}
-                onPressHandler={() => navigation.navigate('Items', { categoryId: category.id })}
+                onPressHandler={() => navigation.navigate('Items', { categoryId: category.id, categoryName: category.name })}
             ></Category>
         })
 

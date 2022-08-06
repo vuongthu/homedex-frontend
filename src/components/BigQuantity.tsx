@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     amount: {
         fontSize: 48,
         fontWeight: '400',
-        color: '#667080',
+        color: '#FFFFFF',
     },
     pressed: {
         opacity: 0.75,

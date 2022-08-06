@@ -19,7 +19,7 @@ const MeasurementToggle = () => {
                 onPrimaryPress={() => setToggleType('Quantity')}
                 onSecondaryPress={() => setToggleType('Scale')}
                 activeColor='#667080'
-                inactiveColor='#DCE3E9'/>
+                inactiveColor='#FFFFFF'/>
             {toggleType === 'Scale' ? <BigScale></BigScale> : <BigQuantity amount={0}></BigQuantity>}
         </View>
     )

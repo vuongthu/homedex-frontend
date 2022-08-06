@@ -5,10 +5,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requests.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/requests.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Category.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Category.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BigQuantity.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BigQuantity.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Item.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MeasurementToggle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MeasurementToggle.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/AddItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AddItem.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/CategoriesList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/CategoriesList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/CreateHousehold.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/CreateHousehold.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/HouseholdList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/HouseholdList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/InventoryList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/InventoryList.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +65,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1659655462862</updated>
-      <workItem from="1659655463980" duration="34350000" />
+      <workItem from="1659655463980" duration="35727000" />
     </task>
     <servers />
   </component>

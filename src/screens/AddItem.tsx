@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     header: {
         fontWeight: '700',
         fontSize: 30,
-        color: '#667080',
+        color: '#FFFFFF',
         marginBottom: 33,
         marginTop: 35,
         textAlign: "center",
@@ -51,11 +51,11 @@ const styles = StyleSheet.create({
     input: {
         borderWidth: 1,
         borderStyle: 'solid',
-        color: '#667080',
+        color: '#FFFFFF',
         borderRadius: 6,
         width: 345,
         height: 48,
-        borderColor: '#667080',
+        borderColor: '#FFFFFF',
         padding: 12,
         marginBottom: 6,
     },

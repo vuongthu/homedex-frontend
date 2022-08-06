@@ -75,3 +75,34 @@ export const getCategories = (householdId: string) => {
             return [];
         })
 }
+
+// Items List Screen
+
+export class Items {
+    id: string;
+    name: string;
+    measurement: string;
+    brand: string;
+    addInfo: string;
+    expiration: string;
+    unit: number;
+
+    constructor(id: string, name: string, measurement: string, brand: string, addInfo: string, expiration: string, unit: number) {
+        this.id = id;
+        this.name = name;
+        this.measurement = measurement;
+        this.brand = brand;
+        this.addInfo = addInfo;
+        this.expiration = expiration;
+        this.unit = unit;
+    }
+}
+
+export const getItems = (categoryId: string) => {
+    return axios.get(`${baseUrl}/categories/${categoryId}/items`)
+        .then((response: AxiosResponse<[Items]>) => response.data)
+        .catch((err) => {
+            console.log(`Error fetching items: ${err}`);
+            return [];
+        })
+}
