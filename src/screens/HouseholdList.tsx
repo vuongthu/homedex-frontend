@@ -1,18 +1,22 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import Household from "../components/Household";
 import AddButton from "../components/AddButton";
 
-const HouseholdList = ({navigation}) => {
+const HouseholdList = ({ route, navigation }) => {
+    const { userId } = route.params;
+
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
                 <Text style={styles.headerLabel}>Households</Text>
-                <AddButton></AddButton>
+                <AddButton onPressHandler={() => navigation.navigate('Create Household')}></AddButton>
             </View>
             <ScrollView>
-                <Household householdName="Household 1"></Household>
-                <Household householdName="Household 2"></Household>
+                <Pressable style={({pressed}) => pressed ? styles.pressed : []} onPress={() => navigation.navigate('Categories')}>
+                    <Household householdName="Household 1"></Household>
+                    <Household householdName="Household 2"></Household>
+                </Pressable>
             </ScrollView>
         </View>
     )
@@ -23,7 +27,7 @@ const styles = StyleSheet.create({
         padding: 10
     },
     headerLabel: {
-        color: '#212121',
+        color: '#FFFFFF',
         fontSize: 24,
         fontWeight: '700',
         marginLeft: 23,
@@ -33,6 +37,9 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         marginBottom: 67,
         marginTop: 60,
+    },
+    pressed: {
+        opacity: 0.75,
     }
 })
 

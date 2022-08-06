@@ -4,30 +4,35 @@ import AcceptButton from "../components/AcceptButton";
 import { User, userLogin } from "../../requests";
 
 
-const Login = ({navigation}) => {
+const Login = ({ navigation }) => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     const onUserLogin = async () => {
-        try {
-            const user: User = await userLogin(username, password);
-            navigation.navigate('Household')
-        } catch {
+        const user: User = await userLogin(username, password);
+
+        if (!user) {
             Alert.alert('Login Failed', 'Please enter a valid username/email and/or password')
         }
-    }
+        else {
+            navigation.navigate('Households', {
+                userId: user.id,
+            });
+        }
+    };
 
     return (
         <View style={styles.loginContainer}>
             <Image style={styles.logo} source={require('../images/logo-with-name.png')}/>
             <Text style={styles.label}>Username or Email</Text>
-            <TextInput style={styles.input} placeholder="Username or Email" value={username}
-                       onChangeText={setUsername}/>
+            <TextInput style={styles.input} placeholder={"Username or Email"} value={username}
+                       onChangeText={setUsername} autoCapitalize="none" autoCorrect={false}/>
             <Text style={styles.label}>Password</Text>
-            <TextInput style={styles.input} placeholder="Password" value={password} onChangeText={setPassword}/>
+            <TextInput style={styles.input} placeholder={"Password"} value={password}
+                       onChangeText={setPassword} autoCapitalize="none" autoCorrect={false} secureTextEntry={true}/>
             <View style={styles.button}>
-                <AcceptButton title="Sign In" onPressHandler={onUserLogin}></AcceptButton>
+                <AcceptButton title={"Sign In"} onPressHandler={onUserLogin}></AcceptButton>
             </View>
             <Text style={styles.password} onPress={() => Linking.openURL('https://google.com')}>Forgot Password?</Text>
             <Text style={styles.altLoginText}>Sign In With</Text>
@@ -36,8 +41,8 @@ const Login = ({navigation}) => {
                 <Image style={styles.icon} source={require('../images/google-icon.png')}/>
             </Pressable>
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     loginContainer: {
@@ -48,7 +53,7 @@ const styles = StyleSheet.create({
         height: 143,
         width: 124,
         alignSelf: "center",
-        marginTop: 70,
+        marginTop: 120,
         marginBottom: 10,
     },
     label: {
@@ -101,6 +106,6 @@ const styles = StyleSheet.create({
         height: 40,
         width: 40,
     }
-})
+});
 
 export default Login;

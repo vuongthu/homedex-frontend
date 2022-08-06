@@ -42,11 +42,11 @@ const styles = StyleSheet.create({
         marginBottom: 40,
         marginTop: 60,
         borderBottomWidth: 1,
-        borderBottomColor: '#667080',
+        borderBottomColor: '#FFFFFF',
         paddingBottom: 40,
     },
     headerLabel: {
-        color: '#667080',
+        color: '#FFFFFF',
         fontSize: 24,
         fontWeight: '700',
         marginLeft: 16,

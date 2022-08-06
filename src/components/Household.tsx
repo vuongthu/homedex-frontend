@@ -14,9 +14,16 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
         marginBottom: 24,
+        borderWidth: 1,
+        borderColor: '#FFFFFF',
+        borderRadius: 6,
+        padding: 10,
+        width: 325,
+        height: 100,
+        alignSelf: 'center',
     },
     text: {
-        color: '#212121',
+        color: '#FFFFFF',
         fontSize: 16,
         fontWeight: '700',
         marginTop: 33
@@ -24,7 +31,7 @@ const styles = StyleSheet.create({
     image: {
         marginLeft: 23,
         marginRight: 23,
-    }
+    },
 })
 
 export default Household;

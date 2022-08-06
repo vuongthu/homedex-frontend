@@ -7,9 +7,10 @@ import CancelButton from "../components/CancelButton";
 const CreateHousehold = ({navigation}) => {
 
     const [householdName, setHouseholdName] = useState("");
+    const [isInputValid, setInputValid] = useState({nameInput: false})
 
     const onCreateHousehold = async () => {
-        const household: Household = await createHousehold(householdName, "e50aac94-b0b7-49a3-ad99-146c1eaf6583");
+        const household = await createHousehold(householdName, "e50aac94-b0b7-49a3-ad99-146c1eaf6583");
         Alert.alert('Household Created', `${household.name}`)
     }
 
@@ -43,19 +44,19 @@ const styles = StyleSheet.create({
     },
     photoLabel: {
         marginTop: 10,
-        color: '#667080',
+        color: '#FFFFFF',
         fontSize: 14,
         fontWeight: '400',
     },
     header: {
         fontWeight: '700',
         fontSize: 30,
-        color: '#667080',
+        color: '#FFFFFF',
         marginBottom: 33,
         marginTop: 100,
     },
     label: {
-        color: '#667080',
+        color: '#FFFFFF',
         fontSize: 16,
         fontWeight: '400',
     },
@@ -70,6 +71,7 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         padding: 10,
         marginTop: 10,
+        borderColor: '#FFFFFF',
     },
     button: {
         width: 147,

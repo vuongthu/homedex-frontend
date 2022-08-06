@@ -37,9 +37,10 @@ export class Household {
 }
 
 
-export const createHousehold = (name: string, userId: string) => {
+const createHousehold = (name: string, userId: string) => {
     return axios.post(`${baseUrl}/households`, {name: name}, {params: {'user-id': userId}})
         .then((response: AxiosResponse<Household>) => response.data)
         .catch((err) => console.log(`Error creating household: ${err}`))
 }
 
+export default createHousehold;

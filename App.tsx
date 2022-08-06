@@ -19,19 +19,21 @@ const App = () => {
                 <Stack.Screen
                     name="Login"
                     component={Login}
+                    options={{headerShown: false}}
                 />
                 <Stack.Screen
-                    name="Household"
+                    name="Households"
                     component={HouseholdList}
+                    // options={{headerShown: false}}
                 />
-                {/*<Stack.Screen*/}
-                {/*    name="Household"*/}
-                {/*    component={CreateHousehold}*/}
-                {/*/>*/}
-                {/*<Stack.Screen*/}
-                {/*    name="Categories"*/}
-                {/*    component={CategoriesList}*/}
-                {/*/>*/}
+                <Stack.Screen
+                    name="Create Household"
+                    component={CreateHousehold}
+                />
+                <Stack.Screen
+                    name="Categories"
+                    component={CategoriesList}
+                />
                 {/*<Stack.Screen*/}
                 {/*    name="Items"*/}
                 {/*    component={InventoryList}*/}

@@ -1,15 +1,20 @@
 import { Image, Pressable, StyleSheet } from "react-native";
 import React from "react";
 
-const AddButton = () => {
+type AddButtonProps = {
+    onPressHandler: () => void;
+};
+
+const AddButton = ({onPressHandler}: AddButtonProps) => {
+
+
     return (
         <Pressable style={({pressed}) => pressed ? [styles.container, styles.pressed] : styles.container}
-                   onPress={() => console.log("Added!")}>
+                   onPress={() => onPressHandler ? onPressHandler() : console.log("Added!")}>
             <Image source={require('../images/plus.png')}/>
         </Pressable>
     )
 }
-
 
 const styles = StyleSheet.create({
     container: {
@@ -18,6 +23,6 @@ const styles = StyleSheet.create({
     pressed: {
         opacity: 0.75,
     }
-});
+})
 
 export default AddButton;
