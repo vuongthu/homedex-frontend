@@ -21,6 +21,7 @@ const InventoryList = ({ route, navigation }) => {
             expiration={item.expiration}
             measurement={item.measurement}
             unit={item.unit}
+            addInfo={item.addInfo}
         ></Item>
     })
 

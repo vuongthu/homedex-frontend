@@ -3,6 +3,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import Scale from "./Scale";
 import Quantity from "./Quantity";
 import EditButton from "./EditButton";
+import MoreInfo from "./MoreInfo";
 
 type ItemProps = {
     name: string;
@@ -10,9 +11,10 @@ type ItemProps = {
     expiration: string;
     measurement: string;
     unit: number;
+    addInfo: string;
 };
 
-const Item = ({ name, brand, expiration, measurement, unit }: ItemProps) => {
+const Item = ({ name, brand, expiration, measurement, unit, addInfo }: ItemProps) => {
     return (
         <View style={styles.container}>
             <View>
@@ -23,7 +25,7 @@ const Item = ({ name, brand, expiration, measurement, unit }: ItemProps) => {
                 <Text>{brand}</Text>
                 <Text>{expiration}</Text>
             </View>
-            <View>
+            <View style={styles.buttonContainer}>
                 <View style={styles.moreImg}>
                     <EditButton></EditButton>
                 </View>
@@ -31,6 +33,9 @@ const Item = ({ name, brand, expiration, measurement, unit }: ItemProps) => {
                     <Quantity amount={unit} onIncrease={() => console.log("Increase!")}
                               onDecrease={() => console.log("Decrease!")}></Quantity>
                 }
+                {addInfo ? <View style={styles.infoImg}>
+                    <MoreInfo text={addInfo}></MoreInfo>
+                </View> : <></>}
             </View>
         </View>
     )
@@ -38,7 +43,7 @@ const Item = ({ name, brand, expiration, measurement, unit }: ItemProps) => {
 
 const styles = StyleSheet.create({
     container: {
-        height: 96,
+        height: 105,
         backgroundColor: '#DCE3E9',
         marginBottom: 20,
         borderRadius: 6,
@@ -63,9 +68,17 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '700'
     },
+    buttonContainer: {
+        width: 100,
+        height: 74,
+        justifyContent: 'space-between'
+    },
     moreImg: {
-        alignItems: "flex-end",
-    }
+        alignSelf: 'flex-end',
+    },
+    infoImg: {
+        alignItems: 'flex-end',
+    },
 });
 
 export default Item;

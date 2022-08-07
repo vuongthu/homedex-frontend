@@ -19,8 +19,9 @@ const Quantity = ({ amount, onIncrease, onDecrease }) => {
 
 const styles = StyleSheet.create({
     container: {
+        width: 115,
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'space-evenly',
     },
     pressed: {
         opacity: 0.75,
