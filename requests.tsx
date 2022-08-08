@@ -22,7 +22,7 @@ export const userLogin = (username: string, password: string) => {
     return axios.post(`${baseUrl}/users/login`, { username: username, password: password })
         .then((response: AxiosResponse<User>) => response.data)
         .catch((err) => console.log(`Error logging in: ${err}`));
-}
+};
 
 // Household List Screen
 
@@ -75,7 +75,7 @@ export const getCategories = (householdId: string) => {
             console.log(`Error fetching categories: ${err}`);
             return [] as Categories[];
         });
-}
+};
 
 // Create Category Screen
 
@@ -114,7 +114,7 @@ export const getItems = (categoryId: string) => {
             console.log(`Error fetching items: ${err}`);
             return [] as Items[];
         });
-}
+};
 
 // Add Item Screen
 
@@ -140,4 +140,10 @@ export const addItem = (categoryId: string, itemRequest: ItemRequest) => {
     return axios.post(`${baseUrl}/categories/${categoryId}/items`, itemRequest)
         .then((response: AxiosResponse<Items>) => response.data)
         .catch((err) => console.log(`Error creating category: ${err}`));
+};
+
+export const updateItem = (categoryId: string, itemId: string, itemRequest: ItemRequest) => {
+    return axios.put(`${baseUrl}/categories/${categoryId}/items/${itemId}`, itemRequest)
+        .then((response: AxiosResponse<Items>) => response.data)
+        .catch((err) => console.log(`Error updating item: ${err}`));
 };

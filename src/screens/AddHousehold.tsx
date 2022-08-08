@@ -17,6 +17,7 @@ const AddHousehold = ({ route, navigation }) => {
     return (
         <View>
             <View style={styles.photoContainer}>
+                <Image style={styles.img} source={require('../images/logo.png')}/>
                 <Text style={styles.header}>Create Your Household</Text>
                 <Image source={require('../images/imgplaceholder.png')}/>
                 <Text style={styles.photoLabel}>Choose Photo</Text>
@@ -51,6 +52,11 @@ const styles = StyleSheet.create({
     photoContainer: {
         alignItems: 'center',
     },
+    img: {
+        width: 125,
+        height: 93,
+        marginTop: 50,
+    },
     photoLabel: {
         marginTop: 10,
         color: '#FFFFFF',
@@ -62,7 +68,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
         color: '#FFFFFF',
         marginBottom: 33,
-        marginTop: 100,
+        marginTop: 50,
     },
     label: {
         color: '#FFFFFF',
@@ -71,7 +77,7 @@ const styles = StyleSheet.create({
     },
     formContainer: {
         marginLeft: 33,
-        marginTop: 80,
+        marginTop: 50,
     },
     input: {
         height: 48,
@@ -90,7 +96,7 @@ const styles = StyleSheet.create({
         width: 313,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 20,
+        marginTop: 30,
     }
 });
 

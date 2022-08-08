@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import AddButton from "../components/AddButton";
 import Item from "../components/Item";
-import { addItem, getItems, Items } from "../../requests";
+import { addItem, getItems, ItemRequest, Items, updateItem } from "../../requests";
 
 const ItemList = ({ route, navigation }) => {
 
@@ -14,10 +14,35 @@ const ItemList = ({ route, navigation }) => {
             .then((items: [Items]) => setItemsData(items))
     }, []);
 
+    const updateAmountOnItem = (item: Items, amount: number) => {
+        const request = new ItemRequest(
+            item.name,
+            item.measurement,
+            item.brand,
+            item.addInfo,
+            item.expiration,
+            amount,
+        );
+        updateItem(categoryId, item.id, request)
+            .then((updatedItem: Items) => {
+                setItemsData((oldData: Items[]) => {
+                    return oldData.map((oldItem: Items) => {
+                        if (oldItem.id === updatedItem.id) {
+                            return updatedItem
+                        } else {
+                            return oldItem
+                        }
+                    })
+                })
+            })
+            .catch((err) => console.log(`Error updating item from itemList: ${err}`));
+    };
+
     const itemsList = itemsListData.map((item: Items) => {
         return <Item
             key={item.id}
             item={item}
+            onUpdateAmount={updateAmountOnItem}
             onEditHandler={() => navigation.navigate('Edit Item', { item: item })}
         ></Item>
     });

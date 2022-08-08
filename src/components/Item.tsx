@@ -9,10 +9,18 @@ import { Items } from "../../requests";
 type ItemProps = {
     item: Items;
     onEditHandler: () => void;
+    onUpdateAmount: (item: Items, unit: number) => void;
 };
 
-const Item = ({ item, onEditHandler }: ItemProps) => {
-    const {name, brand, expiration, measurement, unit, addInfo } = item;
+const Item = ({ item, onEditHandler, onUpdateAmount }: ItemProps) => {
+    const { name, brand, expiration, measurement, unit, addInfo } = item;
+
+    const onIncrease = () => {
+        onUpdateAmount(item, unit + 1)
+    };
+    const onDecrease = () => onUpdateAmount(item, unit - 1);
+    const setScaleValue = (value: number) => onUpdateAmount(item, Math.floor(value));
+
     return (
         <View style={styles.container}>
             <View>
@@ -21,20 +29,27 @@ const Item = ({ item, onEditHandler }: ItemProps) => {
             <View style={styles.textContainer}>
                 <Text>{name}</Text>
                 <Text>{brand}</Text>
-                <Text>{expiration}</Text>
+                <Text>{expiration ? expiration.slice(0, 10) : expiration}</Text>
             </View>
             <View style={styles.buttonContainer}>
                 <EditButton
                     style={styles.moreImg}
                     onPressHandler={onEditHandler}
                 ></EditButton>
-                {measurement === "SCALE" ? <Scale></Scale> :
-                    <Quantity amount={unit} onIncrease={() => console.log("Increase!")}
-                              onDecrease={() => console.log("Decrease!")}></Quantity>
+                {measurement === "SCALE" ?
+                    <Scale
+                        unit={unit}
+                        setUnit={setScaleValue}
+                    ></Scale> :
+                    <Quantity
+                        amount={unit}
+                        onIncrease={onIncrease}
+                        onDecrease={onDecrease}
+                    ></Quantity>
                 }
                 {addInfo ? <View style={styles.infoImg}>
                     <MoreInfo text={addInfo}></MoreInfo>
-                </View> : <></>}
+                </View> : <View style={styles.infoImg}></View>}
             </View>
         </View>
     )
