@@ -5,19 +5,38 @@ import MeasurementToggle from "../components/MeasurementToggle";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import AddButton from "../components/AddButton";
 import { ItemRequest, Items } from "../../requests";
+import CancelButton from "../components/CancelButton";
 
-const AddItem = ({ route, navigation }) => {
+type ItemFormProps = {
+    route: any;
+    navigation: any;
+};
 
-    const { categoryId, categoryName } = route.params;
-    const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
+const ItemForm = ({ route, navigation }: ItemFormProps) => {
+
+    const { categoryId, categoryName, item } = route.params;
     const [isValid, setIsValid] = useState(false);
     const [itemName, setItemName] = useState("");
     const [itemBrand, setItemBrand] = useState("");
     const [addInfo, setAddInfo] = useState("");
-    const [measureType, setMeasureType] = useState("Quantity");
+    const [measureType, setMeasureType] = useState("QUANTITY");
     const [unit, setUnit] = useState(0);
+    const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
     const [expiration, setExpiration] = useState(new Date());
 
+    useEffect(() => {
+        if (item) {
+            setItemName(item.name);
+            setItemBrand(item.brand);
+            setAddInfo(item.addInfo);
+            setMeasureType(item.measurement);
+            setUnit(item.unit);
+            if (item.expiration) {
+                setExpiration(new Date(item.expiration));
+                setIsDatePickerVisible(true)
+            }
+        }
+    }, []);
     useEffect(() => setIsValid(itemName.length && itemBrand.length && unit > 0), [itemName, itemBrand, unit]);
 
     const nameTextChangeHandler = (name: string) => {
@@ -54,18 +73,20 @@ const AddItem = ({ route, navigation }) => {
 
     return (
         <View>
-            <Text style={styles.header}>Add New Item</Text>
+            <Text style={styles.header}>{item ? `Edit ${item.name}` : 'Add New Item'}</Text>
             <View style={styles.formContainer}>
                 <Text style={styles.label}>Item Name</Text>
                 <TextInput
                     style={styles.input}
+                    value={itemName}
                     placeholder=""
                     onChangeText={nameTextChangeHandler}
                 />
                 <Text style={styles.label}>Brand</Text>
                 <TextInput
                     style={styles.input}
-                    placeholder=""
+                    value={itemBrand}
+                    placeholder={itemBrand}
                     onChangeText={brandTextChangeHandler}
                 />
             </View>
@@ -84,7 +105,6 @@ const AddItem = ({ route, navigation }) => {
                     ></AddButton>
                 </View>
                 {isDatePickerVisible ? <DateTimePicker
-                    testID="dateTimePicker"
                     value={expiration}
                     display={'default'}
                     mode={'date'}
@@ -99,13 +119,23 @@ const AddItem = ({ route, navigation }) => {
                     placeholder=""
                     onChangeText={addInfoTextChangeHandler}
                 />
+                <View style={styles.buttonContainer}>
+                    <CancelButton
+                        style={styles.button}
+                        title="Cancel"
+                        onPressHandler={() => navigation.navigate('Items', {
+                            categoryId: categoryId,
+                            categoryName: categoryName
+                        })}
+                    ></CancelButton>
+                    <AcceptButton
+                        style={styles.button}
+                        title={'Save'}
+                        onPressHandler={onAddItem}
+                        disabled={!isValid}
+                    ></AcceptButton>
+                </View>
             </View>
-            <AcceptButton
-                style={styles.button}
-                title={'Add to Inventory'}
-                onPressHandler={onAddItem}
-                disabled={!isValid}
-            ></AcceptButton>
         </View>
     )
 };
@@ -118,6 +148,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         marginTop: 35,
         textAlign: "center",
+        textTransform: 'capitalize',
     },
     label: {
         color: '#FFFFFF',
@@ -141,14 +172,14 @@ const styles = StyleSheet.create({
         marginBottom: 6,
     },
     button: {
-        width: 311,
+        width: 147,
         height: 56,
-        backgroundColor: '#667080',
-        marginTop: 35,
-        overflow: 'hidden',
-        marginBottom: 16,
-        borderRadius: 6,
-        alignSelf: 'center'
+    },
+    buttonContainer: {
+        width: 345,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginTop: 30,
     },
     expText: {
         color: '#FFFFFF',
@@ -167,4 +198,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default AddItem;
+export default ItemForm;

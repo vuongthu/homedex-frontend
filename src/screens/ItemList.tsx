@@ -43,7 +43,14 @@ const ItemList = ({ route, navigation }) => {
             key={item.id}
             item={item}
             onUpdateAmount={updateAmountOnItem}
-            onEditHandler={() => navigation.navigate('Edit Item', { item: item })}
+            onEditHandler={() => navigation.navigate({
+                name: 'Item Form',
+                params: {
+                    categoryId: categoryId,
+                    categoryName: categoryName,
+                    item: item
+                }
+            })}
         ></Item>
     });
 
@@ -61,7 +68,7 @@ const ItemList = ({ route, navigation }) => {
             <View style={styles.headerContainer}>
                 <Text style={styles.headerLabel}>{categoryName} Inventory</Text>
                 <AddButton
-                    onPressHandler={() => navigation.navigate('Add New Item', {
+                    onPressHandler={() => navigation.navigate('Item Form', {
                         categoryId: categoryId,
                         categoryName: categoryName
                     })}

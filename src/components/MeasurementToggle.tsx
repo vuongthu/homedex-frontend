@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View } from "react-native";
 import DuoToggleSwitch from "react-native-duo-toggle-switch";
 import Scale from "./Scale";
-import Quantity from "./Quantity";
 import BigQuantity from "./BigQuantity";
 
 type MeasurementToggleProps = {
@@ -25,12 +24,12 @@ const MeasurementToggle = ({ measureType, setMeasureType, unit, setUnit }: Measu
                 style={styles.toggle}
                 primaryText='Quantity'
                 secondaryText='Scale'
-                onPrimaryPress={() => setMeasureType('Quantity')}
-                onSecondaryPress={() => setMeasureType('Scale')}
+                onPrimaryPress={() => setMeasureType('QUANTITY')}
+                onSecondaryPress={() => setMeasureType('SCALE')}
                 activeColor='#667080'
                 inactiveColor='#FFFFFF'/>
             {
-                measureType === 'Scale' ?
+                measureType === 'SCALE' ?
                     <Scale
                         style={styles.bigScale}
                         setUnit={setScaleValue}
