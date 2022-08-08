@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import Household from "../components/Household";
 import AddButton from "../components/AddButton";
-import { getHouseholds, Households } from "../../requests";
+import createHousehold, { getHouseholds, Households } from "../../requests";
 
 const HouseholdList = ({ route, navigation }) => {
     const { userId } = route.params;
@@ -20,15 +20,38 @@ const HouseholdList = ({ route, navigation }) => {
             return <Household
                 key={household.id}
                 householdName={household.name}
-                onPressHandler={() => navigation.navigate('Categories', { householdId: household.id, householdName: household.name })}
+                onPressHandler={() => navigation.navigate('Categories', {
+                    householdId: household.id,
+                    householdName: household.name
+                })}
             ></Household>
         })
+
+    useEffect(() => {
+        if (route.params.householdName) {
+            createHouseholdHandler(route.params.householdName)
+                .then((household: Households) => {
+                    setHouseholdData((oldData: [Households]) => {
+                        return [...oldData, household]
+                    })
+                    navigation.navigate('Categories', {
+                        householdId: household.id,
+                        householdName: household.name
+                    })
+                })
+        }
+    }, [route.params?.householdName]);
+
+    const createHouseholdHandler = async (householdName: string) => {
+        return await createHousehold(householdName, userId);
+    }
 
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
                 <Text style={styles.headerLabel}>Households</Text>
-                <AddButton onPressHandler={() => navigation.navigate('Create Household', {userId: userId })}></AddButton>
+                <AddButton
+                    onPressHandler={() => navigation.navigate('Create Household', { userId: userId })}></AddButton>
             </View>
             <ScrollView>
                 <View>

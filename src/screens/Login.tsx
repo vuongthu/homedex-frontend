@@ -30,9 +30,7 @@ const Login = ({ navigation }) => {
             <Text style={styles.label}>Password</Text>
             <TextInput style={styles.input} placeholder={"Password"} value={password}
                        onChangeText={setPassword} autoCapitalize="none" autoCorrect={false} secureTextEntry={true}/>
-            <View style={styles.button}>
-                <AcceptButton title={"Sign In"} onPressHandler={onUserLogin}></AcceptButton>
-            </View>
+            <AcceptButton style={styles.button} title={"Sign In"} onPressHandler={onUserLogin}></AcceptButton>
             <Text style={styles.password} onPress={() => Linking.openURL('https://google.com')}>Forgot Password?</Text>
             <Text style={styles.altLoginText}>Sign In With</Text>
             <Pressable style={styles.loginIcons}>

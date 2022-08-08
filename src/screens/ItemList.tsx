@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import AddButton from "../components/AddButton";
 import Item from "../components/Item";
-import { getItems, Items } from "../../requests";
+import { addItem, getItems, Items } from "../../requests";
 
-const InventoryList = ({ route, navigation }) => {
+const ItemList = ({ route, navigation }) => {
 
     const { categoryId, categoryName } = route.params;
     const [itemsListData, setItemsData] = useState([]);
+
     useEffect(() => {
         getItems(categoryId)
             .then((items: [Items]) => setItemsData(items))
@@ -16,22 +17,29 @@ const InventoryList = ({ route, navigation }) => {
     const itemsList = itemsListData.map((item: Items) => {
         return <Item
             key={item.id}
-            name={item.name}
-            brand={item.brand}
-            expiration={item.expiration}
-            measurement={item.measurement}
-            unit={item.unit}
-            addInfo={item.addInfo}
+            item={item}
+            onEditHandler={() => navigation.navigate('Edit Item', { item: item })}
         ></Item>
-    })
+    });
 
+    useEffect(() => {
+        if (route.params.item) {
+            addItem(categoryId, route.params.item)
+                .then((item: Items) => {
+                    setItemsData((oldData: Items[]) => [...oldData, item])
+                })
+        }
+    }, [route.params?.item]);
 
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
                 <Text style={styles.headerLabel}>{categoryName} Inventory</Text>
                 <AddButton
-                    onPressHandler={() => navigation.navigate('Add New Item', { categoryId: categoryId })}
+                    onPressHandler={() => navigation.navigate('Add New Item', {
+                        categoryId: categoryId,
+                        categoryName: categoryName
+                    })}
                 ></AddButton>
             </View>
             <ScrollView>
@@ -60,4 +68,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default InventoryList;
+export default ItemList;

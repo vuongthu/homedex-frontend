@@ -2,7 +2,7 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import AddButton from "../components/AddButton";
 import Category from "../components/Category";
 import { useEffect, useState } from "react";
-import { Categories, getCategories } from "../../requests";
+import { Categories, createCategory, getCategories } from "../../requests";
 
 const CategoriesList = ({ route, navigation }) => {
 
@@ -19,9 +19,25 @@ const CategoriesList = ({ route, navigation }) => {
             return <Category
                 key={category.id}
                 categoriesName={category.name}
-                onPressHandler={() => navigation.navigate('Items', { categoryId: category.id, categoryName: category.name })}
+                onPressHandler={() => navigation.navigate('Items', {
+                    categoryId: category.id,
+                    categoryName: category.name
+                })}
             ></Category>
         })
+
+    useEffect(() => {
+        if (route.params.categoryName) {
+            createCategoryHandler(route.params.categoryName)
+                .then((category: Categories) => {
+                    setCategoriesData((oldData: Categories[]) => [...oldData, category])
+                    navigation.navigate('Items', { categoryId: category.id, categoryName: category.name })
+                })
+        }
+    }, [route.params?.categoryName]);
+
+    const createCategoryHandler = async (categoryName: string) => await createCategory(categoryName, householdId);
+
 
     return (
         <View style={styles.container}>
@@ -30,9 +46,12 @@ const CategoriesList = ({ route, navigation }) => {
                     <Text style={styles.householdLabel}>{householdName}</Text>
                     <Text style={styles.headerLabel}>Home Categories</Text>
                 </View>
-                <View style={styles.button}>
-                    <AddButton></AddButton>
-                </View>
+                <AddButton
+                    style={styles.button}
+                    onPressHandler={() => navigation.navigate('Create Category', {
+                        householdId: householdId,
+                    })}
+                ></AddButton>
             </View>
             <ScrollView>
                 <View style={styles.categoryContainer}>

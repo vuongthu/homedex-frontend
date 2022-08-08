@@ -1,18 +1,17 @@
-import { Alert, Image, StyleSheet, Text, TextInput, View } from "react-native";
-import createHousehold from "../../requests";
+import { Image, StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useState } from "react";
 import AcceptButton from "../components/AcceptButton";
 import CancelButton from "../components/CancelButton";
 
-const CreateHousehold = ({ route, navigation }) => {
+const AddHousehold = ({ route, navigation }) => {
 
     const { userId } = route.params;
     const [householdName, setHouseholdName] = useState("");
-    const [isInputValid, setInputValid] = useState({ nameInput: false });
+    const [isInputValid, setInputValid] = useState(false);
 
-    const onCreateHousehold = async () => {
-        const household = await createHousehold(householdName, userId);
-        Alert.alert('Household Created', `${household.name}`);
+    const handleHouseholdTextChange = (text: string) => {
+        setHouseholdName(text);
+        setInputValid(text.length > 0);
     };
 
     return (
@@ -24,15 +23,24 @@ const CreateHousehold = ({ route, navigation }) => {
             </View>
             <View style={styles.formContainer}>
                 <Text style={styles.label}>Household Name</Text>
-                <TextInput style={styles.input} value={householdName} onChangeText={setHouseholdName}
+                <TextInput style={styles.input} value={householdName} onChangeText={handleHouseholdTextChange}
                            placeholder=""/>
                 <View style={styles.buttonContainer}>
-                    <View style={styles.button}>
-                        <CancelButton title="Cancel"></CancelButton>
-                    </View>
-                    <View style={styles.button}>
-                        <AcceptButton title="Save" onPressHandler={onCreateHousehold}></AcceptButton>
-                    </View>
+                    <CancelButton
+                        style={styles.button}
+                        title="Cancel"
+                        onPressHandler={() => navigation.navigate('Households', { userId: userId })}
+                    ></CancelButton>
+                    <AcceptButton
+                        style={styles.button}
+                        title="Save"
+                        onPressHandler={() => navigation.navigate({
+                            name: 'Households',
+                            params: { userId: userId, householdName: householdName },
+                            merge: true,
+                        })}
+                        disabled={!isInputValid}
+                    ></AcceptButton>
                 </View>
             </View>
         </View>
@@ -86,4 +94,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default CreateHousehold;
+export default AddHousehold;

@@ -2,14 +2,15 @@ import { Image, Pressable, StyleSheet } from "react-native";
 import React from "react";
 
 type AddButtonProps = {
-    onPressHandler: () => void;
+    onPressHandler?: () => void;
+    style?: {};
 };
 
-const AddButton = ({ onPressHandler }: AddButtonProps) => {
+const AddButton = ({ onPressHandler, style }: AddButtonProps) => {
 
 
     return (
-        <Pressable style={({ pressed }) => pressed ? [styles.container, styles.pressed] : styles.container}
+        <Pressable style={({ pressed }) => pressed ? [styles.container, styles.pressed, style] : [styles.container, style]}
                    onPress={() => onPressHandler ? onPressHandler() : console.log("Added!")}>
             <Image source={require('../images/plus.png')}/>
         </Pressable>

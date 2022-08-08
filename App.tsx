@@ -4,10 +4,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from "./src/screens/Login";
 import HouseholdList from "./src/screens/HouseholdList";
-import CreateHousehold from "./src/screens/CreateHousehold";
+import AddHousehold from "./src/screens/AddHousehold";
 import CategoriesList from "./src/screens/CategoriesList";
-import InventoryList from "./src/screens/InventoryList";
+import ItemList from "./src/screens/ItemList";
 import AddItem from "./src/screens/AddItem";
+import EditItem from "./src/screens/EditItem";
+import AddCategory from "./src/screens/AddCategory";
 
 const Stack = createNativeStackNavigator();
 
@@ -28,19 +30,27 @@ const App = () => {
                 />
                 <Stack.Screen
                     name="Create Household"
-                    component={CreateHousehold}
+                    component={AddHousehold}
                 />
                 <Stack.Screen
                     name="Categories"
                     component={CategoriesList}
                 />
                 <Stack.Screen
+                    name="Create Category"
+                    component={AddCategory}
+                />
+                <Stack.Screen
                     name="Items"
-                    component={InventoryList}
+                    component={ItemList}
                 />
                 <Stack.Screen
                     name="Add New Item"
                     component={AddItem}
+                />
+                <Stack.Screen
+                    name="Edit Item"
+                    component={EditItem}
                 />
             </Stack.Navigator>
         </NavigationContainer>

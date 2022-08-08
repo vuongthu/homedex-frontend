@@ -1,14 +1,28 @@
-import { Pressable, StyleSheet, Text } from "react-native";
+import { Pressable, PressableStateCallbackType, StyleSheet, Text } from "react-native";
 
 type AcceptButtonProps = {
     title: string;
     onPressHandler: () => void;
+    disabled?: boolean;
+    style?: {}
 };
 
-const AcceptButton = ({ title, onPressHandler }: AcceptButtonProps) => {
+const AcceptButton = ({ title, onPressHandler, disabled = false, style }: AcceptButtonProps) => {
+    const buttonStyle = ({ pressed }: PressableStateCallbackType) => {
+        if (pressed) {
+            return [styles.button, style, styles.pressed]
+        } else if (disabled) {
+            return [styles.button, style, styles.disabled]
+        } else {
+            return [styles.button, style]
+        }
+    }
+
     return (
-        <Pressable style={({ pressed }) => pressed ? [styles.button, styles.pressed] : styles.button}
-                   onPress={() => onPressHandler ? onPressHandler() : console.log("Pressed!")}>
+        <Pressable style={buttonStyle}
+                   onPress={() => onPressHandler ? onPressHandler() : console.log("Pressed!")}
+                   disabled={disabled}
+        >
             <Text style={styles.buttonText}>{title}</Text>
         </Pressable>
     )
@@ -30,7 +44,10 @@ const styles = StyleSheet.create({
     },
     pressed: {
         opacity: 0.75,
-    }
+    },
+    disabled: {
+        opacity: 0.25,
+    },
 });
 
 export default AcceptButton;

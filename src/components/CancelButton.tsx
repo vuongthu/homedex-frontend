@@ -1,9 +1,17 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 
-const CancelButton = ({ title, onPressHandler }) => {
+interface CancelButtonProps {
+    title: string;
+    onPressHandler?: () => void;
+    style?: {};
+}
+
+const CancelButton = ({ title, onPressHandler, style }: CancelButtonProps) => {
     return (
-        <Pressable style={({ pressed }) => pressed ? [styles.button, styles.pressed] : styles.button}
-                   onPress={() => onPressHandler ? onPressHandler : console.log("Pressed!")}>
+        <Pressable
+            style={({ pressed }) => pressed ? [styles.button, styles.pressed, style] : [styles.button, style]}
+            onPress={onPressHandler}
+        >
             <Text style={styles.buttonText}>{title}</Text>
         </Pressable>
     )

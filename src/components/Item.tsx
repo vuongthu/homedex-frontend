@@ -4,17 +4,15 @@ import Scale from "./Scale";
 import Quantity from "./Quantity";
 import EditButton from "./EditButton";
 import MoreInfo from "./MoreInfo";
+import { Items } from "../../requests";
 
 type ItemProps = {
-    name: string;
-    brand: string;
-    expiration: string;
-    measurement: string;
-    unit: number;
-    addInfo: string;
+    item: Items;
+    onEditHandler: () => void;
 };
 
-const Item = ({ name, brand, expiration, measurement, unit, addInfo }: ItemProps) => {
+const Item = ({ item, onEditHandler }: ItemProps) => {
+    const {name, brand, expiration, measurement, unit, addInfo } = item;
     return (
         <View style={styles.container}>
             <View>
@@ -26,9 +24,10 @@ const Item = ({ name, brand, expiration, measurement, unit, addInfo }: ItemProps
                 <Text>{expiration}</Text>
             </View>
             <View style={styles.buttonContainer}>
-                <View style={styles.moreImg}>
-                    <EditButton></EditButton>
-                </View>
+                <EditButton
+                    style={styles.moreImg}
+                    onPressHandler={onEditHandler}
+                ></EditButton>
                 {measurement === "SCALE" ? <Scale></Scale> :
                     <Quantity amount={unit} onIncrease={() => console.log("Increase!")}
                               onDecrease={() => console.log("Decrease!")}></Quantity>
