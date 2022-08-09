@@ -55,7 +55,7 @@ const ItemForm = ({ route, navigation }: ItemFormProps) => {
         setExpiration(selectedDate)
     }
 
-    const onAddItem = () => {
+    const onSaveItem = () => {
         const newItem = new ItemRequest(
             itemName,
             measureType,
@@ -64,11 +64,19 @@ const ItemForm = ({ route, navigation }: ItemFormProps) => {
             isDatePickerVisible ? expiration.toISOString() : null,
             unit
         )
-        navigation.navigate({
-            name: 'Items',
-            params: { categoryId: categoryId, categoryName: categoryName, item: newItem },
-            merge: true,
-        })
+        if (item) {
+            navigation.navigate({
+                name: 'Items',
+                params: { categoryId: categoryId, categoryName: categoryName, editItem: newItem, itemId: item.id },
+                merge: true,
+            })
+        } else {
+            navigation.navigate({
+                name: 'Items',
+                params: { categoryId: categoryId, categoryName: categoryName, addItem: newItem },
+                merge: true,
+            })
+        }
     }
 
     return (
@@ -131,7 +139,7 @@ const ItemForm = ({ route, navigation }: ItemFormProps) => {
                     <AcceptButton
                         style={styles.button}
                         title={'Save'}
-                        onPressHandler={onAddItem}
+                        onPressHandler={onSaveItem}
                         disabled={!isValid}
                     ></AcceptButton>
                 </View>

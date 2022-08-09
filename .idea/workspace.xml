@@ -3,12 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="5a1bba96-49c1-4945-aa65-ebe240b86056" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Quantity.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Quantity.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Scale.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Scale.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/InventoryList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/InventoryList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ItemForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ItemForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ItemList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ItemList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Login.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,14 +38,15 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/thuvuong/ada/capstone/homedex-front/src/components",
+    "last_opened_file_path": "/Users/thuvuong/ada/capstone/homedex-front/src/screens",
     "nodejs_package_manager_path": "yarn",
-    "settings.editor.selected.configurable": "preferences.sourceCode.TypeScript",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
     "ts.external.directory.path": "/Users/thuvuong/ada/capstone/homedex-front/node_modules/typescript/lib"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/screens" />
       <recent name="$PROJECT_DIR$/src/components" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -63,7 +61,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1659655462862</updated>
-      <workItem from="1659655463980" duration="42649000" />
+      <workItem from="1659655463980" duration="67256000" />
+      <workItem from="1659927985506" duration="3726000" />
+      <workItem from="1659933344324" duration="3497000" />
     </task>
     <servers />
   </component>
@@ -80,5 +80,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

@@ -55,13 +55,30 @@ const ItemList = ({ route, navigation }) => {
     });
 
     useEffect(() => {
-        if (route.params.item) {
-            addItem(categoryId, route.params.item)
+        if (route.params.addItem) {
+            addItem(categoryId, route.params.addItem)
                 .then((item: Items) => {
                     setItemsData((oldData: Items[]) => [...oldData, item])
                 })
         }
-    }, [route.params?.item]);
+    }, [route.params?.addItem]);
+
+    useEffect(() => {
+        if (route.params.editItem) {
+            updateItem(categoryId, route.params.itemId, route.params.editItem)
+                .then((updatedItem: Items) => {
+                    setItemsData((oldData: Items[]) => {
+                        return oldData.map((oldItem: Items) => {
+                            if (oldItem.id === updatedItem.id) {
+                                return updatedItem
+                            } else {
+                                return oldItem
+                            }
+                        })
+                    })
+                })
+        }
+    }, [route.params?.editItem]);
 
     return (
         <View style={styles.container}>

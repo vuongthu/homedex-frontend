@@ -43,8 +43,7 @@ const Login = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     loginContainer: {
-        marginLeft: 32,
-        marginRight: 32,
+        alignSelf: 'center',
     },
     logo: {
         height: 143,
