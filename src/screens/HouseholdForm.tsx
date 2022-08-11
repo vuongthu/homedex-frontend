@@ -2,6 +2,7 @@ import { Image, StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import AcceptButton from "../components/AcceptButton";
 import CancelButton from "../components/CancelButton";
+import TextButton from "../components/TextButton";
 
 const HouseholdForm = ({ route, navigation }) => {
 
@@ -37,6 +38,14 @@ const HouseholdForm = ({ route, navigation }) => {
         }
     }
 
+    const onDeleteHousehold = () => {
+        navigation.navigate({
+            name: 'Households',
+            params: { householdId: householdId, householdName: householdName, action: 'delete' },
+            merge: true,
+        })
+    }
+
     return (
         <View>
             <View style={styles.photoContainer}>
@@ -67,6 +76,13 @@ const HouseholdForm = ({ route, navigation }) => {
                         disabled={!isInputValid}
                     ></AcceptButton>
                 </View>
+                {householdNameParam ?
+                    <TextButton
+                        onPressHandler={onDeleteHousehold}
+                        text={'Delete?'}
+                        style={styles.textButton}
+                    ></TextButton>
+                    : <></>}
             </View>
         </View>
     )
@@ -100,8 +116,8 @@ const styles = StyleSheet.create({
         fontWeight: '400',
     },
     formContainer: {
-        marginLeft: 33,
         marginTop: 50,
+        alignSelf: 'center',
     },
     input: {
         height: 48,
@@ -121,7 +137,13 @@ const styles = StyleSheet.create({
         width: 313,
         flexDirection: 'row',
         justifyContent: 'space-between',
+        marginTop: 10,
+    },
+    textButton: {
+        fontSize: 14,
+        textAlign: 'center',
         marginTop: 30,
+        color: '#667080',
     },
 });
 

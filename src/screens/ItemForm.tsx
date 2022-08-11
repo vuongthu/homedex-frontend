@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 import AcceptButton from "../components/AcceptButton";
 import MeasurementToggle from "../components/MeasurementToggle";
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -66,19 +66,35 @@ const ItemForm = ({ route, navigation }: ItemFormProps) => {
             isDatePickerVisible ? expiration.toISOString() : null,
             unit
         )
+        console.log(isDatePickerVisible)
+        console.log(newItem)
         if (item) {
             navigation.navigate({
                 name: 'Items',
-                params: { categoryId: categoryId, categoryName: categoryName, editItem: newItem, itemId: item.id },
+                params: {
+                    categoryId: categoryId,
+                    categoryName: categoryName,
+                    item: newItem,
+                    itemId: item.id,
+                    action: 'edit'
+                },
                 merge: true,
             })
         } else {
             navigation.navigate({
                 name: 'Items',
-                params: { categoryId: categoryId, categoryName: categoryName, addItem: newItem },
+                params: { categoryId: categoryId, categoryName: categoryName, item: newItem, action: 'add' },
                 merge: true,
             })
         }
+    }
+
+    const onDeleteItem = () => {
+        navigation.navigate({
+            name: 'Items',
+            params: { categoryId: categoryId, categoryName: categoryName, itemId: item.id, action: 'delete' },
+            merge: true,
+        })
     }
 
     return (
@@ -146,10 +162,13 @@ const ItemForm = ({ route, navigation }: ItemFormProps) => {
                         disabled={!isValid}
                     ></AcceptButton>
                 </View>
-                <TextButton
-                    text={'Delete?'}
-                    style={styles.deleteText}
-                ></TextButton>
+                {item ?
+                    <TextButton
+                        onPressHandler={() => onDeleteItem(item.id)}
+                        text={'Delete?'}
+                        style={styles.textButton}
+                    ></TextButton>
+                    : <></>}
             </View>
         </View>
     )
@@ -208,7 +227,7 @@ const styles = StyleSheet.create({
     datePicker: {
         marginTop: 10,
     },
-    deleteText: {
+    textButton: {
         fontSize: 14,
         textAlign: 'center',
         marginTop: 30,

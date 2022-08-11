@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import AddButton from "../components/AddButton";
 import Item from "../components/Item";
-import { addItem, getItems, ItemRequest, Items, updateItem } from "../../requests";
+import { addItem, deleteItem, getItems, ItemRequest, Items, updateItem } from "../../requests";
 
 const ItemList = ({ route, navigation }) => {
 
@@ -55,30 +55,35 @@ const ItemList = ({ route, navigation }) => {
     });
 
     useEffect(() => {
-        if (route.params.addItem) {
-            addItem(categoryId, route.params.addItem)
-                .then((item: Items) => {
-                    setItemsData((oldData: Items[]) => [...oldData, item])
-                })
-        }
-    }, [route.params?.addItem]);
-
-    useEffect(() => {
-        if (route.params.editItem) {
-            updateItem(categoryId, route.params.itemId, route.params.editItem)
-                .then((updatedItem: Items) => {
-                    setItemsData((oldData: Items[]) => {
-                        return oldData.map((oldItem: Items) => {
-                            if (oldItem.id === updatedItem.id) {
-                                return updatedItem
-                            } else {
-                                return oldItem
-                            }
+        if (route.params?.item || route.params?.itemId) {
+            if (route.params?.action === 'add') {
+                addItem(categoryId, route.params.item)
+                    .then((item: Items) => {
+                        setItemsData((oldData: Items[]) => [...oldData, item])
+                    })
+            } else if (route.params?.action === 'edit') {
+                updateItem(categoryId, route.params.itemId, route.params.item)
+                    .then((updatedItem: Items) => {
+                        setItemsData((oldData: Items[]) => {
+                            return oldData.map((oldItem: Items) => {
+                                if (oldItem.id === updatedItem.id) {
+                                    return updatedItem
+                                } else {
+                                    return oldItem
+                                }
+                            })
                         })
                     })
-                })
+            } else if (route.params?.action === 'delete') {
+                deleteItem(categoryId, route.params.itemId)
+                    .then(() => {
+                        setItemsData((oldData: Items[]) => {
+                            return oldData.filter((oldItem: Items) => oldItem.id !== route.params.itemId)
+                        })
+                    })
+            }
         }
-    }, [route.params?.editItem]);
+    }, [route.params?.action, route.params?.item, route.params?.itemId])
 
     return (
         <View style={styles.container}>

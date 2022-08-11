@@ -3,12 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="5a1bba96-49c1-4945-aa65-ebe240b86056" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requests.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/requests.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Category.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Category.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Household.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Household.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/AddCategory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/CategoryForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Scale.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Scale.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/images/pointer.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/pointer.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/CategoriesList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/CategoriesList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/CategoryForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/CategoryForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/HouseholdForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/HouseholdForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/HouseholdList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/HouseholdList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ItemForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ItemForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ItemList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ItemList.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

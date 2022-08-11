@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import Household from "../components/Household";
 import AddButton from "../components/AddButton";
-import createHousehold, { editHousehold, getHouseholds, Households } from "../../requests";
+import createHousehold, { Categories, deleteHousehold, editHousehold, getHouseholds, Households } from "../../requests";
 import * as SecureStore from 'expo-secure-store';
 
 const HouseholdList = ({ route, navigation }) => {
@@ -74,10 +74,17 @@ const HouseholdList = ({ route, navigation }) => {
                                 })
                             })
                         })
+                } else if (route.params?.action === 'delete') {
+                    deleteHousehold(route.params.householdId)
+                        .then(() => {
+                            setHouseholdData((oldData: Households[]) => {
+                                return oldData.filter((oldHousehold: Households) => oldHousehold.id !== route.params.householdId)
+                            })
+                        });
                 }
             }
         });
-    }, [route.params?.action]);
+    }, [route.params?.action, route.params?.householdName]);
 
     return (
         <View style={styles.container}>

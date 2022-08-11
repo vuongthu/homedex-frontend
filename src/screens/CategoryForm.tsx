@@ -2,6 +2,7 @@ import { Image, StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import AcceptButton from "../components/AcceptButton";
 import CancelButton from "../components/CancelButton";
+import TextButton from "../components/TextButton";
 
 const CategoryForm = ({ route, navigation }) => {
 
@@ -48,6 +49,19 @@ const CategoryForm = ({ route, navigation }) => {
         }
     }
 
+    const onDeleteCategory = () => {
+        navigation.navigate({
+            name: 'Categories',
+            params: {
+                householdId: householdId,
+                householdName: householdName,
+                categoryId: categoryId,
+                action: 'delete',
+            },
+            merge: true,
+        })
+    }
+
     return (
         <View>
             <View style={styles.photoContainer}>
@@ -62,7 +76,10 @@ const CategoryForm = ({ route, navigation }) => {
                     <CancelButton
                         style={styles.button}
                         title="Cancel"
-                        onPressHandler={() => navigation.navigate('Categories', { householdId: householdId, householdName: householdName })}
+                        onPressHandler={() => navigation.navigate('Categories', {
+                            householdId: householdId,
+                            householdName: householdName
+                        })}
                     ></CancelButton>
                     <AcceptButton
                         style={styles.button}
@@ -71,6 +88,13 @@ const CategoryForm = ({ route, navigation }) => {
                         disabled={!isInputValid}
                     ></AcceptButton>
                 </View>
+                {categoryNameParam ?
+                    <TextButton
+                        onPressHandler={onDeleteCategory}
+                        text={'Delete?'}
+                        style={styles.textButton}
+                    ></TextButton>
+                    : <></>}
             </View>
         </View>
     )
@@ -98,7 +122,7 @@ const styles = StyleSheet.create({
         fontWeight: '400',
     },
     formContainer: {
-        marginLeft: 33,
+        alignSelf: 'center',
     },
     input: {
         height: 48,
@@ -119,7 +143,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginTop: 20,
-    }
+    },
+    textButton: {
+        fontSize: 14,
+        textAlign: 'center',
+        marginTop: 30,
+        color: '#667080',
+    },
 });
 
 export default CategoryForm;

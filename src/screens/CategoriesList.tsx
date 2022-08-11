@@ -2,7 +2,7 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import AddButton from "../components/AddButton";
 import Category from "../components/Category";
 import { useEffect, useState } from "react";
-import { Categories, createCategory, editCategory, getCategories } from "../../requests";
+import { Categories, createCategory, deleteCategory, editCategory, getCategories, Items } from "../../requests";
 
 const CategoriesList = ({ route, navigation }) => {
 
@@ -33,7 +33,7 @@ const CategoriesList = ({ route, navigation }) => {
         })
 
     useEffect(() => {
-        if (route.params?.categoryName) {
+        if (route.params?.categoryName || route.params?.categoryId) {
             if (route.params?.action === 'add') {
                 createCategory(route.params.categoryName, householdId)
                     .then((category: Categories) => {
@@ -53,9 +53,16 @@ const CategoriesList = ({ route, navigation }) => {
                             })
                         })
                     })
+            } else if (route.params?.action === 'delete' && route.params?.categoryId) {
+                deleteCategory(route.params?.categoryId)
+                    .then(() => {
+                        setCategoriesData((oldData: Categories[]) => {
+                            return oldData.filter((oldCategory: Categories) => oldCategory.id !== route.params.categoryId)
+                        })
+                    })
             }
         }
-    }, [route.params?.action]);
+    }, [route.params?.action, route.params?.categoryName, route.params?.categoryId]);
 
     return (
         <View style={styles.container}>

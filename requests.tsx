@@ -62,6 +62,11 @@ export const editHousehold = (name: string, householdId: string) => {
         .catch((err) => console.log(`Error updating household: ${err}`));
 }
 
+export const deleteHousehold = (householdId: string) => {
+    return axios.delete(`${baseUrl}/households/${householdId}`)
+        .catch(((err) => console.log(`Error deleting household: ${err}`)))
+}
+
 // Categories List Screen
 
 export class Categories {
@@ -96,7 +101,13 @@ export const createCategory = (categoryName: string, householdId: string) => {
 export const editCategory = (categoryName: string, categoryId: string) => {
     return axios.patch(`${baseUrl}/categories/${categoryId}`, {'name': categoryName})
         .then((response : AxiosResponse<Categories>) => response.data)
-        .catch((err) => console.log(`Error updating category: ${err}`))
+        .catch((err) => console.log(`Error updating category: ${err}`));
+}
+
+export const deleteCategory = (categoryId: string) => {
+
+    return axios.delete(`${baseUrl}/categories/${categoryId}`)
+        .catch((err) => console.log(`Error deleting category: ${err}`));
 }
 
 // Items List Screen
@@ -161,3 +172,8 @@ export const updateItem = (categoryId: string, itemId: string, itemRequest: Item
         .then((response: AxiosResponse<Items>) => response.data)
         .catch((err) => console.log(`Error updating item: ${err}`));
 };
+
+export const deleteItem = (categoryId: string, itemId: string) => {
+    return axios.delete(`${baseUrl}/categories/${categoryId}/items/${itemId}`)
+        .catch((err) => console.log(`Error deleting item: ${err}`))
+}
