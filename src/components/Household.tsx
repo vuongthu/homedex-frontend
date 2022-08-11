@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
         opacity: 0.75,
     },
     buttonContainer: {
-        // width: 100,
         marginTop: 10,
     },
     moreImg: {

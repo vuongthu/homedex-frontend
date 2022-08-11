@@ -1,24 +1,58 @@
 import { Image, StyleSheet, Text, TextInput, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AcceptButton from "../components/AcceptButton";
 import CancelButton from "../components/CancelButton";
 
-const AddCategory = ({ route, navigation }) => {
+const CategoryForm = ({ route, navigation }) => {
 
-    const { householdId, householdName } = route.params;
+    const { householdId, householdName, categoryNameParam, categoryId } = route.params;
     const [categoryName, setCategoryName] = useState("");
     const [isInputValid, setInputValid] = useState(false);
 
     const handleCategoryTextChange = (text: string) => {
         setCategoryName(text);
-        setInputValid(text.length > 0);
     };
+
+    useEffect(() => setInputValid(categoryName.length > 0), [categoryName])
+
+    useEffect(() => {
+        if (categoryNameParam) {
+            setCategoryName(categoryNameParam)
+        }
+    }, [])
+
+    const onSaveHandler = () => {
+        if (categoryNameParam) {
+            navigation.navigate({
+                name: 'Categories',
+                params: {
+                    householdId: householdId,
+                    householdName: householdName,
+                    categoryName: categoryName,
+                    categoryId: categoryId,
+                    action: 'edit',
+                },
+                merge: true,
+            })
+        } else {
+            navigation.navigate({
+                name: 'Categories',
+                params: {
+                    householdId: householdId,
+                    householdName: householdName,
+                    categoryName: categoryName,
+                    action: 'add',
+                },
+                merge: true,
+            })
+        }
+    }
 
     return (
         <View>
             <View style={styles.photoContainer}>
                 <Image style={styles.img} source={require('../images/logo.png')}/>
-                <Text style={styles.header}>Create New Category</Text>
+                <Text style={styles.header}>{categoryNameParam ? 'Edit Category' : 'Create New Category'}</Text>
             </View>
             <View style={styles.formContainer}>
                 <Text style={styles.label}>Category Name</Text>
@@ -33,11 +67,7 @@ const AddCategory = ({ route, navigation }) => {
                     <AcceptButton
                         style={styles.button}
                         title="Save"
-                        onPressHandler={() => navigation.navigate({
-                            name: 'Categories',
-                            params: { householdId: householdId, householdName: householdName, categoryName: categoryName },
-                            merge: true,
-                        })}
+                        onPressHandler={onSaveHandler}
                         disabled={!isInputValid}
                     ></AcceptButton>
                 </View>
@@ -53,7 +83,7 @@ const styles = StyleSheet.create({
     img: {
         width: 125,
         height: 93,
-        marginTop: 100,
+        marginTop: 130,
     },
     header: {
         fontWeight: '700',
@@ -92,4 +122,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default AddCategory;
+export default CategoryForm;

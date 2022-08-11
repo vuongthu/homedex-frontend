@@ -91,6 +91,14 @@ export const createCategory = (categoryName: string, householdId: string) => {
         .catch((err) => console.log(`Error creating category: ${err}`));
 }
 
+// Edit Category
+
+export const editCategory = (categoryName: string, categoryId: string) => {
+    return axios.patch(`${baseUrl}/categories/${categoryId}`, {'name': categoryName})
+        .then((response : AxiosResponse<Categories>) => response.data)
+        .catch((err) => console.log(`Error updating category: ${err}`))
+}
+
 // Items List Screen
 
 export class Items {

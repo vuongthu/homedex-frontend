@@ -7,7 +7,7 @@ import HouseholdForm from "./src/screens/HouseholdForm";
 import CategoriesList from "./src/screens/CategoriesList";
 import ItemList from "./src/screens/ItemList";
 import ItemForm from "./src/screens/ItemForm";
-import AddCategory from "./src/screens/AddCategory";
+import CategoryForm from "./src/screens/CategoryForm";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as SecureStore from 'expo-secure-store';
 import { User, userLogin } from "./requests";
@@ -25,8 +25,6 @@ export const AuthContext = createContext();
 
 
 const HomeFlow = () => {
-    const { signOut } = useContext(AuthContext)
-
     return (
         <Stack.Navigator screenOptions={{ contentStyle: { backgroundColor: '#8EA7BA' } }}>
             <Stack.Screen
@@ -44,8 +42,9 @@ const HomeFlow = () => {
                 component={CategoriesList}
             />
             <Stack.Screen
-                name={"Create Category"}
-                component={AddCategory}
+                name={"Category Form"}
+                component={CategoryForm}
+                options={{headerShown: false}}
             />
             <Stack.Screen
                 name={"Items"}

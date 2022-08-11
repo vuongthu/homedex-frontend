@@ -2,7 +2,7 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import AddButton from "../components/AddButton";
 import Category from "../components/Category";
 import { useEffect, useState } from "react";
-import { Categories, createCategory, getCategories } from "../../requests";
+import { Categories, createCategory, editCategory, getCategories } from "../../requests";
 
 const CategoriesList = ({ route, navigation }) => {
 
@@ -23,21 +23,39 @@ const CategoriesList = ({ route, navigation }) => {
                     categoryId: category.id,
                     categoryName: category.name
                 })}
+                onEditHandler={() => navigation.navigate('Category Form', {
+                    householdId: householdId,
+                    householdName: householdName,
+                    categoryNameParam: category.name,
+                    categoryId: category.id,
+                })}
             ></Category>
         })
 
     useEffect(() => {
         if (route.params?.categoryName) {
-            createCategoryHandler(route.params.categoryName)
-                .then((category: Categories) => {
-                    setCategoriesData((oldData: Categories[]) => [...oldData, category])
-                    navigation.navigate('Items', { categoryId: category.id, categoryName: category.name })
-                })
+            if (route.params?.action === 'add') {
+                createCategory(route.params.categoryName, householdId)
+                    .then((category: Categories) => {
+                        setCategoriesData((oldData: Categories[]) => [...oldData, category])
+                        navigation.navigate('Items', { categoryId: category.id, categoryName: category.name })
+                    })
+            } else if (route.params?.action === 'edit' && route.params?.categoryId) {
+                editCategory(route.params.categoryName, route.params.categoryId)
+                    .then((category: Categories) => {
+                        setCategoriesData((oldCategories: Categories[]) => {
+                            return oldCategories.map((oldCategory: Categories) => {
+                                if (oldCategory.id === category.id) {
+                                    return category
+                                } else {
+                                    return oldCategory
+                                }
+                            })
+                        })
+                    })
+            }
         }
-    }, [route.params?.categoryName]);
-
-    const createCategoryHandler = async (categoryName: string) => await createCategory(categoryName, householdId);
-
+    }, [route.params?.action]);
 
     return (
         <View style={styles.container}>
@@ -48,8 +66,9 @@ const CategoriesList = ({ route, navigation }) => {
                 </View>
                 <AddButton
                     style={styles.button}
-                    onPressHandler={() => navigation.navigate('Create Category', {
+                    onPressHandler={() => navigation.navigate('Category Form', {
                         householdId: householdId,
+                        householdName: householdName,
                     })}
                 ></AddButton>
             </View>
