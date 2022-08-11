@@ -58,7 +58,7 @@ const Item = ({ item, onEditHandler, onUpdateAmount }: ItemProps) => {
 const styles = StyleSheet.create({
     container: {
         height: 105,
-        backgroundColor: '#DCE3E9',
+        backgroundColor: '#EEEEEE',
         marginBottom: 20,
         borderRadius: 6,
         flexDirection: 'row',

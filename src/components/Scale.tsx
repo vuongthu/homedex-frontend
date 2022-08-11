@@ -17,6 +17,8 @@ const Scale = ({ unit, setUnit, style }: ScaleProps) => {
             value={unit}
             minimumValue={0}
             maximumValue={100}
+            minimumTrackTintColor="#8EA7BA"
+            maximumTrackTintColor="#D9D9D9"
         />
     )
 }
@@ -25,8 +27,6 @@ const styles = StyleSheet.create({
     slider: {
         width: 100,
         height: 40,
-        minimumTrackTintColor: '#667080',
-        maximumTrackTintColor: '#000000',
     }
 })
 

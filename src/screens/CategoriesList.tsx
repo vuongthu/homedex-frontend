@@ -27,7 +27,7 @@ const CategoriesList = ({ route, navigation }) => {
         })
 
     useEffect(() => {
-        if (route.params.categoryName) {
+        if (route.params?.categoryName) {
             createCategoryHandler(route.params.categoryName)
                 .then((category: Categories) => {
                     setCategoriesData((oldData: Categories[]) => [...oldData, category])

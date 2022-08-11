@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import AcceptButton from "../components/AcceptButton";
 import MeasurementToggle from "../components/MeasurementToggle";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import AddButton from "../components/AddButton";
 import { ItemRequest, Items } from "../../requests";
 import CancelButton from "../components/CancelButton";
+import TextButton from "../components/TextButton";
 
 type ItemFormProps = {
     route: any;
@@ -94,7 +95,7 @@ const ItemForm = ({ route, navigation }: ItemFormProps) => {
                 <TextInput
                     style={styles.input}
                     value={itemBrand}
-                    placeholder={itemBrand}
+                    placeholder=""
                     onChangeText={brandTextChangeHandler}
                 />
             </View>
@@ -124,6 +125,7 @@ const ItemForm = ({ route, navigation }: ItemFormProps) => {
                 <Text style={styles.label}>Additional Information (optional)</Text>
                 <TextInput
                     style={styles.input}
+                    value={addInfo}
                     placeholder=""
                     onChangeText={addInfoTextChangeHandler}
                 />
@@ -143,6 +145,10 @@ const ItemForm = ({ route, navigation }: ItemFormProps) => {
                         disabled={!isValid}
                     ></AcceptButton>
                 </View>
+                <TextButton
+                    text={'Delete?'}
+                    style={styles.deleteText}
+                ></TextButton>
             </View>
         </View>
     )
@@ -154,7 +160,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
         color: '#FFFFFF',
         marginBottom: 10,
-        marginTop: 35,
+        marginTop: 70,
         textAlign: "center",
         textTransform: 'capitalize',
     },
@@ -200,6 +206,12 @@ const styles = StyleSheet.create({
     },
     datePicker: {
         marginTop: 10,
+    },
+    deleteText: {
+        fontSize: 14,
+        textAlign: 'center',
+        marginTop: 30,
+        color: '#667080',
     },
     pressed: {
         opacity: 0.75,

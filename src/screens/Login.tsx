@@ -1,24 +1,28 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Alert, Image, Linking, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import AcceptButton from "../components/AcceptButton";
 import { User, userLogin } from "../../requests";
+import { AuthContext } from "../../App";
 
 
 const Login = ({ navigation }) => {
+
+    const { signIn } = useContext(AuthContext);
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     const onUserLogin = async () => {
-        const user: User = await userLogin(username, password);
-
-        if (!user) {
-            Alert.alert('Login Failed', 'Please enter a valid username/email and/or password')
-        } else {
-            navigation.navigate('Households', {
-                userId: user.id,
-            });
-        }
+        await signIn(username, password);
+        // const user: User | void = ;
+        //
+        // if (!user) {
+        //     Alert.alert('Login Failed', 'Please enter a valid username/email and/or password')
+        // } else {
+        //     navigation.navigate('Households', {
+        //         userId: user.id,
+        //     });
+        // }
     };
 
     return (
