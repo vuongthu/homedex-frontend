@@ -14,15 +14,6 @@ const Login = ({ navigation }) => {
 
     const onUserLogin = async () => {
         await signIn(username, password);
-        // const user: User | void = ;
-        //
-        // if (!user) {
-        //     Alert.alert('Login Failed', 'Please enter a valid username/email and/or password')
-        // } else {
-        //     navigation.navigate('Households', {
-        //         userId: user.id,
-        //     });
-        // }
     };
 
     return (

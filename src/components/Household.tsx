@@ -1,12 +1,16 @@
 import React from 'react';
-import { Image, Pressable, StyleSheet, Text } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import EditButton from "./EditButton";
 
-const Household = ({ householdName, onPressHandler }) => {
+const Household = ({ householdName, onPressHandler, onEditHandler }) => {
     return (
         <Pressable style={({ pressed }) => pressed ? [styles.container, styles.pressed] : styles.container}
                    onPress={onPressHandler}>
             <Image style={styles.image} source={require('../images/imgplaceholder.png')}/>
             <Text style={styles.text}>{householdName}</Text>
+            <View style={styles.buttonContainer}>
+                <EditButton onPressHandler={onEditHandler} style={styles.moreImg}></EditButton>
+            </View>
         </Pressable>
     )
 }
@@ -25,9 +29,10 @@ const styles = StyleSheet.create({
     },
     text: {
         color: '#FFFFFF',
-        fontSize: 16,
+        fontSize: 20,
         fontWeight: '700',
-        marginTop: 33
+        marginTop: 33,
+        width: 155,
     },
     image: {
         marginLeft: 23,
@@ -35,7 +40,14 @@ const styles = StyleSheet.create({
     },
     pressed: {
         opacity: 0.75,
-    }
+    },
+    buttonContainer: {
+        // width: 100,
+        marginTop: 10,
+    },
+    moreImg: {
+        alignSelf: 'flex-end'
+    },
 })
 
 export default Household;

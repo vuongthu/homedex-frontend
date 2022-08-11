@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import Household from "../components/Household";
 import AddButton from "../components/AddButton";
-import createHousehold, { getHouseholds, Households } from "../../requests";
+import createHousehold, { editHousehold, getHouseholds, Households } from "../../requests";
 import * as SecureStore from 'expo-secure-store';
 
 const HouseholdList = ({ route, navigation }) => {
@@ -10,14 +10,15 @@ const HouseholdList = ({ route, navigation }) => {
 
     const [householdData, setHouseholdData] = useState([]);
 
+    const retrieveUser = async () => {
+        try {
+            return await SecureStore.getItemAsync('user-id');
+        } catch (err) {
+            console.log(`user-id from secure store not found: ${err}`)
+        }
+    };
+
     useEffect(() => {
-        const retrieveUser = async () => {
-            try {
-                return await SecureStore.getItemAsync('user-id');
-            } catch (err) {
-                console.log(`user-id from secure store not found: ${err}`)
-            }
-        };
 
         retrieveUser().then((result: string) => {
             userId = result;
@@ -36,39 +37,57 @@ const HouseholdList = ({ route, navigation }) => {
                     householdId: household.id,
                     householdName: household.name
                 })}
+                onEditHandler={() => navigation.navigate('Household Form', {
+                    userId: userId,
+                    householdNameParam: household.name,
+                    householdId: household.id
+                })}
             ></Household>
         })
 
     useEffect(() => {
-        if (route.params?.householdName) {
-            createHouseholdHandler(route.params.householdName)
-                .then((household: Households) => {
-                    setHouseholdData((oldData: [Households]) => {
-                        return [...oldData, household]
-                    })
-                    navigation.navigate('Categories', {
-                        householdId: household.id,
-                        householdName: household.name
-                    })
-                })
-        }
-    }, [route.params?.householdName]);
 
-    const createHouseholdHandler = async (householdName: string) => {
-        return await createHousehold(householdName, userId);
-    }
+        retrieveUser().then((result: string) => {
+            userId = result;
+            if (route.params?.householdName) {
+                if (route.params?.action === 'add') {
+                    createHousehold(route.params.householdName, userId)
+                        .then((household: Households) => {
+                            setHouseholdData((oldData: [Households]) => {
+                                return [...oldData, household]
+                            })
+                            navigation.navigate('Categories', {
+                                householdId: household.id,
+                                householdName: household.name
+                            })
+                        })
+                } else if (route.params?.action === 'edit') {
+                    editHousehold(route.params.householdName, route.params.householdId)
+                        .then((household: Households) => {
+                            setHouseholdData((oldData: Households[]) => {
+                                return oldData.map((oldHousehold: Households) => {
+                                    if (oldHousehold.id === household.id) {
+                                        return household
+                                    } else {
+                                        return oldHousehold
+                                    }
+                                })
+                            })
+                        })
+                }
+            }
+        });
+    }, [route.params?.action]);
 
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
                 <Text style={styles.headerLabel}>Households</Text>
                 <AddButton
-                    onPressHandler={() => navigation.navigate('Create Household', { userId: userId })}></AddButton>
+                    onPressHandler={() => navigation.navigate('Household Form', { userId: userId })}></AddButton>
             </View>
             <ScrollView>
-                <View>
-                    {householdList}
-                </View>
+                {householdList}
             </ScrollView>
         </View>
     )
@@ -76,7 +95,8 @@ const HouseholdList = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 10
+        padding: 10,
+        marginBottom: 120,
     },
     headerLabel: {
         color: '#FFFFFF',
@@ -87,7 +107,7 @@ const styles = StyleSheet.create({
     headerContainer: {
         flexDirection: "row",
         justifyContent: "space-between",
-        marginBottom: 67,
+        marginBottom: 50,
         marginTop: 60,
     },
 })

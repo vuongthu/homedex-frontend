@@ -56,6 +56,12 @@ const createHousehold = (name: string, userId: string) => {
 
 export default createHousehold;
 
+export const editHousehold = (name: string, householdId: string) => {
+    return axios.patch(`${baseUrl}/households/${householdId}`, { name: name })
+        .then((response: AxiosResponse<Households>) => response.data)
+        .catch((err) => console.log(`Error updating household: ${err}`));
+}
+
 // Categories List Screen
 
 export class Categories {

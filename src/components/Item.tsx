@@ -33,7 +33,7 @@ const Item = ({ item, onEditHandler, onUpdateAmount }: ItemProps) => {
             </View>
             <View style={styles.buttonContainer}>
                 <EditButton
-                    style={styles.moreImg}
+                    style={styles.editImg}
                     onPressHandler={onEditHandler}
                 ></EditButton>
                 {measurement === "SCALE" ?
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
         height: 74,
         justifyContent: 'space-between'
     },
-    moreImg: {
+    editImg: {
         alignSelf: 'flex-end',
     },
     infoImg: {

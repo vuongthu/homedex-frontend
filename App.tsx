@@ -3,7 +3,7 @@ import { Alert, Image, StyleSheet } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HouseholdList from "./src/screens/HouseholdList";
-import AddHousehold from "./src/screens/AddHousehold";
+import HouseholdForm from "./src/screens/HouseholdForm";
 import CategoriesList from "./src/screens/CategoriesList";
 import ItemList from "./src/screens/ItemList";
 import ItemForm from "./src/screens/ItemForm";
@@ -35,8 +35,9 @@ const HomeFlow = () => {
                 options={{headerShown: false}}
             />
             <Stack.Screen
-                name={"Create Household"}
-                component={AddHousehold}
+                name={"Household Form"}
+                component={HouseholdForm}
+                options={{headerShown: false}}
             />
             <Stack.Screen
                 name={"Categories"}

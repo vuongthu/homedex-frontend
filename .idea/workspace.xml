@@ -4,19 +4,13 @@
     <list default="true" id="5a1bba96-49c1-4945-aa65-ebe240b86056" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requests.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/requests.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Household.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Household.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Scale.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Scale.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/imgplaceholder.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/imgplaceholder.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/info-icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/info-icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/more.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/more.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/plus.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/plus.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/pointer.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/CategoriesList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/CategoriesList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/AddHousehold.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/HouseholdForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/HouseholdList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/HouseholdList.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/ItemForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ItemForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

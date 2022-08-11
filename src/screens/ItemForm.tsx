@@ -38,6 +38,7 @@ const ItemForm = ({ route, navigation }: ItemFormProps) => {
             }
         }
     }, []);
+
     useEffect(() => setIsValid(itemName.length && itemBrand.length && unit > 0), [itemName, itemBrand, unit]);
 
     const nameTextChangeHandler = (name: string) => {
