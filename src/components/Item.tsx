@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, StyleSheet, Text, View } from "react-native";
 import Scale from "./Scale";
 import Quantity from "./Quantity";
-import EditButton from "./EditButton";
+import EditButton from "./EllipseButton";
 import MoreInfo from "./MoreInfo";
 import { Items } from "../../requests";
 

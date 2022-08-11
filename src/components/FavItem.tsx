@@ -1,5 +1,5 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-import EditButton from "./EditButton";
+import EditButton from "./EllipseButton";
 import Scale from "./Scale";
 import Quantity from "./Quantity";
 import MoreInfo from "./MoreInfo";

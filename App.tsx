@@ -149,7 +149,7 @@ const App = ({ navigation }) => {
                                 tabBarActiveTintColor: '#587F9D',
                                 tabBarIcon: ({ focused, color, size }) => (
                                     focused ? <Image source={require('./src/images/home-icon-active.png')}/> :
-                                        <Image source={require('./src/images/home-icon.png')}/>
+                                        <Image source={require('./src/images/home-icon-inactive.png')}/>
 
                                 ),
                                 headerShown: false,
@@ -163,7 +163,7 @@ const App = ({ navigation }) => {
                                 tabBarActiveTintColor: '#587F9D',
                                 tabBarIcon: ({ focused, color, size }) => (
                                     focused ? <Image source={require('./src/images/heart-icon-active.png')}/> :
-                                        <Image source={require('./src/images/heart-icon.png')}/>
+                                        <Image source={require('./src/images/heart-icon-inactive.png')}/>
                                 ),
                                 headerShown: false,
                             }}
@@ -176,7 +176,7 @@ const App = ({ navigation }) => {
                                 tabBarActiveTintColor: '#587F9D',
                                 tabBarIcon: ({ focused, color, size }) => (
                                     focused ? <Image source={require('./src/images/shopping-icon-active.png')}/> :
-                                        <Image source={require('./src/images/shopping-icon.png')}/>
+                                        <Image source={require('./src/images/shopping-icon-inactive.png')}/>
                                 ),
                                 headerShown: false,
                             }}
@@ -189,7 +189,7 @@ const App = ({ navigation }) => {
                                 tabBarActiveTintColor: '#587F9D',
                                 tabBarIcon: ({ focused, color, size }) => (
                                     focused ? <Image source={require('./src/images/user-icon-active.png')}/> :
-                                        <Image source={require('./src/images/user-icon.png')}/>
+                                        <Image source={require('./src/images/user-icon-inactive.png')}/>
                                 ),
                                 headerShown: false,
                             }}

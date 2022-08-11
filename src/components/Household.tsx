@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import EditButton from "./EditButton";
+import PencilButton from "./PencilButton";
 
 const Household = ({ householdName, onPressHandler, onEditHandler }) => {
     return (
@@ -9,7 +9,7 @@ const Household = ({ householdName, onPressHandler, onEditHandler }) => {
             <Image style={styles.image} source={require('../images/imgplaceholder.png')}/>
             <Text style={styles.text}>{householdName}</Text>
             <View style={styles.buttonContainer}>
-                <EditButton onPressHandler={onEditHandler} style={styles.moreImg}></EditButton>
+                <PencilButton onPressHandler={onEditHandler} style={styles.moreImg}></PencilButton>
             </View>
         </Pressable>
     )
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         opacity: 0.75,
     },
     buttonContainer: {
-        marginTop: 10,
+        marginTop: 5,
     },
     moreImg: {
         alignSelf: 'flex-end'

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import EditButton from "./EditButton";
+import PencilButton from "./PencilButton";
 
 type CategoryProps = {
     categoriesName: string;
@@ -14,7 +14,7 @@ const Category = ({ categoriesName, onPressHandler, onEditHandler }: CategoryPro
                    onPress={onPressHandler}>
             <View style={styles.textContainer}>
                 <View style={styles.buttonContainer}>
-                    <EditButton onPressHandler={onEditHandler} style={styles.moreImg}></EditButton>
+                    <PencilButton onPressHandler={onEditHandler} style={styles.moreImg}></PencilButton>
                 </View>
                 <Text style={styles.text}>{categoriesName}</Text>
             </View>
@@ -24,15 +24,16 @@ const Category = ({ categoriesName, onPressHandler, onEditHandler }: CategoryPro
 
 const styles = StyleSheet.create({
     textContainer: {
-        backgroundColor: '#DCE3E9',
+        borderColor: '#FFFFFF',
+        borderWidth: 2,
         width: 160,
         height: 96,
         marginBottom: 16,
         borderRadius: 6,
     },
     text: {
-        color: '#667080',
-        lineHeight: 130,
+        color: '#FFFFFF',
+        lineHeight: 85,
         paddingLeft: 10,
     },
     pressed: {
