@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
     },
     formContainer: {
         alignSelf: "center",
-        marginTop: 15,
+        marginTop: 10,
     },
     input: {
         borderWidth: 1,
