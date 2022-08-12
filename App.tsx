@@ -65,7 +65,7 @@ const FavoritesFlow = () => {
             <Stack.Screen
                 name={"Favorites List"}
                 component={FavItemsList}
-                // options={{headerShown: false}}
+                options={{headerShown: false}}
             />
         </Stack.Navigator>
     )
@@ -77,7 +77,7 @@ const ShoppingFlow = () => {
             <Stack.Screen
                 name={"Shopping List"}
                 component={ShoppingItemsList}
-                // options={{headerShown: false}}
+                options={{headerShown: false}}
             />
         </Stack.Navigator>
     )
@@ -89,7 +89,7 @@ const UserFlow = () => {
             <Stack.Screen
                 name={"User Info"}
                 component={UserInfo}
-                // options={{headerShown: false}}
+                options={{headerShown: false}}
             />
         </Stack.Navigator>
     )

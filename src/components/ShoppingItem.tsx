@@ -1,7 +1,8 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import MoreInfo from "./MoreInfo";
 import React from "react";
-import { Items } from "../../requests";
+import ShoppingButton from "./ShoppingButton";
+import HeartButton from "./HeartButton";
 
 const ShoppingItem = ({ route, navigation }) => {
 
@@ -16,13 +17,14 @@ const ShoppingItem = ({ route, navigation }) => {
 
     return (
         <View style={styles.container}>
-            <View>
-                <Image style={styles.itemImg} source={require('../images/imgitem.png')}/>
+            <View style={styles.itemImgContainer}>
+                <ShoppingButton onPressHandler={() => console.log('buy!')}></ShoppingButton>
+                <HeartButton onPressHandler={() => console.log('liked!')}></HeartButton>
             </View>
             <View style={styles.textContainer}>
-                <Text>Gelato</Text>
-                <Text>Bobboi</Text>
-                <Text>8/8/2022</Text>
+                <Text style={styles.nameText}>Gelato</Text>
+                <Text style={styles.brandText}>Bobboi</Text>
+                <Text style={styles.expirationText}>8/8/2022</Text>
 
                 {/*<Text>{name}</Text>*/}
                 {/*<Text>{brand}</Text>*/}
@@ -44,19 +46,28 @@ const ShoppingItem = ({ route, navigation }) => {
 const styles = StyleSheet.create({
     container: {
         height: 105,
-        backgroundColor: '#EEEEEE',
+        width: 280,
+        borderWidth: 2,
+        borderColor: '#FFFFFF',
         marginBottom: 20,
         borderRadius: 6,
         flexDirection: 'row',
-        alignItems: 'center',
+        alignSelf: 'center',
     },
     textContainer: {
         marginLeft: 15,
         flexDirection: 'column',
         justifyContent: 'space-evenly',
-        height: 85,
-        paddingTop: 5,
-        width: 150,
+        height: 100,
+        paddingLeft: 20,
+        width: 110,
+    },
+    itemImgContainer: {
+        flexDirection: 'column',
+        width: 30,
+        height: 100,
+        justifyContent: 'space-evenly',
+        paddingLeft: 15,
     },
     itemImg: {
         height: 74,
@@ -78,8 +89,18 @@ const styles = StyleSheet.create({
     },
     infoImg: {
         alignItems: 'flex-end',
-        marginTop: 55,
+        marginTop: 70,
     },
+    nameText: {
+        color: '#FFFFFF',
+        fontWeight: 'bold',
+    },
+    brandText: {
+        color: '#FFFFFF',
+    },
+    expirationText: {
+        color: '#FFFFFF',
+    }
 });
 
 export default ShoppingItem;

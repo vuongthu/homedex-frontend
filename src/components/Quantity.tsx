@@ -8,7 +8,7 @@ const Quantity = ({ amount, onIncrease, onDecrease }) => {
                        onPress={onDecrease}>
                 <Image source={require('../images/minus-circle.png')}/>
             </Pressable>
-            <Text>{amount}</Text>
+            <Text style={styles.amount}>{amount}</Text>
             <Pressable style={({ pressed }) => pressed ? [styles.container, styles.pressed] : styles.container}
                        onPress={onIncrease}>
                 <Image source={require('../images/plus-circle.png')}/>
@@ -22,6 +22,9 @@ const styles = StyleSheet.create({
         width: 115,
         flexDirection: 'row',
         justifyContent: 'space-evenly',
+    },
+    amount: {
+        color: '#FFFFFF',
     },
     pressed: {
         opacity: 0.75,

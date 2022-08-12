@@ -50,7 +50,7 @@ const HouseholdForm = ({ route, navigation }) => {
         <View>
             <View style={styles.photoContainer}>
                 <Image style={styles.img} source={require('../images/logo.png')}/>
-                <Text style={styles.header}>{householdNameParam ? 'Edit Household' : 'Create Your Household'}</Text>
+                <Text style={styles.header}>{householdNameParam ? 'Edit Household' : 'Create New Household'}</Text>
                 <Image source={require('../images/imgplaceholder.png')}/>
                 <Text style={styles.photoLabel}>Choose Photo</Text>
             </View>

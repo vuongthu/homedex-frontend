@@ -1,18 +1,21 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import Scale from "./Scale";
 import Quantity from "./Quantity";
 import EditButton from "./EllipseButton";
 import MoreInfo from "./MoreInfo";
 import { Items } from "../../requests";
+import HeartButton from "./HeartButton";
+import ShoppingButton from "./ShoppingButton";
 
 type ItemProps = {
     item: Items;
     onEditHandler: () => void;
     onUpdateAmount: (item: Items, unit: number) => void;
+    onToggleLike: () => void;
 };
 
-const Item = ({ item, onEditHandler, onUpdateAmount }: ItemProps) => {
+const Item = ({ item, onEditHandler, onUpdateAmount, onToggleLike }: ItemProps) => {
     const { name, brand, expiration, measurement, unit, addInfo } = item;
 
     const onIncrease = () => {
@@ -23,13 +26,17 @@ const Item = ({ item, onEditHandler, onUpdateAmount }: ItemProps) => {
 
     return (
         <View style={styles.container}>
-            <View>
-                <Image style={styles.itemImg} source={require('../images/imgitem.png')}/>
+            <View style={styles.itemImgContainer}>
+                <ShoppingButton onPressHandler={() => console.log('buy!')}></ShoppingButton>
+                <HeartButton
+                    onPressHandler={onToggleLike}
+                    liked={item.liked}
+                ></HeartButton>
             </View>
             <View style={styles.textContainer}>
-                <Text>{name}</Text>
-                <Text>{brand}</Text>
-                <Text>{expiration ? expiration.slice(0, 10) : expiration}</Text>
+                <Text style={styles.nameText}>{name}</Text>
+                <Text style={styles.brandText}>{brand}</Text>
+                <Text style={styles.expirationText}>{expiration ? expiration.slice(0, 10) : expiration}</Text>
             </View>
             <View style={styles.buttonContainer}>
                 <EditButton
@@ -58,7 +65,8 @@ const Item = ({ item, onEditHandler, onUpdateAmount }: ItemProps) => {
 const styles = StyleSheet.create({
     container: {
         height: 105,
-        backgroundColor: '#EEEEEE',
+        borderWidth: 2,
+        borderColor: '#FFFFFF',
         marginBottom: 20,
         borderRadius: 6,
         flexDirection: 'row',
@@ -70,13 +78,15 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         height: 85,
         paddingTop: 5,
-        width: 150,
+        paddingLeft: 20,
+        width: 200,
     },
-    itemImg: {
-        height: 74,
-        width: 74,
-        marginLeft: 10,
-        borderRadius: 6,
+    itemImgContainer: {
+        flexDirection: 'column',
+        width: 30,
+        height: 80,
+        justifyContent: 'space-around',
+        paddingLeft: 15,
     },
     itemName: {
         fontSize: 16,
@@ -93,6 +103,16 @@ const styles = StyleSheet.create({
     infoImg: {
         alignItems: 'flex-end',
     },
+    nameText: {
+        color: '#FFFFFF',
+        fontWeight: 'bold',
+    },
+    brandText: {
+        color: '#FFFFFF',
+    },
+    expirationText: {
+        color: '#FFFFFF',
+    }
 });
 
 export default Item;

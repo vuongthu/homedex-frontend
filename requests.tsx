@@ -67,6 +67,15 @@ export const deleteHousehold = (householdId: string) => {
         .catch(((err) => console.log(`Error deleting household: ${err}`)))
 }
 
+export const getItemsByHousehold = (householdId: string) => {
+    return axios.get(`${baseUrl}/households/${householdId}/items`)
+        .then((response: AxiosResponse<Items[]>) => response.data)
+        .catch((err) => {
+            console.log(`Error retrieving items for household: ${err}`);
+            return [] as Items[]
+        })
+}
+
 // Categories List Screen
 
 export class Categories {
@@ -91,7 +100,7 @@ export const getCategories = (householdId: string) => {
 // Create Category Screen
 
 export const createCategory = (categoryName: string, householdId: string) => {
-    return axios.post(`${baseUrl}/categories`, {name: categoryName}, {params: {'household-id': householdId}})
+    return axios.post(`${baseUrl}/categories`, { name: categoryName }, { params: { 'household-id': householdId } })
         .then((response: AxiosResponse<Categories>) => response.data)
         .catch((err) => console.log(`Error creating category: ${err}`));
 }
@@ -99,8 +108,8 @@ export const createCategory = (categoryName: string, householdId: string) => {
 // Edit Category
 
 export const editCategory = (categoryName: string, categoryId: string) => {
-    return axios.patch(`${baseUrl}/categories/${categoryId}`, {'name': categoryName})
-        .then((response : AxiosResponse<Categories>) => response.data)
+    return axios.patch(`${baseUrl}/categories/${categoryId}`, { 'name': categoryName })
+        .then((response: AxiosResponse<Categories>) => response.data)
         .catch((err) => console.log(`Error updating category: ${err}`));
 }
 
@@ -120,8 +129,9 @@ export class Items {
     addInfo: string;
     expiration: string;
     unit: number;
+    liked: boolean;
 
-    constructor(id: string, name: string, measurement: string, brand: string, addInfo: string, expiration: string, unit: number) {
+    constructor(id: string, name: string, measurement: string, brand: string, addInfo: string, expiration: string, unit: number, liked: boolean) {
         this.id = id;
         this.name = name;
         this.measurement = measurement;
@@ -129,6 +139,7 @@ export class Items {
         this.addInfo = addInfo;
         this.expiration = expiration;
         this.unit = unit;
+        this.liked = liked;
     }
 }
 
@@ -176,4 +187,9 @@ export const updateItem = (categoryId: string, itemId: string, itemRequest: Item
 export const deleteItem = (categoryId: string, itemId: string) => {
     return axios.delete(`${baseUrl}/categories/${categoryId}/items/${itemId}`)
         .catch((err) => console.log(`Error deleting item: ${err}`))
+}
+
+export const toggleLikeItem = (itemId: string) => {
+    return axios.patch(`${baseUrl}/categories/${itemId}/items/${itemId}/like`)
+        .catch((err) => console.log(`Error liking item: ${err}`))
 }

@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import AddButton from "../components/AddButton";
 import Item from "../components/Item";
-import { addItem, deleteItem, getItems, ItemRequest, Items, updateItem } from "../../requests";
+import { addItem, deleteItem, getItems, ItemRequest, Items, toggleLikeItem, updateItem } from "../../requests";
 
 const ItemList = ({ route, navigation }) => {
 
     const { categoryId, categoryName } = route.params;
-    const [itemsListData, setItemsData] = useState([]);
+    const [itemsListData, setItemsData] = useState<Items[]>([]);
 
     useEffect(() => {
         getItems(categoryId)
-            .then((items: [Items]) => setItemsData(items))
+            .then((items: Items[]) => setItemsData(items))
     }, []);
 
     const updateAmountOnItem = (item: Items, amount: number) => {
@@ -38,6 +38,21 @@ const ItemList = ({ route, navigation }) => {
             .catch((err) => console.log(`Error updating item from itemList: ${err}`));
     };
 
+    const toggleItemLiked = (itemId: string) => {
+        toggleLikeItem(itemId)
+            .then(() => {
+                setItemsData((oldItems: Items[]) => {
+                    return oldItems.map((oldItem: Items) => {
+                        if (oldItem.id === itemId) {
+                            return {...oldItem, liked: !oldItem.liked}
+                        } else {
+                            return oldItem
+                        }
+                    })
+                })
+            })
+    }
+
     const itemsList = itemsListData.map((item: Items) => {
         return <Item
             key={item.id}
@@ -51,6 +66,7 @@ const ItemList = ({ route, navigation }) => {
                     item: item
                 }
             })}
+            onToggleLike={() => toggleItemLiked(item.id)}
         ></Item>
     });
 

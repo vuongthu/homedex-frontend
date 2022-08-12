@@ -107,13 +107,13 @@ const styles = StyleSheet.create({
     img: {
         width: 125,
         height: 93,
-        marginTop: 130,
+        marginTop: 180,
     },
     header: {
         fontWeight: '700',
         fontSize: 30,
         color: '#FFFFFF',
-        marginBottom: 60,
+        marginBottom: 33,
         marginTop: 50,
     },
     label: {
@@ -123,6 +123,7 @@ const styles = StyleSheet.create({
     },
     formContainer: {
         alignSelf: 'center',
+        marginTop: 20,
     },
     input: {
         height: 48,

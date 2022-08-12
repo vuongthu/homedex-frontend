@@ -116,12 +116,14 @@ const ItemForm = ({ route, navigation }: ItemFormProps) => {
                     onChangeText={brandTextChangeHandler}
                 />
             </View>
-            <MeasurementToggle
-                measureType={measureType}
-                setMeasureType={setMeasureType}
-                unit={unit}
-                setUnit={setUnit}
-            ></MeasurementToggle>
+            <View style={styles.formContainer}>
+                <MeasurementToggle
+                    measureType={measureType}
+                    setMeasureType={setMeasureType}
+                    unit={unit}
+                    setUnit={setUnit}
+                ></MeasurementToggle>
+            </View>
             <View style={styles.formContainer}>
                 <View style={styles.expContainer}>
                     <Text style={styles.expText}>Add Expiration Date</Text>
@@ -179,8 +181,7 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         fontSize: 30,
         color: '#FFFFFF',
-        marginBottom: 10,
-        marginTop: 70,
+        marginTop: 90,
         textAlign: "center",
         textTransform: 'capitalize',
     },
@@ -189,10 +190,11 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '400',
         marginBottom: 6,
+        marginTop: 20,
     },
     formContainer: {
         alignSelf: "center",
-        marginTop: 20,
+        marginTop: 15,
     },
     input: {
         borderWidth: 1,
@@ -203,17 +205,16 @@ const styles = StyleSheet.create({
         height: 48,
         borderColor: '#FFFFFF',
         padding: 12,
-        marginBottom: 6,
     },
     button: {
-        width: 147,
+        width: 160,
         height: 56,
     },
     buttonContainer: {
         width: 345,
         flexDirection: 'row',
         justifyContent: 'space-around',
-        marginTop: 30,
+        marginTop: 20,
     },
     expText: {
         color: '#FFFFFF',
