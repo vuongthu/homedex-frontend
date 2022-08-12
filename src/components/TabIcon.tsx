@@ -11,6 +11,6 @@ export const TabIcon = ({ name }: TabIconProps) => {
         name === 'home-icon' ?
             <Image source={require('../images/home-icon-active.png')}/>
             :
-            <Image source={require('../images/heart-icon.png')}/>
+            <Image source={require('../images/heart-symbol-inactive.png')}/>
     );
 };

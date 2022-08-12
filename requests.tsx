@@ -18,10 +18,32 @@ export class User {
     }
 }
 
+export class UserRequest {
+    username: string;
+    email: string;
+
+    constructor(username: string, email: string) {
+        this.username = username;
+        this.email = email;
+    }
+}
+
 export const userLogin = (username: string, password: string) => {
     return axios.post(`${baseUrl}/users/login`, { username: username, password: password })
         .then((response: AxiosResponse<User>) => response.data)
         .catch((err) => console.log(`Error logging in: ${err}`));
+};
+
+export const getUser = (userId: string) => {
+    return axios.get(`${baseUrl}/users/${userId}`)
+        .then((response: AxiosResponse<User>) => response.data)
+        .catch((err) => console.log(`Error retrieving user: ${err}`));
+};
+
+export const updateUser = (userId: string, request: UserRequest) => {
+    return axios.patch(`${baseUrl}/users/${userId}`, request)
+        .then((response: AxiosResponse<User>) => response.data)
+        .catch((err) => console.log(`Error updating user: ${err}`));
 };
 
 // Household List Screen

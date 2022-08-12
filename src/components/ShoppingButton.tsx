@@ -3,13 +3,16 @@ import React from "react";
 
 type ShoppingButton = {
     onPressHandler: () => void;
-    style?: {},
+    style?: {};
+    purchase: boolean;
 }
 
-const ShoppingButton = ({ onPressHandler, style }: ShoppingButton) => {
+const ShoppingButton = ({ onPressHandler, style, purchase }: ShoppingButton) => {
     return (<Pressable style={({ pressed }) => pressed ? [styles.pressed, style] : [style]}
                        onPress={onPressHandler}>
-        <Image style={styles.img} source={require('../images/shopping-icon.png')}/>
+        {purchase ? <Image style={styles.img} source={require('../images/shopping-symbol.png')}/>
+            : <Image style={styles.img} source={require('../images/shopping-symbol-inactive.png')}/>
+        }
     </Pressable>)
 }
 

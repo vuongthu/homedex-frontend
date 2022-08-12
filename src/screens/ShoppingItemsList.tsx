@@ -86,7 +86,7 @@ const ShoppingItemsList = () => {
         <View style={styles.container}>
             <View style={styles.headerContainer}>
                 <Text style={styles.headerLabel}>Shopping List</Text>
-                <Image source={require('../images/shopping-symbol.png')}/>
+                <Image source={require('../images/shopping-emoji.png')}/>
             </View>
             <SelectDropdown
                 data={householdData}

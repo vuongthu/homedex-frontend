@@ -20,6 +20,7 @@ const ShoppingItem = ({ item, onLike, onShop }: ShoppingItemProps) => {
             <View style={styles.itemImgContainer}>
                 <ShoppingButton
                     onPressHandler={onShop}
+                    purchase={item.purchase}
                 ></ShoppingButton>
                 <HeartButton
                     onPressHandler={onLike}

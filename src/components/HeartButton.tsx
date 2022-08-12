@@ -10,8 +10,8 @@ type HeartButton = {
 const HeartButton = ({ onPressHandler, style, liked }: HeartButton) => {
     return (<Pressable style={({ pressed }) => pressed ? [styles.pressed, style] : [style]}
                        onPress={onPressHandler}>
-        {liked ? <Image style={styles.img} source={require('../images/liked-heart-icon.png')}/>
-            : <Image style={styles.img} source={require('../images/heart-icon.png')}/>
+        {liked ? <Image style={styles.img} source={require('../images/heart-symbol.png')}/>
+            : <Image style={styles.img} source={require('../images/heart-symbol-inactive.png')}/>
         }
     </Pressable>)
 }

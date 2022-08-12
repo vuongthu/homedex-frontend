@@ -18,7 +18,10 @@ const FavItem = ({ item, onLike, onShop }: FavItemProps) => {
     return (
         <View style={styles.container}>
             <View style={styles.itemImgContainer}>
-                <ShoppingButton onPressHandler={onShop}></ShoppingButton>
+                <ShoppingButton
+                    onPressHandler={onShop}
+                    purchase={item.purchase}
+                ></ShoppingButton>
                 <HeartButton
                     onPressHandler={onLike}
                     liked={item.liked}

@@ -28,7 +28,10 @@ const Item = ({ item, onEditHandler, onUpdateAmount, onToggleLike, onTogglePurch
     return (
         <View style={styles.container}>
             <View style={styles.itemImgContainer}>
-                <ShoppingButton onPressHandler={onTogglePurchase}></ShoppingButton>
+                <ShoppingButton
+                    onPressHandler={onTogglePurchase}
+                    purchase={item.purchase}
+                ></ShoppingButton>
                 <HeartButton
                     onPressHandler={onToggleLike}
                     liked={item.liked}

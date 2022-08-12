@@ -86,7 +86,7 @@ const FavItemsList = () => {
         <View style={styles.container}>
             <View style={styles.headerContainer}>
                 <Text style={styles.headerLabel}>Favorite Items</Text>
-                <Image source={require('../images/heart-symbol.png')}/>
+                <Image source={require('../images/heart-emoji.png')}/>
             </View>
             <SelectDropdown
                 data={householdData}
