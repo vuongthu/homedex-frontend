@@ -13,9 +13,10 @@ type ItemProps = {
     onEditHandler: () => void;
     onUpdateAmount: (item: Items, unit: number) => void;
     onToggleLike: () => void;
+    onTogglePurchase: () => void;
 };
 
-const Item = ({ item, onEditHandler, onUpdateAmount, onToggleLike }: ItemProps) => {
+const Item = ({ item, onEditHandler, onUpdateAmount, onToggleLike, onTogglePurchase }: ItemProps) => {
     const { name, brand, expiration, measurement, unit, addInfo } = item;
 
     const onIncrease = () => {
@@ -27,7 +28,7 @@ const Item = ({ item, onEditHandler, onUpdateAmount, onToggleLike }: ItemProps) 
     return (
         <View style={styles.container}>
             <View style={styles.itemImgContainer}>
-                <ShoppingButton onPressHandler={() => console.log('buy!')}></ShoppingButton>
+                <ShoppingButton onPressHandler={onTogglePurchase}></ShoppingButton>
                 <HeartButton
                     onPressHandler={onToggleLike}
                     liked={item.liked}

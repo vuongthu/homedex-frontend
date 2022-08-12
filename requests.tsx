@@ -67,8 +67,8 @@ export const deleteHousehold = (householdId: string) => {
         .catch(((err) => console.log(`Error deleting household: ${err}`)))
 }
 
-export const getItemsByHousehold = (householdId: string) => {
-    return axios.get(`${baseUrl}/households/${householdId}/items`)
+export const getItemsByHousehold = (householdId: string, action: string) => {
+    return axios.get(`${baseUrl}/households/${householdId}/items`, { params: { 'action': action } })
         .then((response: AxiosResponse<Items[]>) => response.data)
         .catch((err) => {
             console.log(`Error retrieving items for household: ${err}`);
@@ -130,8 +130,9 @@ export class Items {
     expiration: string;
     unit: number;
     liked: boolean;
+    purchase: boolean;
 
-    constructor(id: string, name: string, measurement: string, brand: string, addInfo: string, expiration: string, unit: number, liked: boolean) {
+    constructor(id: string, name: string, measurement: string, brand: string, addInfo: string, expiration: string, unit: number, liked: boolean, purchase: boolean) {
         this.id = id;
         this.name = name;
         this.measurement = measurement;
@@ -140,6 +141,7 @@ export class Items {
         this.expiration = expiration;
         this.unit = unit;
         this.liked = liked;
+        this.purchase = purchase;
     }
 }
 
@@ -192,4 +194,9 @@ export const deleteItem = (categoryId: string, itemId: string) => {
 export const toggleLikeItem = (itemId: string) => {
     return axios.patch(`${baseUrl}/categories/${itemId}/items/${itemId}/like`)
         .catch((err) => console.log(`Error liking item: ${err}`))
+}
+
+export const togglePurchaseItem = (itemId: string) => {
+    return axios.patch(`${baseUrl}/categories/${itemId}/items/${itemId}/purchase`)
+        .catch((err) => console.log(`Error purchasing item: ${err}`))
 }

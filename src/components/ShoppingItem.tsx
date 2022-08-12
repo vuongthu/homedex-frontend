@@ -1,43 +1,40 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import MoreInfo from "./MoreInfo";
 import React from "react";
 import ShoppingButton from "./ShoppingButton";
 import HeartButton from "./HeartButton";
+import { Items } from "../../requests";
 
-const ShoppingItem = ({ route, navigation }) => {
+type ShoppingItemProps = {
+    item: Items;
+    onLike: () => void;
+    onShop: () => void;
+}
 
-    // type ItemProps = {
-    //     item: Items;
-    //     onEditHandler: () => void;
-    //     onUpdateAmount: (item: Items, unit: number) => void;
-    // };
-    //
-    // const Item = ({ item, onEditHandler, onUpdateAmount }: ItemProps) => {
-    //     const { name, brand, expiration, measurement, unit, addInfo } = item;
+const ShoppingItem = ({ item, onLike, onShop }: ShoppingItemProps) => {
+
+    const { name, brand, expiration, addInfo } = item;
 
     return (
         <View style={styles.container}>
             <View style={styles.itemImgContainer}>
-                <ShoppingButton onPressHandler={() => console.log('buy!')}></ShoppingButton>
-                <HeartButton onPressHandler={() => console.log('liked!')}></HeartButton>
+                <ShoppingButton
+                    onPressHandler={onShop}
+                ></ShoppingButton>
+                <HeartButton
+                    onPressHandler={onLike}
+                    liked={item.liked}
+                ></HeartButton>
             </View>
             <View style={styles.textContainer}>
-                <Text style={styles.nameText}>Gelato</Text>
-                <Text style={styles.brandText}>Bobboi</Text>
-                <Text style={styles.expirationText}>8/8/2022</Text>
-
-                {/*<Text>{name}</Text>*/}
-                {/*<Text>{brand}</Text>*/}
-                {/*<Text>{expiration ? expiration.slice(0, 10) : expiration}</Text>*/}
+                <Text style={styles.nameText}>{name}</Text>
+                <Text style={styles.brandText}>{brand}</Text>
+                <Text style={styles.expirationText}>{expiration ? expiration.slice(0, 10) : expiration}</Text>
             </View>
             <View style={styles.buttonContainer}>
-                <View style={styles.infoImg}>
-                    <MoreInfo text="{addInfo}"></MoreInfo>
-                </View>
-
-                {/*{addInfo ? <View style={styles.infoImg}>*/}
-                {/*    <MoreInfo text={addInfo}></MoreInfo>*/}
-                {/*</View> : <View style={styles.infoImg}></View>}*/}
+                {addInfo ? <View style={styles.infoImg}>
+                    <MoreInfo text={addInfo}></MoreInfo>
+                </View> : <View style={styles.infoImg}></View>}
             </View>
         </View>
     )

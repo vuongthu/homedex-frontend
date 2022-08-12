@@ -2,7 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import AddButton from "../components/AddButton";
 import Item from "../components/Item";
-import { addItem, deleteItem, getItems, ItemRequest, Items, toggleLikeItem, updateItem } from "../../requests";
+import {
+    addItem,
+    deleteItem,
+    getItems,
+    ItemRequest,
+    Items,
+    toggleLikeItem,
+    togglePurchaseItem,
+    updateItem
+} from "../../requests";
 
 const ItemList = ({ route, navigation }) => {
 
@@ -44,7 +53,22 @@ const ItemList = ({ route, navigation }) => {
                 setItemsData((oldItems: Items[]) => {
                     return oldItems.map((oldItem: Items) => {
                         if (oldItem.id === itemId) {
-                            return {...oldItem, liked: !oldItem.liked}
+                            return { ...oldItem, liked: !oldItem.liked }
+                        } else {
+                            return oldItem
+                        }
+                    })
+                })
+            })
+    }
+
+    const toggleItemPurchase = (itemId: string) => {
+        togglePurchaseItem(itemId)
+            .then(() => {
+                setItemsData((oldItems: Items[]) => {
+                    return oldItems.map((oldItem: Items) => {
+                        if (oldItem.id === itemId) {
+                            return { ...oldItem, purchase: !oldItem.purchase }
                         } else {
                             return oldItem
                         }
@@ -67,6 +91,7 @@ const ItemList = ({ route, navigation }) => {
                 }
             })}
             onToggleLike={() => toggleItemLiked(item.id)}
+            onTogglePurchase={() => toggleItemPurchase(item.id)}
         ></Item>
     });
 

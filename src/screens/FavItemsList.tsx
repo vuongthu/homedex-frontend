@@ -3,9 +3,16 @@ import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import SelectDropdown from 'react-native-select-dropdown'
 import FavItem from "../components/FavItem";
 import * as SecureStore from "expo-secure-store";
-import { getHouseholds, getItemsByHousehold, Households, Items, toggleLikeItem } from "../../requests";
+import {
+    getHouseholds,
+    getItemsByHousehold,
+    Households,
+    Items,
+    toggleLikeItem,
+    togglePurchaseItem
+} from "../../requests";
 
-const FavItemsList = ({ navigation }) => {
+const FavItemsList = () => {
 
     const [householdData, setHouseholdData] = useState<Households[]>([]);
     const [selectedHousehold, setSelectedHousehold] = useState<Households>(null);
@@ -22,7 +29,6 @@ const FavItemsList = ({ navigation }) => {
     useEffect(() => {
         retrieveUser().then((userId: string) => {
             getHouseholds(userId).then((households: Households[]) => {
-                // setHouseholdData(households.map((household: Households) => household.name))
                 setHouseholdData(households)
             })
         });
@@ -34,7 +40,7 @@ const FavItemsList = ({ navigation }) => {
 
     useEffect(() => {
         if (selectedHousehold) {
-            getItemsByHousehold(selectedHousehold.id)
+            getItemsByHousehold(selectedHousehold.id, 'like')
                 .then((items: Items[]) => {
                     setFavItemsList(items)
                 })
@@ -50,12 +56,28 @@ const FavItemsList = ({ navigation }) => {
             })
     }
 
+    const onTogglePurchaseItem = (itemId: string) => {
+        togglePurchaseItem(itemId)
+            .then(() => {
+                setFavItemsList((oldData: Items[]) => {
+                    return oldData.map((oldItem: Items) => {
+                        if (oldItem.id === itemId) {
+                            return { ...oldItem, purchase: !oldItem.purchase }
+                        } else {
+                            return oldItem
+                        }
+                    })
+                })
+            })
+    }
+
     const favItems = favItemsList.map((item: Items) => {
         return (
             <FavItem
                 key={item.id}
                 item={item}
                 onLike={() => onUnlikeItem(item.id)}
+                onShop={() => onTogglePurchaseItem(item.id)}
             ></FavItem>
         )
     })
@@ -105,7 +127,6 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontSize: 35,
         fontWeight: '700',
-        marginLeft: 16,
         marginRight: 15,
     },
     dropdownButton: {
@@ -115,7 +136,7 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         alignSelf: 'center',
     },
-    dropdownButtonText : {
+    dropdownButtonText: {
         color: '#FFFFFF',
         fontWeight: 'bold',
         textTransform: 'capitalize',

@@ -8,17 +8,17 @@ import { Items } from "../../requests";
 type FavItemProps = {
     item: Items;
     onLike: () => void;
-    // onUpdateAmount: (item: Items, unit: number) => void;
+    onShop: () => void;
 };
 
-const FavItem = ({ item, onLike }: FavItemProps) => {
+const FavItem = ({ item, onLike, onShop }: FavItemProps) => {
 
     const { name, brand, expiration, addInfo } = item;
 
     return (
         <View style={styles.container}>
             <View style={styles.itemImgContainer}>
-                <ShoppingButton onPressHandler={() => console.log('buy!')}></ShoppingButton>
+                <ShoppingButton onPressHandler={onShop}></ShoppingButton>
                 <HeartButton
                     onPressHandler={onLike}
                     liked={item.liked}
