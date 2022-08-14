@@ -121,6 +121,7 @@ const FavItemsList = () => {
                 refreshControl={<RefreshControl
                     refreshing={refreshing}
                     onRefresh={onRefresh}
+                    tintColor={'#FFFFFF'}
                 />}
             >
                 {favItems}

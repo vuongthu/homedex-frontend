@@ -122,6 +122,7 @@ const ShoppingItemsList = () => {
                 refreshControl={<RefreshControl
                     refreshing={refreshing}
                     onRefresh={onRefresh}
+                    tintColor={'#FFFFFF'}
                 />}
             >
                 {shopItems}

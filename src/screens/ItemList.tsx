@@ -153,6 +153,7 @@ const ItemList = ({ route, navigation }) => {
                 refreshControl={<RefreshControl
                     refreshing={refreshing}
                     onRefresh={onRefresh}
+                    tintColor={'#FFFFFF'}
                 />}
             >
                 {itemsList}
