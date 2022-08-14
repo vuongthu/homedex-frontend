@@ -40,7 +40,7 @@ const ItemForm = ({ route, navigation }: ItemFormProps) => {
     }, []);
 
     useEffect(() => {
-        setIsValid(itemName.length && itemBrand.length && unit > 0 && itemName.length <= 22 && itemBrand.length <= 23)
+        setIsValid(itemName.length && itemBrand.length && unit >= 0 && itemName.length <= 22 && itemBrand.length <= 23)
     }, [itemName, itemBrand, unit]);
 
     const nameTextChangeHandler = (name: string) => {
