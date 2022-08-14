@@ -9,7 +9,7 @@ const NewUser = ({ navigation }) => {
     const [email, setEmail] = useState<string>('');
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const [isFormValid, setIsFormValid] = useState<boolean>(false)
+    const [isFormValid, setIsFormValid] = useState<boolean>(false);
 
     useEffect(() => setIsFormValid(email.length > 0 && username.length > 0 && password.length > 0), [email, username, password])
 

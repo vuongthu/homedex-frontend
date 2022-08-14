@@ -14,7 +14,7 @@ const CategoryForm = ({ route, navigation }) => {
         setCategoryName(text);
     };
 
-    useEffect(() => setInputValid(categoryName.length > 0), [categoryName])
+    useEffect(() => setInputValid(categoryName.length > 0 && categoryName.length <= 13), [categoryName])
 
     useEffect(() => {
         if (categoryNameParam) {

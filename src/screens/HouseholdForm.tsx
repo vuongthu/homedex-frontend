@@ -20,7 +20,7 @@ const HouseholdForm = ({ route, navigation }) => {
         }
     }, [])
 
-    useEffect(() => setInputValid(householdName.length > 0), [householdName])
+    useEffect(() => setInputValid(householdName.length > 0 && householdName.length <= 13), [householdName])
 
     const onSaveHousehold = () => {
         if (householdNameParam) {

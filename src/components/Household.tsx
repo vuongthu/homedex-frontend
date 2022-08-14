@@ -34,15 +34,15 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     image: {
-        marginLeft: 23,
-        marginRight: 23,
+        marginLeft: 10,
+        marginRight: 10,
     },
     text: {
         color: '#FFFFFF',
         fontSize: 20,
         fontWeight: '700',
         marginTop: 33,
-        width: 155,
+        width: 180,
     },
     buttonContainer: {
         marginTop: 5,

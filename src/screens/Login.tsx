@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Image, Linking, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import AcceptButton from "../components/AcceptButton";
 import { AuthContext } from "../../App";
@@ -11,6 +11,9 @@ const Login = ({ navigation }) => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [isFormValid, setIsFormValid] = useState<boolean>(false);
+
+    useEffect(() => setIsFormValid(username.length > 0 && password.length > 0), [username, password])
 
     const onUserLogin = async () => {
         await signIn(username, password);
@@ -35,7 +38,9 @@ const Login = ({ navigation }) => {
                        secureTextEntry={true}/>
             <AcceptButton style={styles.button}
                           title={"Sign In"}
-                          onPressHandler={onUserLogin}></AcceptButton>
+                          onPressHandler={onUserLogin}
+                          disabled={!isFormValid}
+            ></AcceptButton>
             <View style={styles.textButtonContainer}>
                 <TextButton style={styles.textButton}
                             text={'Create New Account'}

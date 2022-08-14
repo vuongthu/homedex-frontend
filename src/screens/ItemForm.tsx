@@ -39,7 +39,7 @@ const ItemForm = ({ route, navigation }: ItemFormProps) => {
         }
     }, []);
 
-    useEffect(() => setIsValid(itemName.length && itemBrand.length && unit > 0), [itemName, itemBrand, unit]);
+    useEffect(() => setIsValid(itemName.length && itemBrand.length && unit > 0 && itemName.length <= 22 && itemBrand.length <= 23), [itemName, itemBrand, unit]);
 
     const nameTextChangeHandler = (name: string) => {
         setItemName(name);
@@ -97,7 +97,7 @@ const ItemForm = ({ route, navigation }: ItemFormProps) => {
 
     return (
         <View>
-            <Text style={styles.header}>{item ? `Edit ${item.name}` : 'Add New Item'}</Text>
+            <Text style={styles.header}>{item ? `Edit Item` : 'Add New Item'}</Text>
             <View style={styles.formContainer}>
                 <Text style={styles.label}>Item Name</Text>
                 <TextInput

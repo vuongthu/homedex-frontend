@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     container: {
         marginBottom: 10,
         alignSelf: 'center',
-        width: 360,
+        width: 370,
     },
     headerContainer: {
         flexDirection: "row",
