@@ -2,7 +2,7 @@ import Tooltip from 'react-native-walkthrough-tooltip';
 import React, { useState } from 'react';
 import { Image, Pressable, Text } from "react-native";
 
-const MoreInfo = ( { text }) => {
+const MoreInfo = ({ text }) => {
 
     const [tooltip, setTooltip] = useState(false)
 

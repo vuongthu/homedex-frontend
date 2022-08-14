@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useMemo, useReducer } from 'react';
+import React, { createContext, useEffect, useMemo, useReducer } from 'react';
 import { Alert, Image, StyleSheet } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -30,38 +30,38 @@ const HomeFlow = () => {
             <Stack.Screen
                 name={"Households"}
                 component={HouseholdList}
-                options={{headerShown: false}}
+                options={{ headerShown: false }}
             />
             <Stack.Screen
                 name={"Household Form"}
                 component={HouseholdForm}
-                options={{headerShown: false}}
+                options={{ headerShown: false }}
             />
             <Stack.Screen
                 name={"Categories"}
                 component={CategoriesList}
                 options={{
                     title: "",
-                    headerStyle: {backgroundColor: '#8EA7BA'}
+                    headerStyle: { backgroundColor: '#8EA7BA' }
                 }}
             />
             <Stack.Screen
                 name={"Category Form"}
                 component={CategoryForm}
-                options={{headerShown: false}}
+                options={{ headerShown: false }}
             />
             <Stack.Screen
                 name={"Items"}
                 component={ItemList}
                 options={{
                     title: "",
-                    headerStyle: {backgroundColor: '#8EA7BA'}
+                    headerStyle: { backgroundColor: '#8EA7BA' }
                 }}
             />
             <Stack.Screen
                 name={"Item Form"}
                 component={ItemForm}
-                options={{headerShown: false}}
+                options={{ headerShown: false }}
             />
         </Stack.Navigator>
     )
@@ -73,7 +73,7 @@ const FavoritesFlow = () => {
             <Stack.Screen
                 name={"Favorites List"}
                 component={FavItemsList}
-                options={{headerShown: false}}
+                options={{ headerShown: false }}
             />
         </Stack.Navigator>
     )
@@ -85,7 +85,7 @@ const ShoppingFlow = () => {
             <Stack.Screen
                 name={"Shopping List"}
                 component={ShoppingItemsList}
-                options={{headerShown: false}}
+                options={{ headerShown: false }}
             />
         </Stack.Navigator>
     )
@@ -97,7 +97,7 @@ const UserFlow = () => {
             <Stack.Screen
                 name={"User Info"}
                 component={UserInfo}
-                options={{headerShown: false}}
+                options={{ headerShown: false }}
             />
         </Stack.Navigator>
     )

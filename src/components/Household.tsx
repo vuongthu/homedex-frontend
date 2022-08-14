@@ -4,15 +4,19 @@ import PencilButton from "./PencilButton";
 
 type HouseholdProps = {
     householdName: string;
+    householdImage?: string;
     onPressHandler: () => void;
     onEditHandler: () => void;
 };
 
-const Household = ({ householdName, onPressHandler, onEditHandler }: HouseholdProps) => {
+const Household = ({ householdName, householdImage, onPressHandler, onEditHandler }: HouseholdProps) => {
     return (
         <Pressable style={({ pressed }) => pressed ? [styles.container, styles.pressed] : styles.container}
                    onPress={onPressHandler}>
-            <Image style={styles.image} source={require('../images/imgplaceholder.png')}/>
+            {
+                householdImage ? <Image style={styles.image} source={{ uri: householdImage }}/>
+                    : <Image style={styles.image} source={require('../images/imgplaceholder.png')}/>
+            }
             <Text style={styles.text}>{householdName}</Text>
             <View style={styles.buttonContainer}>
                 <PencilButton onPressHandler={onEditHandler} style={styles.editButton}></PencilButton>
@@ -34,8 +38,11 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     image: {
-        marginLeft: 10,
-        marginRight: 10,
+        width: 77,
+        height: 77,
+        borderRadius: 50,
+        marginLeft: 5,
+        marginRight: 15,
     },
     text: {
         color: '#FFFFFF',

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TextInput, Image, Alert } from "react-native";
+import { Alert, Image, StyleSheet, Text, TextInput, View } from "react-native";
 import AcceptButton from "../components/AcceptButton";
 import TextButton from "../components/TextButton";
-import { createUser, updateUser, User, UserRequest } from "../../requests";
+import { createUser, User, UserRequest } from "../../requests";
 
 const NewUser = ({ navigation }) => {
 
@@ -22,7 +22,7 @@ const NewUser = ({ navigation }) => {
                 setEmail(user.email)
                 navigation.navigate('Login')
                 Alert.alert('Success!', 'Please login with the created username and password.')
-        });
+            });
     };
 
     return (

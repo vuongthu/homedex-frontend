@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import Scale from "./Scale";
 import Quantity from "./Quantity";
 import EditButton from "./EllipseButton";
@@ -49,16 +49,16 @@ const Item = ({ item, onEditHandler, onUpdateAmount, onToggleLike, onTogglePurch
                 ></EditButton>
                 <View>
                     {measurement === "SCALE" ?
-                    <Scale
-                        unit={unit}
-                        setUnit={setScaleValue}
-                    ></Scale> :
-                    <Quantity
-                        amount={unit}
-                        onIncrease={onIncrease}
-                        onDecrease={onDecrease}
-                    ></Quantity>
-                }
+                        <Scale
+                            unit={unit}
+                            setUnit={setScaleValue}
+                        ></Scale> :
+                        <Quantity
+                            amount={unit}
+                            onIncrease={onIncrease}
+                            onDecrease={onDecrease}
+                        ></Quantity>
+                    }
                 </View>
                 {addInfo ? <View style={styles.infoImg}>
                     <MoreInfo text={addInfo}></MoreInfo>

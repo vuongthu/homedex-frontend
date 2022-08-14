@@ -3,12 +3,14 @@ import React, { useEffect, useState } from "react";
 import AcceptButton from "../components/AcceptButton";
 import CancelButton from "../components/CancelButton";
 import TextButton from "../components/TextButton";
+import ImagePicker from "../components/ImagePicker";
 
 const HouseholdForm = ({ route, navigation }) => {
 
-    const { userId, householdNameParam, householdId } = route.params;
-    const [householdName, setHouseholdName] = useState("");
-    const [isInputValid, setInputValid] = useState(false);
+    const { userId, householdNameParam, householdImageParam, householdId } = route.params;
+    const [householdName, setHouseholdName] = useState<string>("");
+    const [isInputValid, setInputValid] = useState<boolean>(false);
+    const [householdImage, setHouseholdImage] = useState<string>("");
 
     const handleHouseholdTextChange = (text: string) => {
         setHouseholdName(text);
@@ -18,6 +20,10 @@ const HouseholdForm = ({ route, navigation }) => {
         if (householdNameParam) {
             setHouseholdName(householdNameParam)
         }
+
+        if (householdImageParam) {
+            setHouseholdImage(householdImageParam)
+        }
     }, [])
 
     useEffect(() => setInputValid(householdName.length > 0 && householdName.length <= 13), [householdName])
@@ -26,13 +32,18 @@ const HouseholdForm = ({ route, navigation }) => {
         if (householdNameParam) {
             navigation.navigate({
                 name: 'Households',
-                params: { householdId: householdId, householdName: householdName, action: 'edit' },
+                params: {
+                    householdId: householdId,
+                    householdName: householdName,
+                    householdImage: householdImage,
+                    action: 'edit'
+                },
                 merge: true,
             })
         } else {
             navigation.navigate({
                 name: 'Households',
-                params: { householdName: householdName, action: 'add' },
+                params: { householdName: householdName, householdImage: householdImage, action: 'add' },
                 merge: true,
             })
         }
@@ -46,13 +57,18 @@ const HouseholdForm = ({ route, navigation }) => {
         })
     }
 
+    const onSelectPhoto = (data: string) => {
+        setHouseholdImage(`data:image/jpeg;base64,${data}`)
+    };
+
     return (
         <View>
             <View style={styles.photoContainer}>
                 <Image style={styles.img} source={require('../images/logo.png')}/>
                 <Text style={styles.header}>{householdNameParam ? 'Edit Household' : 'Create New Household'}</Text>
-                <Image source={require('../images/imgplaceholder.png')}/>
-                <Text style={styles.photoLabel}>Choose Photo</Text>
+                {householdImage ? <Image style={styles.householdImage} source={{ uri: householdImage }}/>
+                    : <Image style={styles.householdImage} source={require('../images/imgplaceholder.png')}/>}
+                <ImagePicker style={styles.photoLabel} onPressHandler={onSelectPhoto}></ImagePicker>
             </View>
             <View style={styles.formContainer}>
                 <Text style={styles.label}>Household Name</Text>
@@ -62,7 +78,6 @@ const HouseholdForm = ({ route, navigation }) => {
                     onChangeText={handleHouseholdTextChange}
                     placeholder=""
                 />
-                <Text>{userId}</Text>
                 <View style={styles.buttonContainer}>
                     <CancelButton
                         style={styles.button}
@@ -104,6 +119,11 @@ const styles = StyleSheet.create({
         marginBottom: 33,
         marginTop: 50,
     },
+    householdImage: {
+        width: 77,
+        height: 77,
+        borderRadius: 50,
+    },
     photoLabel: {
         marginTop: 10,
         color: '#FFFFFF',
@@ -133,7 +153,7 @@ const styles = StyleSheet.create({
         width: 313,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 10,
+        marginTop: 20,
     },
     button: {
         width: 147,

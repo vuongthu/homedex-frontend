@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useCallback, useEffect, useState } from 'react';
+import { RefreshControl, ScrollView, StyleSheet, Text, View } from "react-native";
 import Household from "../components/Household";
 import AddButton from "../components/AddButton";
 import createHousehold, { Categories, deleteHousehold, editHousehold, getHouseholds, Households } from "../../requests";
@@ -8,7 +8,9 @@ import * as SecureStore from 'expo-secure-store';
 const HouseholdList = ({ route, navigation }) => {
     let userId: string;
 
-    const [householdData, setHouseholdData] = useState([]);
+    const [householdData, setHouseholdData] = useState<Households[]>([]);
+    const [refreshing, setRefreshing] = useState(false);
+
 
     const retrieveUser = async () => {
         try {
@@ -19,7 +21,6 @@ const HouseholdList = ({ route, navigation }) => {
     };
 
     useEffect(() => {
-
         retrieveUser().then((result: string) => {
             userId = result;
             getHouseholds(userId).then((households: [Households]) => {
@@ -33,6 +34,7 @@ const HouseholdList = ({ route, navigation }) => {
             return <Household
                 key={household.id}
                 householdName={household.name}
+                householdImage={household.image}
                 onPressHandler={() => navigation.navigate('Categories', {
                     householdId: household.id,
                     householdName: household.name
@@ -40,7 +42,8 @@ const HouseholdList = ({ route, navigation }) => {
                 onEditHandler={() => navigation.navigate('Household Form', {
                     userId: userId,
                     householdNameParam: household.name,
-                    householdId: household.id
+                    householdId: household.id,
+                    householdImageParam: household.image
                 })}
             ></Household>
         })
@@ -51,7 +54,7 @@ const HouseholdList = ({ route, navigation }) => {
             userId = result;
             if (route.params?.householdName) {
                 if (route.params?.action === 'add') {
-                    createHousehold(route.params.householdName, userId)
+                    createHousehold(route.params.householdName, route.params.householdImage, userId)
                         .then((household: Households) => {
                             setHouseholdData((oldData: [Households]) => {
                                 return [...oldData, household]
@@ -62,7 +65,7 @@ const HouseholdList = ({ route, navigation }) => {
                             })
                         })
                 } else if (route.params?.action === 'edit') {
-                    editHousehold(route.params.householdName, route.params.householdId)
+                    editHousehold(route.params.householdName, route.params.householdImage, route.params.householdId)
                         .then((household: Households) => {
                             setHouseholdData((oldData: Households[]) => {
                                 return oldData.map((oldHousehold: Households) => {
@@ -86,6 +89,17 @@ const HouseholdList = ({ route, navigation }) => {
         });
     }, [route.params?.action, route.params?.householdName]);
 
+    const onRefresh = useCallback(() => {
+        setRefreshing(true);
+        retrieveUser().then((result: string) => {
+            userId = result;
+            getHouseholds(userId).then((households: [Households]) => {
+                setHouseholdData(households)
+            })
+                .finally(() => setRefreshing(false))
+        })
+    }, [householdData]);
+
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
@@ -93,7 +107,14 @@ const HouseholdList = ({ route, navigation }) => {
                 <AddButton
                     onPressHandler={() => navigation.navigate('Household Form', { userId: userId })}></AddButton>
             </View>
-            <ScrollView>
+            <ScrollView
+                style={styles.householdList}
+                refreshControl={<RefreshControl
+                    refreshing={refreshing}
+                    onRefresh={onRefresh}
+                    tintColor={'#FFFFFF'}
+                />}
+            >
                 {householdList}
             </ScrollView>
         </View>
@@ -117,6 +138,9 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: '700',
     },
+    householdList: {
+        height: 620,
+    }
 })
 
 export default HouseholdList;

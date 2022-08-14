@@ -4,7 +4,6 @@ import AcceptButton from "../components/AcceptButton";
 import { AuthContext } from "../../App";
 import TextButton from "../components/TextButton";
 
-
 const Login = ({ navigation }) => {
 
     const { signIn } = useContext(AuthContext);

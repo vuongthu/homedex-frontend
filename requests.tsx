@@ -57,10 +57,12 @@ export const createUser = (request: UserRequest) => {
 export class Households {
     id: string;
     name: string;
+    image?: string;
 
-    constructor(id: string, name: string) {
+    constructor(id: string, name: string, image?: string) {
         this.id = id;
         this.name = name;
+        this.image = image;
     }
 }
 
@@ -76,16 +78,16 @@ export const getHouseholds = (userId: string) => {
 // Create Household Screen
 
 
-const createHousehold = (name: string, userId: string) => {
-    return axios.post(`${baseUrl}/households`, { name: name }, { params: { 'user-id': userId } })
+const createHousehold = (name: string, image: string, userId: string) => {
+    return axios.post(`${baseUrl}/households`, { name: name, image: image }, { params: { 'user-id': userId } })
         .then((response: AxiosResponse<Households>) => response.data)
         .catch((err) => console.log(`Error creating household: ${err}`));
 }
 
 export default createHousehold;
 
-export const editHousehold = (name: string, householdId: string) => {
-    return axios.patch(`${baseUrl}/households/${householdId}`, { name: name })
+export const editHousehold = (name: string, image: string, householdId: string) => {
+    return axios.patch(`${baseUrl}/households/${householdId}`, { name: name, image: image })
         .then((response: AxiosResponse<Households>) => response.data)
         .catch((err) => console.log(`Error updating household: ${err}`));
 }
