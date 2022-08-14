@@ -85,6 +85,13 @@ const FavItemsList = () => {
 
     const onRefresh = useCallback(() => {
         setRefreshing(true);
+
+        retrieveUser().then((userId: string) => {
+            getHouseholds(userId).then((households: Households[]) => {
+                setHouseholdData(households)
+            })
+        });
+
         if (selectedHousehold) {
             getItemsByHousehold(selectedHousehold.id, 'like')
                 .then((items: Items[]) => {

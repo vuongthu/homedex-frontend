@@ -86,6 +86,13 @@ const ShoppingItemsList = () => {
 
     const onRefresh = useCallback(() => {
         setRefreshing(true);
+
+        retrieveUser().then((userId: string) => {
+            getHouseholds(userId).then((households: Households[]) => {
+                setHouseholdData(households)
+            })
+        });
+
         if (selectedHousehold) {
             getItemsByHousehold(selectedHousehold.id, 'purchase')
                 .then((items: Items[]) => {
@@ -177,6 +184,7 @@ const styles = StyleSheet.create({
     },
     shopList: {
         marginTop: 30,
+        height: 500,
     },
 });
 
