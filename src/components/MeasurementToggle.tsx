@@ -26,7 +26,7 @@ const MeasurementToggle = ({ measureType, setMeasureType, unit, setUnit }: Measu
                 secondaryText='Scale'
                 onPrimaryPress={() => setMeasureType('QUANTITY')}
                 onSecondaryPress={() => setMeasureType('SCALE')}
-                activeColor='#667080'
+                activeColor='#365F7E'
                 inactiveColor='#FFFFFF'/>
             {
                 measureType === 'SCALE' ?

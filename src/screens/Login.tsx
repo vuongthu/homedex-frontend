@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-import { Alert, Image, Linking, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Image, Linking, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import AcceptButton from "../components/AcceptButton";
-import { User, userLogin } from "../../requests";
 import { AuthContext } from "../../App";
+import TextButton from "../components/TextButton";
 
 
 const Login = ({ navigation }) => {
@@ -17,16 +17,32 @@ const Login = ({ navigation }) => {
     };
 
     return (
-        <View style={styles.loginContainer}>
+        <View style={styles.container}>
             <Image style={styles.logo} source={require('../images/logo-with-name.png')}/>
             <Text style={styles.label}>Username or Email</Text>
-            <TextInput style={styles.input} placeholder={"Username or Email"} value={username}
-                       onChangeText={setUsername} autoCapitalize="none" autoCorrect={false}/>
+            <TextInput style={styles.input} placeholder={"Username or Email"}
+                       value={username}
+                       onChangeText={setUsername}
+                       autoCapitalize="none"
+                       autoCorrect={false}/>
             <Text style={styles.label}>Password</Text>
-            <TextInput style={styles.input} placeholder={"Password"} value={password}
-                       onChangeText={setPassword} autoCapitalize="none" autoCorrect={false} secureTextEntry={true}/>
-            <AcceptButton style={styles.button} title={"Sign In"} onPressHandler={onUserLogin}></AcceptButton>
-            <Text style={styles.password} onPress={() => Linking.openURL('https://google.com')}>Forgot Password?</Text>
+            <TextInput style={styles.input}
+                       placeholder={"Password"}
+                       value={password}
+                       onChangeText={setPassword}
+                       autoCapitalize="none"
+                       autoCorrect={false}
+                       secureTextEntry={true}/>
+            <AcceptButton style={styles.button}
+                          title={"Sign In"}
+                          onPressHandler={onUserLogin}></AcceptButton>
+            <View style={styles.textButtonContainer}>
+                <TextButton style={styles.textButton}
+                            text={'Create New Account'}
+                            onPressHandler={() => navigation.navigate('New User')}></TextButton>
+                <Text style={styles.textButton}
+                      onPress={() => Linking.openURL('https://google.com')}>Forgot Password?</Text>
+            </View>
             <Text style={styles.altLoginText}>Sign In With</Text>
             <Pressable style={styles.loginIcons}>
                 <Image style={styles.icon} source={require('../images/fb-icon.png')}/>
@@ -37,21 +53,20 @@ const Login = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-    loginContainer: {
+    container: {
         alignSelf: 'center',
     },
     logo: {
         height: 143,
         width: 124,
         alignSelf: "center",
-        marginTop: 120,
-        marginBottom: 10,
+        marginTop: 110,
+        marginBottom: 50,
     },
     label: {
         fontSize: 14,
         fontWeight: '400',
-        marginBottom: 4,
-        marginTop: 25,
+        marginBottom: 6,
         color: '#FFFFFF',
     },
     input: {
@@ -63,28 +78,32 @@ const styles = StyleSheet.create({
         height: 48,
         borderColor: '#FFFFFF',
         padding: 12,
-        backgroundColor: '#FFFFFF'
+        backgroundColor: '#FFFFFF',
+        marginBottom: 20,
     },
     button: {
         width: 311,
         height: 56,
-        backgroundColor: '#667080',
         alignItems: 'center',
-        marginTop: 35,
         overflow: 'hidden',
-        marginBottom: 16,
-        borderRadius: 6,
+        marginTop: 10,
+        marginBottom: 30,
     },
-    password: {
-        color: '#667080',
+    textButton: {
+        color: '#FFFFFF',
         textAlign: 'center',
+        fontWeight: '500',
+    },
+    textButtonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 50,
     },
     altLoginText: {
-        fontSize: 10,
+        fontSize: 11,
         fontWeight: '600',
-        marginTop: 60,
         textAlign: 'center',
-        color: '#FFFFFF',
+        color: '#667080',
     },
     loginIcons: {
         flexDirection: 'row',
@@ -92,6 +111,7 @@ const styles = StyleSheet.create({
         width: 100,
         alignSelf: 'center',
         marginTop: 20,
+        marginBottom: 20,
     },
     icon: {
         height: 40,

@@ -102,20 +102,20 @@ const HouseholdList = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 10,
-        marginBottom: 120,
+        marginBottom: 10,
+        alignSelf: 'center',
+        width: 325,
+    },
+    headerContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginBottom: 40,
+        marginTop: 80,
     },
     headerLabel: {
         color: '#FFFFFF',
         fontSize: 24,
         fontWeight: '700',
-        marginLeft: 23,
-    },
-    headerContainer: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        marginBottom: 50,
-        marginTop: 60,
     },
 })
 

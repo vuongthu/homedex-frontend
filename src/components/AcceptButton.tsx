@@ -31,10 +31,10 @@ const AcceptButton = ({ title, onPressHandler, disabled = false, style }: Accept
 const styles = StyleSheet.create({
     button: {
         color: 'white',
-        backgroundColor: '#667080',
+        backgroundColor: '#365F7E',
         padding: 17,
         textAlign: 'center',
-        borderRadius: 6,
+        borderRadius: 50,
     },
     buttonText: {
         color: 'white',

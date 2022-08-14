@@ -97,12 +97,6 @@ const styles = StyleSheet.create({
         height: 93,
         marginTop: 130,
     },
-    photoLabel: {
-        marginTop: 10,
-        color: '#FFFFFF',
-        fontSize: 14,
-        fontWeight: '400',
-    },
     header: {
         fontWeight: '700',
         fontSize: 30,
@@ -110,14 +104,20 @@ const styles = StyleSheet.create({
         marginBottom: 33,
         marginTop: 50,
     },
-    label: {
+    photoLabel: {
+        marginTop: 10,
         color: '#FFFFFF',
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: '400',
     },
     formContainer: {
         marginTop: 50,
         alignSelf: 'center',
+    },
+    label: {
+        color: '#FFFFFF',
+        fontSize: 16,
+        fontWeight: '400',
     },
     input: {
         height: 48,
@@ -129,15 +129,15 @@ const styles = StyleSheet.create({
         borderColor: '#FFFFFF',
         color: '#FFFFFF',
     },
-    button: {
-        width: 147,
-        height: 56,
-    },
     buttonContainer: {
         width: 313,
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginTop: 10,
+    },
+    button: {
+        width: 147,
+        height: 56,
     },
     textButton: {
         fontSize: 14,

@@ -9,7 +9,7 @@ type EllipseButton = {
 const EllipseButton = ({ onPressHandler, style }: EllipseButton) => {
     return (<Pressable style={({ pressed }) => pressed ? [styles.pressed, style] : [style]}
                        onPress={onPressHandler}>
-        <Image source={require('../images/pencil-icon.png')}/>
+        <Image source={require('../images/pencil.png')}/>
     </Pressable>)
 }
 

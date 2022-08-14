@@ -2,14 +2,20 @@ import React from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import PencilButton from "./PencilButton";
 
-const Household = ({ householdName, onPressHandler, onEditHandler }) => {
+type HouseholdProps = {
+    householdName: string;
+    onPressHandler: () => void;
+    onEditHandler: () => void;
+};
+
+const Household = ({ householdName, onPressHandler, onEditHandler }: HouseholdProps) => {
     return (
         <Pressable style={({ pressed }) => pressed ? [styles.container, styles.pressed] : styles.container}
                    onPress={onPressHandler}>
             <Image style={styles.image} source={require('../images/imgplaceholder.png')}/>
             <Text style={styles.text}>{householdName}</Text>
             <View style={styles.buttonContainer}>
-                <PencilButton onPressHandler={onEditHandler} style={styles.moreImg}></PencilButton>
+                <PencilButton onPressHandler={onEditHandler} style={styles.editButton}></PencilButton>
             </View>
         </Pressable>
     )
@@ -27,6 +33,10 @@ const styles = StyleSheet.create({
         height: 100,
         alignSelf: 'center',
     },
+    image: {
+        marginLeft: 23,
+        marginRight: 23,
+    },
     text: {
         color: '#FFFFFF',
         fontSize: 20,
@@ -34,18 +44,14 @@ const styles = StyleSheet.create({
         marginTop: 33,
         width: 155,
     },
-    image: {
-        marginLeft: 23,
-        marginRight: 23,
-    },
-    pressed: {
-        opacity: 0.75,
-    },
     buttonContainer: {
         marginTop: 5,
     },
-    moreImg: {
+    editButton: {
         alignSelf: 'flex-end'
+    },
+    pressed: {
+        opacity: 0.75,
     },
 })
 

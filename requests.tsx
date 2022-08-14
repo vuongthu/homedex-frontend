@@ -46,6 +46,12 @@ export const updateUser = (userId: string, request: UserRequest) => {
         .catch((err) => console.log(`Error updating user: ${err}`));
 };
 
+export const createUser = (request: UserRequest) => {
+    return axios.post(`${baseUrl}/users`, request)
+        .then((response: AxiosResponse<User>) => response.data)
+        .catch((err) => console.log(`Error creating user: ${err}`));
+};
+
 // Household List Screen
 
 export class Households {

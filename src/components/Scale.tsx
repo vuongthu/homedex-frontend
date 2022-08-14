@@ -17,7 +17,7 @@ const Scale = ({ unit, setUnit, style }: ScaleProps) => {
             value={unit}
             minimumValue={0}
             maximumValue={100}
-            minimumTrackTintColor="#587F9D"
+            minimumTrackTintColor="#365F7E"
             maximumTrackTintColor="#D9D9D9"
         />
     )

@@ -129,8 +129,12 @@ const ItemList = ({ route, navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
-                <Text style={styles.headerLabel}>{categoryName} Inventory</Text>
+                <View style={styles.headerLabelContainer}>
+                    <Text style={styles.categoryLabel}>{categoryName}</Text>
+                    <Text style={styles.headerLabel}>Inventory</Text>
+                </View>
                 <AddButton
+                    style={styles.button}
                     onPressHandler={() => navigation.navigate('Item Form', {
                         categoryId: categoryId,
                         categoryName: categoryName
@@ -146,13 +150,25 @@ const ItemList = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 10,
+        marginBottom: 10,
+        alignSelf: 'center',
+        width: 360,
     },
     headerContainer: {
         flexDirection: "row",
         justifyContent: "space-between",
         marginBottom: 40,
-        marginTop: 60,
+        marginTop: 40,
+    },
+    headerLabelContainer: {
+        flexDirection: 'column'
+    },
+    categoryLabel: {
+        color: '#FFFFFF',
+        fontSize: 35,
+        fontWeight: '700',
+        marginLeft: 16,
+        textTransform: 'uppercase',
     },
     headerLabel: {
         color: '#FFFFFF',
@@ -160,7 +176,11 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         marginLeft: 16,
         textTransform: 'capitalize',
-    }
+    },
+    button: {
+        marginTop: 25,
+        marginRight: 16,
+    },
 });
 
 export default ItemList;

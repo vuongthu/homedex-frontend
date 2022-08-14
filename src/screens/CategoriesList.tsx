@@ -90,40 +90,40 @@ const CategoriesList = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 10,
-    },
-    categoryContainer: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
+        marginBottom: 10,
+        alignSelf: 'center',
+        width: 340,
     },
     headerContainer: {
         flexDirection: "row",
         justifyContent: "space-between",
         marginBottom: 40,
-        marginTop: 60,
+        marginTop: 40,
         borderBottomWidth: 1,
         borderBottomColor: '#FFFFFF',
         paddingBottom: 40,
     },
-    headerLabel: {
-        color: '#FFFFFF',
-        fontSize: 24,
-        fontWeight: '700',
-        marginLeft: 16,
+    headerLabelContainer: {
+        flexDirection: 'column'
     },
     householdLabel: {
         color: '#FFFFFF',
         fontSize: 35,
         fontWeight: '700',
-        marginLeft: 16,
         textTransform: 'uppercase',
     },
-    headerLabelContainer: {
-        flexDirection: 'column'
+    headerLabel: {
+        color: '#FFFFFF',
+        fontSize: 24,
+        fontWeight: '700',
     },
     button: {
         marginTop: 25,
+    },
+    categoryContainer: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between'
     },
 })
 

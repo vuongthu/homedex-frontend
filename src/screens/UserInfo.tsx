@@ -53,7 +53,7 @@ const UserInfo = () => {
 
     return (
         <View style={styles.container}>
-            <Image style={styles.img} source={require('../images/logo.png')}/>
+            <Image style={styles.logo} source={require('../images/logo.png')}/>
             <View style={styles.headerContainer}>
                 <Text style={styles.headerLabel}>Account Details</Text>
             </View>
@@ -87,7 +87,6 @@ const UserInfo = () => {
                     autoCorrect={false}
                     secureTextEntry={true}
                 />
-
                 <View style={styles.buttonContainer}>
                     <AcceptButton
                         style={styles.button}
@@ -107,6 +106,12 @@ const styles = StyleSheet.create({
         padding: 10,
         marginTop: 40,
     },
+    logo: {
+        width: 125,
+        height: 93,
+        marginTop: 50,
+        alignSelf: 'center'
+    },
     headerContainer: {
         flexDirection: "row",
         justifyContent: "center",
@@ -120,15 +125,14 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         textAlign: "center"
     },
-    label: {
-        color: '#FFFFFF',
-        fontSize: 16,
-        fontWeight: '400',
-        marginBottom: 6,
-    },
     formContainer: {
         alignSelf: "center",
-
+    },
+    label: {
+        color: '#FFFFFF',
+        fontSize: 14,
+        fontWeight: '400',
+        marginBottom: 6,
     },
     input: {
         borderWidth: 1,
@@ -141,28 +145,22 @@ const styles = StyleSheet.create({
         padding: 12,
         marginBottom: 15,
     },
-    img: {
-        width: 125,
-        height: 93,
-        marginTop: 50,
-        alignSelf: 'center'
-    },
-    logoutText: {
-        fontSize: 16,
-        textAlign: 'center',
-        marginTop: 40,
-        color: '#667080',
-    },
-    button: {
-        width: 313,
-        height: 56,
-    },
     buttonContainer: {
         width: 313,
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginTop: 20,
         alignSelf: "center"
+    },
+    button: {
+        width: 313,
+        height: 56,
+    },
+    logoutText: {
+        fontSize: 16,
+        textAlign: 'center',
+        marginTop: 40,
+        color: '#667080',
     },
 });
 

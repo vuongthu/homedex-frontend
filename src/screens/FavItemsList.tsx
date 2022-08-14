@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     dropdownButton: {
         width: '80%',
         height: 50,
-        backgroundColor: '#587F9D',
+        backgroundColor: '#365F7E',
         borderRadius: 6,
         alignSelf: 'center',
     },
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
         borderRadius: 6,
     },
     dropdownRow: {
-        backgroundColor: '#587F9D',
+        backgroundColor: '#365F7E',
         borderBottomColor: '#FFFFFF',
     },
     dropdownRowText: {

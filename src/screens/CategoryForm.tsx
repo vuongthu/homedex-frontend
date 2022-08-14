@@ -116,14 +116,14 @@ const styles = StyleSheet.create({
         marginBottom: 33,
         marginTop: 50,
     },
+    formContainer: {
+        alignSelf: 'center',
+        marginTop: 20,
+    },
     label: {
         color: '#FFFFFF',
         fontSize: 16,
         fontWeight: '400',
-    },
-    formContainer: {
-        alignSelf: 'center',
-        marginTop: 20,
     },
     input: {
         height: 48,
@@ -135,15 +135,15 @@ const styles = StyleSheet.create({
         borderColor: '#FFFFFF',
         color: '#FFFFFF'
     },
-    button: {
-        width: 147,
-        height: 56,
-    },
     buttonContainer: {
         width: 313,
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginTop: 20,
+    },
+    button: {
+        width: 147,
+        height: 56,
     },
     textButton: {
         fontSize: 14,

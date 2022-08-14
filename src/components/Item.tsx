@@ -44,10 +44,11 @@ const Item = ({ item, onEditHandler, onUpdateAmount, onToggleLike, onTogglePurch
             </View>
             <View style={styles.buttonContainer}>
                 <EditButton
-                    style={styles.editImg}
+                    style={styles.editButton}
                     onPressHandler={onEditHandler}
                 ></EditButton>
-                {measurement === "SCALE" ?
+                <View>
+                    {measurement === "SCALE" ?
                     <Scale
                         unit={unit}
                         setUnit={setScaleValue}
@@ -58,6 +59,7 @@ const Item = ({ item, onEditHandler, onUpdateAmount, onToggleLike, onTogglePurch
                         onDecrease={onDecrease}
                     ></Quantity>
                 }
+                </View>
                 {addInfo ? <View style={styles.infoImg}>
                     <MoreInfo text={addInfo}></MoreInfo>
                 </View> : <View style={styles.infoImg}></View>}
@@ -69,43 +71,29 @@ const Item = ({ item, onEditHandler, onUpdateAmount, onToggleLike, onTogglePurch
 const styles = StyleSheet.create({
     container: {
         height: 105,
+        width: 360,
         borderWidth: 2,
         borderColor: '#FFFFFF',
         marginBottom: 20,
         borderRadius: 6,
         flexDirection: 'row',
-        alignItems: 'center',
+        alignSelf: 'center',
+    },
+    itemImgContainer: {
+        flexDirection: 'column',
+        width: 30,
+        height: 100,
+        justifyContent: 'space-evenly',
+        paddingLeft: 10,
     },
     textContainer: {
         marginLeft: 15,
         flexDirection: 'column',
         justifyContent: 'space-evenly',
-        height: 85,
+        height: 100,
         paddingTop: 5,
-        paddingLeft: 20,
+        paddingLeft: 10,
         width: 200,
-    },
-    itemImgContainer: {
-        flexDirection: 'column',
-        width: 30,
-        height: 80,
-        justifyContent: 'space-around',
-        paddingLeft: 15,
-    },
-    itemName: {
-        fontSize: 16,
-        fontWeight: '700'
-    },
-    buttonContainer: {
-        width: 100,
-        height: 74,
-        justifyContent: 'space-between'
-    },
-    editImg: {
-        alignSelf: 'flex-end',
-    },
-    infoImg: {
-        alignItems: 'flex-end',
     },
     nameText: {
         color: '#FFFFFF',
@@ -116,7 +104,19 @@ const styles = StyleSheet.create({
     },
     expirationText: {
         color: '#FFFFFF',
-    }
+    },
+    buttonContainer: {
+        width: 100,
+        height: 100,
+        justifyContent: 'space-evenly',
+        marginRight: 10,
+    },
+    editButton: {
+        alignSelf: 'flex-end',
+    },
+    infoImg: {
+        alignItems: 'flex-end',
+    },
 });
 
 export default Item;

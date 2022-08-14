@@ -10,7 +10,7 @@ const AddButton = ({ onPressHandler, style }: AddButtonProps) => {
 
 
     return (
-        <Pressable style={({ pressed }) => pressed ? [styles.container, styles.pressed, style] : [styles.container, style]}
+        <Pressable style={({ pressed }) => pressed ? [styles.pressed, style] : [style]}
                    onPress={() => onPressHandler ? onPressHandler() : console.log("Added!")}>
             <Image source={require('../images/plus.png')}/>
         </Pressable>
@@ -18,9 +18,7 @@ const AddButton = ({ onPressHandler, style }: AddButtonProps) => {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        marginRight: 23,
-    },
+
     pressed: {
         opacity: 0.75,
     }

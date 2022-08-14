@@ -66,8 +66,6 @@ const ItemForm = ({ route, navigation }: ItemFormProps) => {
             isDatePickerVisible ? expiration.toISOString() : null,
             unit
         )
-        console.log(isDatePickerVisible)
-        console.log(newItem)
         if (item) {
             navigation.navigate({
                 name: 'Items',
@@ -185,16 +183,16 @@ const styles = StyleSheet.create({
         textAlign: "center",
         textTransform: 'capitalize',
     },
+    formContainer: {
+        alignSelf: "center",
+        marginTop: 5,
+    },
     label: {
         color: '#FFFFFF',
         fontSize: 16,
         fontWeight: '400',
         marginBottom: 6,
-        marginTop: 20,
-    },
-    formContainer: {
-        alignSelf: "center",
-        marginTop: 10,
+        marginTop: 15,
     },
     input: {
         borderWidth: 1,
@@ -206,9 +204,17 @@ const styles = StyleSheet.create({
         borderColor: '#FFFFFF',
         padding: 12,
     },
-    button: {
-        width: 160,
-        height: 56,
+    expContainer: {
+        width: 345,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    expText: {
+        color: '#FFFFFF',
+        fontSize: 16,
+    },
+    datePicker: {
+        marginTop: 10,
     },
     buttonContainer: {
         width: 345,
@@ -216,17 +222,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         marginTop: 20,
     },
-    expText: {
-        color: '#FFFFFF',
-        fontSize: 16,
-    },
-    expContainer: {
-        width: 345,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
-    datePicker: {
-        marginTop: 10,
+    button: {
+        width: 160,
+        height: 56,
     },
     textButton: {
         fontSize: 14,

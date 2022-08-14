@@ -10,26 +10,31 @@ type CategoryProps = {
 
 const Category = ({ categoriesName, onPressHandler, onEditHandler }: CategoryProps) => {
     return (
-        <Pressable style={({ pressed }) => pressed ? [styles.text, styles.pressed] : styles.text}
+        <Pressable style={({ pressed }) => pressed ? [styles.container, styles.pressed] : styles.container}
                    onPress={onPressHandler}>
-            <View style={styles.textContainer}>
-                <View style={styles.buttonContainer}>
-                    <PencilButton onPressHandler={onEditHandler} style={styles.moreImg}></PencilButton>
-                </View>
-                <Text style={styles.text}>{categoriesName}</Text>
+            <View style={styles.buttonContainer}>
+                <PencilButton onPressHandler={onEditHandler} style={styles.editButton}></PencilButton>
             </View>
+            <Text style={styles.text}>{categoriesName}</Text>
         </Pressable>
     )
 }
 
 const styles = StyleSheet.create({
-    textContainer: {
+    container: {
         borderColor: '#FFFFFF',
         borderWidth: 2,
         width: 160,
         height: 96,
         marginBottom: 16,
         borderRadius: 6,
+    },
+    buttonContainer: {
+        marginTop: 10,
+        marginRight: 13,
+    },
+    editButton: {
+        alignSelf: 'flex-end'
     },
     text: {
         color: '#FFFFFF',
@@ -38,13 +43,6 @@ const styles = StyleSheet.create({
     },
     pressed: {
         opacity: 0.75,
-    },
-    buttonContainer: {
-        marginTop: 10,
-        marginRight: 13,
-    },
-    moreImg: {
-        alignSelf: 'flex-end'
     },
 })
 

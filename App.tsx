@@ -40,6 +40,10 @@ const HomeFlow = () => {
             <Stack.Screen
                 name={"Categories"}
                 component={CategoriesList}
+                options={{
+                    title: "",
+                    headerStyle: {backgroundColor: '#8EA7BA'}
+                }}
             />
             <Stack.Screen
                 name={"Category Form"}
@@ -49,6 +53,10 @@ const HomeFlow = () => {
             <Stack.Screen
                 name={"Items"}
                 component={ItemList}
+                options={{
+                    title: "",
+                    headerStyle: {backgroundColor: '#8EA7BA'}
+                }}
             />
             <Stack.Screen
                 name={"Item Form"}
@@ -126,7 +134,7 @@ const App = ({ navigation }) => {
             signIn: async (username: string, password: string) => {
                 const user: User = await userLogin(username, password)
                 if (!user) {
-                    Alert.alert('Login Failed', 'Please enter a valid username/email and/or password')
+                    Alert.alert('Login Failed', 'Please enter a valid username/email and/or password.')
                 } else {
                     dispatchLoginState({ type: 'SIGN_IN', token: user.id });
                     await SecureStore.setItemAsync('user-id', user.id);
@@ -200,6 +208,11 @@ const App = ({ navigation }) => {
                             name={"Login"}
                             component={Login}
                             options={{ headerShown: false }}
+                        />
+                        <Stack.Screen
+                            name={"New User"}
+                            component={NewUser}
+                            options={{ title: "" }}
                         />
                     </Stack.Navigator>
                 }

@@ -52,14 +52,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignSelf: 'center',
     },
-    textContainer: {
-        marginLeft: 15,
-        flexDirection: 'column',
-        justifyContent: 'space-evenly',
-        height: 100,
-        paddingLeft: 20,
-        width: 110,
-    },
     itemImgContainer: {
         flexDirection: 'column',
         width: 30,
@@ -67,27 +59,13 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         paddingLeft: 15,
     },
-    itemImg: {
-        height: 74,
-        width: 74,
-        marginLeft: 10,
-        borderRadius: 6,
-    },
-    itemName: {
-        fontSize: 16,
-        fontWeight: '700'
-    },
-    buttonContainer: {
-        width: 100,
-        height: 74,
-        justifyContent: 'space-between'
-    },
-    moreImg: {
-        alignSelf: 'flex-end',
-    },
-    infoImg: {
-        alignItems: 'flex-end',
-        marginTop: 70,
+    textContainer: {
+        marginLeft: 15,
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+        height: 100,
+        paddingLeft: 20,
+        width: 220,
     },
     nameText: {
         color: '#FFFFFF',
@@ -98,7 +76,16 @@ const styles = StyleSheet.create({
     },
     expirationText: {
         color: '#FFFFFF',
-    }
+    },
+    buttonContainer: {
+        width: 85,
+        height: 74,
+        justifyContent: 'space-between'
+    },
+    infoImg: {
+        alignItems: 'flex-end',
+        marginTop: 70,
+    },
 });
 
 export default FavItem;
