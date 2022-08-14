@@ -90,7 +90,7 @@ const CategoriesList = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom: 10,
+        marginBottom: 120,
         alignSelf: 'center',
         width: 340,
     },

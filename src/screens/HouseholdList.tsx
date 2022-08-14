@@ -102,7 +102,7 @@ const HouseholdList = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom: 10,
+        marginBottom: 130,
         alignSelf: 'center',
         width: 325,
     },

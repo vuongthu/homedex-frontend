@@ -20,7 +20,7 @@ const AcceptButton = ({ title, onPressHandler, disabled = false, style }: Accept
 
     return (
         <Pressable style={buttonStyle}
-                   onPress={() => onPressHandler ? onPressHandler() : console.log("Pressed!")}
+                   onPress={onPressHandler}
                    disabled={disabled}
         >
             <Text style={styles.buttonText}>{title}</Text>

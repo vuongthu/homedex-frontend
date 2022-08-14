@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useCallback, useEffect, useState } from 'react';
+import { Image, RefreshControl, ScrollView, StyleSheet, Text, View } from "react-native";
 import ShoppingItem from "../components/ShoppingItem";
 import {
     getHouseholds,
@@ -17,6 +17,8 @@ const ShoppingItemsList = () => {
     const [householdData, setHouseholdData] = useState<Households[]>([]);
     const [selectedHousehold, setSelectedHousehold] = useState<Households>(null);
     const [shopItemsList, setShopItemsList] = useState<Items[]>([]);
+    const [refreshing, setRefreshing] = useState(false);
+
 
     const retrieveUser = async () => {
         try {
@@ -82,6 +84,17 @@ const ShoppingItemsList = () => {
         )
     })
 
+    const onRefresh = useCallback(() => {
+        setRefreshing(true);
+        if (selectedHousehold) {
+            getItemsByHousehold(selectedHousehold.id, 'purchase')
+                .then((items: Items[]) => {
+                    setShopItemsList(items)
+                })
+                .finally(() => setRefreshing(false))
+        }
+    }, [selectedHousehold]);
+
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
@@ -104,7 +117,13 @@ const ShoppingItemsList = () => {
                 rowStyle={styles.dropdownRow}
                 rowTextStyle={styles.dropdownRowText}
             />
-            <ScrollView style={styles.shopList}>
+            <ScrollView
+                style={styles.shopList}
+                refreshControl={<RefreshControl
+                    refreshing={refreshing}
+                    onRefresh={onRefresh}
+                />}
+            >
                 {shopItems}
             </ScrollView>
         </View>

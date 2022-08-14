@@ -11,7 +11,7 @@ const AddButton = ({ onPressHandler, style }: AddButtonProps) => {
 
     return (
         <Pressable style={({ pressed }) => pressed ? [styles.pressed, style] : [style]}
-                   onPress={() => onPressHandler ? onPressHandler() : console.log("Added!")}>
+                   onPress={onPressHandler}>
             <Image source={require('../images/plus.png')}/>
         </Pressable>
     )

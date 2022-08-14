@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useCallback, useEffect, useState } from 'react';
+import { Image, RefreshControl, ScrollView, StyleSheet, Text, View } from "react-native";
 import SelectDropdown from 'react-native-select-dropdown'
 import FavItem from "../components/FavItem";
 import * as SecureStore from "expo-secure-store";
@@ -17,6 +17,7 @@ const FavItemsList = () => {
     const [householdData, setHouseholdData] = useState<Households[]>([]);
     const [selectedHousehold, setSelectedHousehold] = useState<Households>(null);
     const [favItemsList, setFavItemsList] = useState<Items[]>([]);
+    const [refreshing, setRefreshing] = useState(false);
 
     const retrieveUser = async () => {
         try {
@@ -32,7 +33,7 @@ const FavItemsList = () => {
                 setHouseholdData(households)
             })
         });
-    }, [])
+    }, []);
 
     const onSelectHandler = (selectedItem: string, index: number) => {
         setSelectedHousehold(selectedItem);
@@ -82,6 +83,17 @@ const FavItemsList = () => {
         )
     })
 
+    const onRefresh = useCallback(() => {
+        setRefreshing(true);
+        if (selectedHousehold) {
+            getItemsByHousehold(selectedHousehold.id, 'like')
+                .then((items: Items[]) => {
+                    setFavItemsList(items)
+                })
+                .finally(() => setRefreshing(false))
+        }
+    }, [selectedHousehold]);
+
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
@@ -104,7 +116,13 @@ const FavItemsList = () => {
                 rowStyle={styles.dropdownRow}
                 rowTextStyle={styles.dropdownRowText}
             />
-            <ScrollView style={styles.favList}>
+            <ScrollView
+                style={styles.favList}
+                refreshControl={<RefreshControl
+                    refreshing={refreshing}
+                    onRefresh={onRefresh}
+                />}
+            >
                 {favItems}
             </ScrollView>
         </View>
@@ -156,6 +174,7 @@ const styles = StyleSheet.create({
     },
     favList: {
         marginTop: 30,
+        height: 500,
     },
 });
 

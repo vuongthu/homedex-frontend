@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useCallback, useEffect, useState } from 'react';
+import { RefreshControl, StyleSheet, ScrollView, Text, View } from "react-native";
 import AddButton from "../components/AddButton";
 import Item from "../components/Item";
 import {
@@ -17,6 +17,14 @@ const ItemList = ({ route, navigation }) => {
 
     const { categoryId, categoryName } = route.params;
     const [itemsListData, setItemsData] = useState<Items[]>([]);
+    const [refreshing, setRefreshing] = useState(false);
+
+    const onRefresh = useCallback(() => {
+        setRefreshing(true);
+        getItems(categoryId)
+            .then((items: Items[]) => setItemsData(items))
+            .finally(() => setRefreshing(false))
+    }, [categoryId]);
 
     useEffect(() => {
         getItems(categoryId)
@@ -141,7 +149,12 @@ const ItemList = ({ route, navigation }) => {
                     })}
                 ></AddButton>
             </View>
-            <ScrollView>
+            <ScrollView
+                refreshControl={<RefreshControl
+                    refreshing={refreshing}
+                    onRefresh={onRefresh}
+                />}
+            >
                 {itemsList}
             </ScrollView>
         </View>
@@ -150,7 +163,7 @@ const ItemList = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom: 10,
+        marginBottom: 140,
         alignSelf: 'center',
         width: 370,
     },

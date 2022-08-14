@@ -13,7 +13,7 @@ const TextButton = ({ onPressHandler, style, text }: TextButtonProps) => {
 
     return (
         <Pressable style={({ pressed }) => pressed ? [styles.pressed] : []}
-                   onPress={() => onPressHandler ? onPressHandler() : console.log("Added!")}>
+                   onPress={onPressHandler}>
             <Text style={[style]}>{text}</Text>
         </Pressable>
     )
