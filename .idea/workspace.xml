@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a1bba96-49c1-4945-aa65-ebe240b86056" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/splash.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/splash.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/EllipseButton.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ImagePicker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ImagePicker.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PencilButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PencilButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/app-logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/info-icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/info-icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
