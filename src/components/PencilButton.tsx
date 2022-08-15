@@ -1,12 +1,12 @@
 import { Image, Pressable, StyleSheet } from "react-native";
 import React from "react";
 
-type EllipseButton = {
+type PencilButton = {
     onPressHandler: () => void;
     style?: {},
 }
 
-const EllipseButton = ({ onPressHandler, style }: EllipseButton) => {
+const PencilButton = ({ onPressHandler, style }: PencilButton) => {
     return (<Pressable style={({ pressed }) => pressed ? [styles.pressed, style] : [style]}
                        onPress={onPressHandler}>
         <Image source={require('../images/pencil.png')}/>
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default EllipseButton;
+export default PencilButton;

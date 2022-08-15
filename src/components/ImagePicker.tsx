@@ -4,7 +4,7 @@ import {
     launchImageLibraryAsync,
     MediaTypeOptions,
     PermissionStatus,
-    useCameraPermissions
+    useCameraPermissions, useMediaLibraryPermissions
 } from 'expo-image-picker';
 import { Alert, StyleSheet, View } from "react-native";
 import TextButton from "./TextButton";
@@ -17,11 +17,12 @@ type ImagePickerProps = {
 const ImagePicker = ({ onPressHandler, style }: ImagePickerProps) => {
 
     const [cameraPermissionInformation, setCameraPermissionInformation] = useCameraPermissions()
+    const [libraryPermissionInformation, setLibraryPermissionInformation] = useMediaLibraryPermissions()
 
-    const verifyPermissions = async () => {
+    const verifyCameraPermissions = async () => {
         if (cameraPermissionInformation && cameraPermissionInformation.status === PermissionStatus.UNDETERMINED) {
-            const permissionResponse = await setCameraPermissionInformation();
-            return permissionResponse.granted
+            const cameraPermissionResponse = await setCameraPermissionInformation();
+            return cameraPermissionResponse.granted
         }
 
         if (cameraPermissionInformation && cameraPermissionInformation.status === PermissionStatus.DENIED) {
@@ -33,9 +34,9 @@ const ImagePicker = ({ onPressHandler, style }: ImagePickerProps) => {
     }
 
     const takeImage = async () => {
-        const hasPermission = await verifyPermissions();
+        const hasCameraPermission = await verifyCameraPermissions();
 
-        if (!hasPermission) {
+        if (!hasCameraPermission) {
             return;
         }
 
@@ -51,7 +52,27 @@ const ImagePicker = ({ onPressHandler, style }: ImagePickerProps) => {
         }
     };
 
+    const verifyLibraryPermissions = async () => {
+        if (libraryPermissionInformation && libraryPermissionInformation.status === PermissionStatus.UNDETERMINED) {
+            const libraryPermissionResponse = await setLibraryPermissionInformation();
+            return libraryPermissionResponse.granted
+        }
+
+        if (libraryPermissionInformation && libraryPermissionInformation.status === PermissionStatus.DENIED) {
+            Alert.alert('"HomeDex" Would Like to Access Photos', 'Please allow access to Photos and try again.')
+            return false;
+        }
+
+        return true;
+    }
+
     const pickImage = async () => {
+        const hasLibraryPermission = await verifyLibraryPermissions()
+
+        if (!hasLibraryPermission) {
+            return;
+        }
+
         let result = await launchImageLibraryAsync({
             mediaTypes: MediaTypeOptions.Images,
             allowsEditing: true,

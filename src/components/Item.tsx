@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from "react-native";
 import Scale from "./Scale";
 import Quantity from "./Quantity";
-import EditButton from "./EllipseButton";
+import PencilButton from "./PencilButton";
 import MoreInfo from "./MoreInfo";
 import { Items } from "../../requests";
 import HeartButton from "./HeartButton";
@@ -43,10 +43,10 @@ const Item = ({ item, onEditHandler, onUpdateAmount, onToggleLike, onTogglePurch
                 <Text style={styles.expirationText}>{expiration ? expiration.slice(0, 10) : expiration}</Text>
             </View>
             <View style={styles.buttonContainer}>
-                <EditButton
+                <PencilButton
                     style={styles.editButton}
                     onPressHandler={onEditHandler}
-                ></EditButton>
+                ></PencilButton>
                 <View>
                     {measurement === "SCALE" ?
                         <Scale
@@ -70,7 +70,7 @@ const Item = ({ item, onEditHandler, onUpdateAmount, onToggleLike, onTogglePurch
 
 const styles = StyleSheet.create({
     container: {
-        height: 105,
+        height: 140,
         width: 360,
         borderWidth: 2,
         borderColor: '#FFFFFF',
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     itemImgContainer: {
         flexDirection: 'column',
         width: 30,
-        height: 100,
+        height: 135,
         justifyContent: 'space-evenly',
         paddingLeft: 10,
     },
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         marginLeft: 15,
         flexDirection: 'column',
         justifyContent: 'space-evenly',
-        height: 100,
+        height: 135,
         paddingTop: 5,
         paddingLeft: 10,
         width: 200,
@@ -107,8 +107,8 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         width: 100,
-        height: 100,
-        justifyContent: 'space-evenly',
+        height: 135,
+        justifyContent: 'space-around',
         marginRight: 10,
     },
     editButton: {
