@@ -25,7 +25,7 @@ const ImagePicker = ({ onPressHandler, style }: ImagePickerProps) => {
         }
 
         if (cameraPermissionInformation && cameraPermissionInformation.status === PermissionStatus.DENIED) {
-            Alert.alert('Insufficient Permissions!', 'You need access to the camera!')
+            Alert.alert('"HomeDex" Would Like to Access the Camera', 'Please allow access to the Camera and try again.')
             return false;
         }
 
