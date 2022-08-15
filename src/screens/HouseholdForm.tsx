@@ -1,4 +1,14 @@
-import { Image, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+    Image,
+    Keyboard,
+    KeyboardAvoidingView,
+    Platform,
+    Pressable,
+    StyleSheet,
+    Text,
+    TextInput,
+    View
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import AcceptButton from "../components/AcceptButton";
 import CancelButton from "../components/CancelButton";
@@ -62,48 +72,59 @@ const HouseholdForm = ({ route, navigation }) => {
     };
 
     return (
-        <View>
-            <View style={styles.photoContainer}>
-                <Image style={styles.img} source={require('../images/logo.png')}/>
-                <Text style={styles.header}>{householdNameParam ? 'Edit Household' : 'Create New Household'}</Text>
-                {householdImage ? <Image style={styles.householdImage} source={{ uri: householdImage }}/>
-                    : <Image style={styles.householdImage} source={require('../images/imgplaceholder.png')}/>}
-                <ImagePicker style={styles.photoLabel} onPressHandler={onSelectPhoto}></ImagePicker>
-            </View>
-            <View style={styles.formContainer}>
-                <Text style={styles.label}>Household Name</Text>
-                <TextInput
-                    style={styles.input}
-                    value={householdName}
-                    onChangeText={handleHouseholdTextChange}
-                    placeholder=""
-                />
-                <View style={styles.buttonContainer}>
-                    <CancelButton
-                        style={styles.button}
-                        title="Cancel"
-                        onPressHandler={() => navigation.navigate('Households', { userId: userId })}
-                    ></CancelButton>
-                    <AcceptButton
-                        style={styles.button}
-                        title="Save"
-                        onPressHandler={onSaveHousehold}
-                        disabled={!isInputValid}
-                    ></AcceptButton>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={{ flex: 1 }}
+        >
+            <Pressable onPress={Keyboard.dismiss}>
+                <View style={styles.container}>
+                    <View style={styles.photoContainer}>
+                        <Image style={styles.img} source={require('../images/logo.png')}/>
+                        <Text
+                            style={styles.header}>{householdNameParam ? 'Edit Household' : 'Create New Household'}</Text>
+                        {householdImage ? <Image style={styles.householdImage} source={{ uri: householdImage }}/>
+                            : <Image style={styles.householdImage} source={require('../images/imgplaceholder.png')}/>}
+                        <ImagePicker style={styles.photoLabel} onPressHandler={onSelectPhoto}></ImagePicker>
+                    </View>
+                    <View style={styles.formContainer}>
+                        <Text style={styles.label}>Household Name</Text>
+                        <TextInput
+                            style={styles.input}
+                            value={householdName}
+                            onChangeText={handleHouseholdTextChange}
+                            placeholder=""
+                        />
+                        <View style={styles.buttonContainer}>
+                            <CancelButton
+                                style={styles.button}
+                                title="Cancel"
+                                onPressHandler={() => navigation.navigate('Households', { userId: userId })}
+                            ></CancelButton>
+                            <AcceptButton
+                                style={styles.button}
+                                title="Save"
+                                onPressHandler={onSaveHousehold}
+                                disabled={!isInputValid}
+                            ></AcceptButton>
+                        </View>
+                        {householdNameParam ?
+                            <TextButton
+                                onPressHandler={onDeleteHousehold}
+                                text={'Delete?'}
+                                style={styles.textButton}
+                            ></TextButton>
+                            : <></>}
+                    </View>
                 </View>
-                {householdNameParam ?
-                    <TextButton
-                        onPressHandler={onDeleteHousehold}
-                        text={'Delete?'}
-                        style={styles.textButton}
-                    ></TextButton>
-                    : <></>}
-            </View>
-        </View>
+            </Pressable>
+        </KeyboardAvoidingView>
     )
 }
 
 const styles = StyleSheet.create({
+    container: {
+        justifyContent: 'flex-end'
+    },
     photoContainer: {
         alignItems: 'center',
     },

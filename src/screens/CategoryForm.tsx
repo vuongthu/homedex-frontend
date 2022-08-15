@@ -1,4 +1,14 @@
-import { Image, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+    Image,
+    Keyboard,
+    KeyboardAvoidingView,
+    Platform,
+    Pressable,
+    StyleSheet,
+    Text,
+    TextInput,
+    View
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import AcceptButton from "../components/AcceptButton";
 import CancelButton from "../components/CancelButton";
@@ -63,44 +73,54 @@ const CategoryForm = ({ route, navigation }) => {
     }
 
     return (
-        <View>
-            <View style={styles.photoContainer}>
-                <Image style={styles.img} source={require('../images/logo.png')}/>
-                <Text style={styles.header}>{categoryNameParam ? 'Edit Category' : 'Create New Category'}</Text>
-            </View>
-            <View style={styles.formContainer}>
-                <Text style={styles.label}>Category Name</Text>
-                <TextInput style={styles.input} value={categoryName} onChangeText={handleCategoryTextChange}
-                           placeholder=""/>
-                <View style={styles.buttonContainer}>
-                    <CancelButton
-                        style={styles.button}
-                        title="Cancel"
-                        onPressHandler={() => navigation.navigate('Categories', {
-                            householdId: householdId,
-                            householdName: householdName
-                        })}
-                    ></CancelButton>
-                    <AcceptButton
-                        style={styles.button}
-                        title="Save"
-                        onPressHandler={onSaveHandler}
-                        disabled={!isInputValid}
-                    ></AcceptButton>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={{ flex: 1 }}
+        >
+            <Pressable onPress={Keyboard.dismiss}>
+                <View style={styles.container}>
+                    <View style={styles.photoContainer}>
+                        <Image style={styles.img} source={require('../images/logo.png')}/>
+                        <Text style={styles.header}>{categoryNameParam ? 'Edit Category' : 'Create New Category'}</Text>
+                    </View>
+                    <View style={styles.formContainer}>
+                        <Text style={styles.label}>Category Name</Text>
+                        <TextInput style={styles.input} value={categoryName} onChangeText={handleCategoryTextChange}
+                                   placeholder=""/>
+                        <View style={styles.buttonContainer}>
+                            <CancelButton
+                                style={styles.button}
+                                title="Cancel"
+                                onPressHandler={() => navigation.navigate('Categories', {
+                                    householdId: householdId,
+                                    householdName: householdName
+                                })}
+                            ></CancelButton>
+                            <AcceptButton
+                                style={styles.button}
+                                title="Save"
+                                onPressHandler={onSaveHandler}
+                                disabled={!isInputValid}
+                            ></AcceptButton>
+                        </View>
+                        {categoryNameParam ?
+                            <TextButton
+                                onPressHandler={onDeleteCategory}
+                                text={'Delete?'}
+                                style={styles.textButton}
+                            ></TextButton>
+                            : <></>}
+                    </View>
                 </View>
-                {categoryNameParam ?
-                    <TextButton
-                        onPressHandler={onDeleteCategory}
-                        text={'Delete?'}
-                        style={styles.textButton}
-                    ></TextButton>
-                    : <></>}
-            </View>
-        </View>
+            </Pressable>
+        </KeyboardAvoidingView>
     )
 }
 
 const styles = StyleSheet.create({
+    container: {
+        justifyContent: 'flex-end'
+    },
     photoContainer: {
         alignItems: 'center',
     },

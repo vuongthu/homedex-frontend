@@ -1,8 +1,8 @@
 import axios, { AxiosResponse } from "axios";
-// @ts-ignore
-import { BACKEND_URL } from "react-native-dotenv";
+// // @ts-ignore
+// import { BACKEND_URL } from "react-native-dotenv";
 
-const baseUrl = BACKEND_URL;
+const baseUrl = 'https://homedex.herokuapp.com';
 
 // Login Screen
 

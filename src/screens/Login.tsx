@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Image, Linking, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Image, Keyboard, Linking, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import AcceptButton from "../components/AcceptButton";
 import { AuthContext } from "../../App";
 import TextButton from "../components/TextButton";
@@ -19,40 +19,42 @@ const Login = ({ navigation }) => {
     };
 
     return (
-        <View style={styles.container}>
-            <Image style={styles.logo} source={require('../images/logo-with-name.png')}/>
-            <Text style={styles.label}>Username or Email</Text>
-            <TextInput style={styles.input} placeholder={"Username or Email"}
-                       value={username}
-                       onChangeText={setUsername}
-                       autoCapitalize="none"
-                       autoCorrect={false}/>
-            <Text style={styles.label}>Password</Text>
-            <TextInput style={styles.input}
-                       placeholder={"Password"}
-                       value={password}
-                       onChangeText={setPassword}
-                       autoCapitalize="none"
-                       autoCorrect={false}
-                       secureTextEntry={true}/>
-            <AcceptButton style={styles.button}
-                          title={"Sign In"}
-                          onPressHandler={onUserLogin}
-                          disabled={!isFormValid}
-            ></AcceptButton>
-            <View style={styles.textButtonContainer}>
-                <TextButton style={styles.textButton}
-                            text={'Create New Account'}
-                            onPressHandler={() => navigation.navigate('New User')}></TextButton>
-                <Text style={styles.textButton}
-                      onPress={() => Linking.openURL('https://google.com')}>Forgot Password?</Text>
+        <Pressable onPress={Keyboard.dismiss}>
+            <View style={styles.container}>
+                <Image style={styles.logo} source={require('../images/logo-with-name.png')}/>
+                <Text style={styles.label}>Username or Email</Text>
+                <TextInput style={styles.input} placeholder={"Username or Email"}
+                           value={username}
+                           onChangeText={setUsername}
+                           autoCapitalize="none"
+                           autoCorrect={false}/>
+                <Text style={styles.label}>Password</Text>
+                <TextInput style={styles.input}
+                           placeholder={"Password"}
+                           value={password}
+                           onChangeText={setPassword}
+                           autoCapitalize="none"
+                           autoCorrect={false}
+                           secureTextEntry={true}/>
+                <AcceptButton style={styles.button}
+                              title={"Sign In"}
+                              onPressHandler={onUserLogin}
+                              disabled={!isFormValid}
+                ></AcceptButton>
+                <View style={styles.textButtonContainer}>
+                    <TextButton style={styles.textButton}
+                                text={'Create New Account'}
+                                onPressHandler={() => navigation.navigate('New User')}></TextButton>
+                    <Text style={styles.textButton}
+                          onPress={() => Linking.openURL('https://google.com')}>Forgot Password?</Text>
+                </View>
+                <Text style={styles.altLoginText}>Sign In With</Text>
+                <Pressable style={styles.loginIcons}>
+                    <Image style={styles.icon} source={require('../images/fb-icon.png')}/>
+                    <Image style={styles.icon} source={require('../images/google-icon.png')}/>
+                </Pressable>
             </View>
-            <Text style={styles.altLoginText}>Sign In With</Text>
-            <Pressable style={styles.loginIcons}>
-                <Image style={styles.icon} source={require('../images/fb-icon.png')}/>
-                <Image style={styles.icon} source={require('../images/google-icon.png')}/>
-            </Pressable>
-        </View>
+        </Pressable>
     );
 };
 

@@ -1,5 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, Image, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+    Alert,
+    Image,
+    Keyboard,
+    KeyboardAvoidingView,
+    Platform,
+    Pressable,
+    StyleSheet,
+    Text,
+    TextInput,
+    View
+} from "react-native";
 import AcceptButton from "../components/AcceptButton";
 import TextButton from "../components/TextButton";
 import { createUser, User, UserRequest } from "../../requests";
@@ -18,7 +29,7 @@ const NewUser = ({ navigation }) => {
 
         createUser(request)
             .then((user: User) => {
-                setUsername(user.username)
+                setUsername(user.userrname)
                 setEmail(user.email)
                 navigation.navigate('Login')
                 Alert.alert('Success!', 'Please login with the created username and password.')
@@ -26,59 +37,67 @@ const NewUser = ({ navigation }) => {
     };
 
     return (
-        <View style={styles.container}>
-            <Image style={styles.logo} source={require('../images/logo.png')}/>
-            <View style={styles.headerContainer}>
-                <Text style={styles.headerText}>Let's Get Started!</Text>
-                <Text style={styles.captionText}>Create an account with HomeDex</Text>
-            </View>
-            <Text style={styles.label}>Username</Text>
-            <TextInput
-                style={styles.input}
-                value={username}
-                placeholder="Username"
-                onChangeText={(text) => setUsername(text)}
-                autoCapitalize="none"
-                autoCorrect={false}
-            />
-            <Text style={styles.label}>Email</Text>
-            <TextInput
-                style={styles.input}
-                value={email}
-                placeholder="Email"
-                onChangeText={(text) => setEmail(text)}
-                autoCapitalize="none"
-                autoCorrect={false}
-                textContentType={'emailAddress'}
-            />
-            <Text style={styles.label}>Password</Text>
-            <TextInput
-                style={styles.input}
-                value={password}
-                placeholder="Password"
-                onChangeText={(text) => setPassword(text)}
-                autoCapitalize="none"
-                autoCorrect={false}
-                secureTextEntry={true}
-            />
-            <View style={styles.buttonContainer}>
-                <AcceptButton
-                    style={styles.button}
-                    title="Create"
-                    onPressHandler={onCreateUser}
-                    disabled={!isFormValid}
-                ></AcceptButton>
-            </View>
-            <TextButton style={styles.textButton}
-                        text={'Already a User?'}
-                        onPressHandler={() => navigation.navigate('Login')}></TextButton>
-        </View>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={{ flex: 1 }}
+        >
+            <Pressable onPress={Keyboard.dismiss}>
+                <View style={styles.container}>
+                    <Image style={styles.logo} source={require('../images/logo.png')}/>
+                    <View style={styles.headerContainer}>
+                        <Text style={styles.headerText}>Let's Get Started!</Text>
+                        <Text style={styles.captionText}>Create an account with HomeDex</Text>
+                    </View>
+                    <Text style={styles.label}>Username</Text>
+                    <TextInput
+                        style={styles.input}
+                        value={username}
+                        placeholder="Username"
+                        onChangeText={(text) => setUsername(text)}
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                    />
+                    <Text style={styles.label}>Email</Text>
+                    <TextInput
+                        style={styles.input}
+                        value={email}
+                        placeholder="Email"
+                        onChangeText={(text) => setEmail(text)}
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        textContentType={'emailAddress'}
+                    />
+                    <Text style={styles.label}>Password</Text>
+                    <TextInput
+                        style={styles.input}
+                        value={password}
+                        placeholder="Password"
+                        onChangeText={(text) => setPassword(text)}
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        secureTextEntry={true}
+                    />
+                    <View style={styles.buttonContainer}>
+                        <AcceptButton
+                            style={styles.button}
+                            title="Create"
+                            onPressHandler={onCreateUser}
+                            disabled={!isFormValid}
+                        ></AcceptButton>
+                    </View>
+                    <TextButton style={styles.textButton}
+                                text={'Already a User?'}
+                                onPressHandler={() => navigation.navigate('Login')}></TextButton>
+                </View>
+            </Pressable>
+        </KeyboardAvoidingView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
         alignSelf: 'center',
+        justifyContent: 'flex-end',
     },
     logo: {
         width: 125,

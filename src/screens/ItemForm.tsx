@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { Keyboard, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import AcceptButton from "../components/AcceptButton";
 import MeasurementToggle from "../components/MeasurementToggle";
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -98,85 +98,95 @@ const ItemForm = ({ route, navigation }: ItemFormProps) => {
     }
 
     return (
-        <View>
-            <Text style={styles.header}>{item ? `Edit Item` : 'Add New Item'}</Text>
-            <View style={styles.formContainer}>
-                <Text style={styles.label}>Item Name</Text>
-                <TextInput
-                    style={styles.input}
-                    value={itemName}
-                    placeholder=""
-                    onChangeText={nameTextChangeHandler}
-                />
-                <Text style={styles.label}>Brand</Text>
-                <TextInput
-                    style={styles.input}
-                    value={itemBrand}
-                    placeholder=""
-                    onChangeText={brandTextChangeHandler}
-                />
-            </View>
-            <View style={styles.formContainer}>
-                <MeasurementToggle
-                    measureType={measureType}
-                    setMeasureType={setMeasureType}
-                    unit={unit}
-                    setUnit={setUnit}
-                ></MeasurementToggle>
-            </View>
-            <View style={styles.formContainer}>
-                <View style={styles.expContainer}>
-                    <Text style={styles.expText}>Add Expiration Date</Text>
-                    <AddButton
-                        onPressHandler={() => setIsDatePickerVisible(!isDatePickerVisible)}
-                        style={{ marginRight: 0 }}
-                    ></AddButton>
-                </View>
-                {isDatePickerVisible ? <DateTimePicker
-                    value={expiration}
-                    display={'default'}
-                    mode={'date'}
-                    onChange={expirationDateChangeHandler}
-                    style={styles.datePicker}
-                /> : <></>}
-            </View>
-            <View style={styles.formContainer}>
-                <Text style={styles.label}>Additional Information (optional)</Text>
-                <TextInput
-                    style={styles.input}
-                    value={addInfo}
-                    placeholder=""
-                    onChangeText={addInfoTextChangeHandler}
-                />
-                <View style={styles.buttonContainer}>
-                    <CancelButton
-                        style={styles.button}
-                        title="Cancel"
-                        onPressHandler={() => navigation.navigate('Items', {
-                            categoryId: categoryId,
-                            categoryName: categoryName
-                        })}
-                    ></CancelButton>
-                    <AcceptButton
-                        style={styles.button}
-                        title={'Save'}
-                        onPressHandler={onSaveItem}
-                        disabled={!isValid}
-                    ></AcceptButton>
-                </View>
-                {item ?
-                    <TextButton
-                        onPressHandler={() => onDeleteItem()}
-                        text={'Delete?'}
-                        style={styles.textButton}
-                    ></TextButton>
-                    : <></>}
-            </View>
-        </View>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={{ flex: 1 }}
+        >
+            <Pressable onPress={Keyboard.dismiss}>
+                <View style={styles.container}>
+                        <Text style={styles.header}>{item ? `Edit Item` : 'Add New Item'}</Text>
+                        <View style={styles.formContainer}>
+                            <Text style={styles.label}>Item Name</Text>
+                            <TextInput
+                                style={styles.input}
+                                value={itemName}
+                                placeholder=""
+                                onChangeText={nameTextChangeHandler}
+                            />
+                            <Text style={styles.label}>Brand</Text>
+                            <TextInput
+                                style={styles.input}
+                                value={itemBrand}
+                                placeholder=""
+                                onChangeText={brandTextChangeHandler}
+                            />
+                        </View>
+                        <View style={styles.formContainer}>
+                            <MeasurementToggle
+                                measureType={measureType}
+                                setMeasureType={setMeasureType}
+                                unit={unit}
+                                setUnit={setUnit}
+                            ></MeasurementToggle>
+                        </View>
+                        <View style={styles.formContainer}>
+                            <View style={styles.expContainer}>
+                                <Text style={styles.expText}>Add Expiration Date</Text>
+                                <AddButton
+                                    onPressHandler={() => setIsDatePickerVisible(!isDatePickerVisible)}
+                                    style={{ marginRight: 0 }}
+                                ></AddButton>
+                            </View>
+                            {isDatePickerVisible ? <DateTimePicker
+                                value={expiration}
+                                display={'default'}
+                                mode={'date'}
+                                onChange={expirationDateChangeHandler}
+                                style={styles.datePicker}
+                            /> : <></>}
+                        </View>
+                        <View style={styles.formContainer}>
+                            <Text style={styles.label}>Additional Information (optional)</Text>
+                            <TextInput
+                                style={styles.input}
+                                value={addInfo}
+                                placeholder=""
+                                onChangeText={addInfoTextChangeHandler}
+                            />
+                            <View style={styles.buttonContainer}>
+                                <CancelButton
+                                    style={styles.button}
+                                    title="Cancel"
+                                    onPressHandler={() => navigation.navigate('Items', {
+                                        categoryId: categoryId,
+                                        categoryName: categoryName
+                                    })}
+                                ></CancelButton>
+                                <AcceptButton
+                                    style={styles.button}
+                                    title={'Save'}
+                                    onPressHandler={onSaveItem}
+                                    disabled={!isValid}
+                                ></AcceptButton>
+                            </View>
+                            {item ?
+                                <TextButton
+                                    onPressHandler={() => onDeleteItem()}
+                                    text={'Delete?'}
+                                    style={styles.textButton}
+                                ></TextButton>
+                                : <></>}
+                        </View>
+                    </View>
+            </Pressable>
+        </KeyboardAvoidingView>
     )
 };
 
 const styles = StyleSheet.create({
+    container: {
+      justifyContent: 'flex-end'
+    },
     header: {
         fontWeight: '700',
         fontSize: 30,
