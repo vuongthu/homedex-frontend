@@ -29,7 +29,7 @@ const NewUser = ({ navigation }) => {
 
         createUser(request)
             .then((user: User) => {
-                setUsername(user.userrname)
+                setUsername(user.username)
                 setEmail(user.email)
                 navigation.navigate('Login')
                 Alert.alert('Success!', 'Please login with the created username and password.')
